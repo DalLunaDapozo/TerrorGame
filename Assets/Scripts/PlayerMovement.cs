@@ -1,10 +1,14 @@
 using UnityEngine;
+using System;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private InputManager inputManager;
+    private Animator anim;
+
+    public event EventHandler OnStepSound;
 
     private Vector2 movementSpeed;
     private Vector2 moveVector;
@@ -19,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+            
         inputManager = new InputManager();
         inputManager.Player.Enable();
 
@@ -35,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         ReadMovementValue();
         ChangeMovementSpeed();
+        WalkAnimation();
+        FlipSprite();
     }
 
     private void FixedUpdate()
@@ -55,6 +63,14 @@ public class PlayerMovement : MonoBehaviour
         moveVector = inputManager.Player.Movement.ReadValue<Vector2>();
     }
 
+    private void WalkAnimation()
+    {
+        if (moveVector != Vector2.zero)
+            anim.SetBool("Walk", true);
+        else
+            anim.SetBool("Walk", false);
+    }
+
     private void LighterAction(InputAction.CallbackContext callbackContext)
     {
         if (lighterIsOn)
@@ -67,6 +83,26 @@ public class PlayerMovement : MonoBehaviour
             lighter.SetActive(true);
             lighterIsOn = true;
         }
+            
+    }
+
+    public void StepSoundEvent()
+    {
+        OnStepSound?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void FlipSprite()
+    {
+        if (moveVector.x < 0)
+        
+            GameObject.Find("PlayerSprite").transform.localScale = new Vector2(-1, 1);
+            
+        
+        else if (moveVector.x > 0)
+        
+            GameObject.Find("PlayerSprite").transform.localScale = new Vector2(1, 1);
+            
+        
             
     }
 
