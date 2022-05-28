@@ -4,25 +4,28 @@ using UnityEngine;
 public class ChangeRoomTrigger : MonoBehaviour
 {
     public Transform target;
-    [SerializeField]
+    public CurrentRoom roomName;
+    
     private CinemachineVirtualCamera cam;
+    private PlayerLocation playerLocation;
 
     private void Start()
     {
-        cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();     
+        cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
+        playerLocation = GameObject.Find("Player").GetComponent<PlayerLocation>();
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("ASD");
             TransitionRoom();
         }
     }
 
     private void TransitionRoom()
     {
-        cam.Follow = target;  
+        cam.Follow = target;
+        playerLocation.playerCurrentRoom = roomName;
     }
 }

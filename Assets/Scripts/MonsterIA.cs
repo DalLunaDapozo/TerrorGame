@@ -1,17 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen }
+
 public class MonsterIA : MonoBehaviour
 {
 
     public enum Status {alert, patrol, chase }
-    
+   
+
     private Rigidbody2D rb;
     private Transform player;
-    private Transform room;
+    private Transform CurrentRoomTransform;
     private Vector2 movementSpeed;
 
     private PlayerMovement playerMovement;
+    private PlayerLocation playerLocation;
 
     [SerializeField] private float distanceUntilStop; 
     [SerializeField] private float chaseField;
@@ -23,6 +27,7 @@ public class MonsterIA : MonoBehaviour
     [SerializeField] private Vector2 directionToGo;
 
     [SerializeField] private Status status = Status.patrol;
+    [SerializeField] private CurrentRoom currentRoom = CurrentRoom.mainroom;
     [SerializeField] private Vector2 playerPos;
 
  
@@ -50,7 +55,7 @@ public class MonsterIA : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player").gameObject.transform;
         playerMovement = player.GetComponent<PlayerMovement>();
-        room = GameObject.Find("Floor").gameObject.transform;
+       
 
         playerMovement.OnStepSound += AlertListenEvents;
     }
@@ -74,13 +79,37 @@ public class MonsterIA : MonoBehaviour
 
     private void GetFloorSize()
     {
+        switch (currentRoom)
+        {
+            case CurrentRoom.mainroom:
+                AuxiliarMethod_CurrentRoomTransform("MainRoom");
+                break;
+            case CurrentRoom.bedroom:
+                AuxiliarMethod_CurrentRoomTransform("BedRoom");
+                break;
+            case CurrentRoom.bathroom:
+                AuxiliarMethod_CurrentRoomTransform("BathRoom");
+                break;
+            case CurrentRoom.storage:
+                AuxiliarMethod_CurrentRoomTransform("Storage");
+                break;
+            case CurrentRoom.kitchen:
+                AuxiliarMethod_CurrentRoomTransform("Kitchen");
+                break;
+        }
 
-        BoxCollider2D floorSize = room.GetComponent<BoxCollider2D>();
+
+        BoxCollider2D floorSize = CurrentRoomTransform.GetComponent<BoxCollider2D>();
 
         minX = (floorSize.bounds.center.x - floorSize.bounds.extents.x);
         maxX = (floorSize.bounds.center.x + floorSize.bounds.extents.x); 
         minY = (floorSize.bounds.center.y - floorSize.bounds.extents.y); 
         maxY = (floorSize.bounds.center.y + floorSize.bounds.extents.y); 
+    }
+
+    private void AuxiliarMethod_CurrentRoomTransform(string roomName)
+    {
+        CurrentRoomTransform = GameObject.Find(roomName).gameObject.transform;
     }
 
     private void TimeThatStaysInRoom()
