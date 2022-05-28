@@ -513,8 +513,8 @@ GameObject:
   m_Component:
   - component: {fileID: 178781906}
   - component: {fileID: 178781909}
-  - component: {fileID: 178781908}
   - component: {fileID: 178781907}
+  - component: {fileID: 178781908}
   m_Layer: 0
   m_Name: CameraChild
   m_TagString: Untagged
@@ -568,14 +568,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &178781908
-AudioListener:
+--- !u!114 &178781908
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178781905}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 2045867301}
 --- !u!20 &178781909
 Camera:
   m_ObjectHideFlags: 0
@@ -3298,6 +3303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813141876}
   - component: {fileID: 1813141877}
+  - component: {fileID: 1813141878}
   m_Layer: 0
   m_Name: StormManager
   m_TagString: Untagged
@@ -3344,6 +3350,36 @@ MonoBehaviour:
   - {fileID: 1976326434}
   stormLights:
   - {fileID: 1792507003}
+--- !u!114 &1813141878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813141875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 746722149
+      Data2: 1315200951
+      Data3: 1821349518
+      Data4: 605133977
+    Path: event:/Storm
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1827758811
 GameObject:
   m_ObjectHideFlags: 0
@@ -4133,6 +4169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9b017aaa2726547a266eaf7aca00cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stepsound:
+    Guid:
+      Data1: -1567814867
+      Data2: 1277570835
+      Data3: 1087238327
+      Data4: 1843507198
+    Path: event:/Player/Footsteps
   lighterIsOn: 0
   lighter: {fileID: 1902267835}
   movementSpeedLighterOn: {x: 200, y: 200}

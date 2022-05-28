@@ -1,14 +1,23 @@
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using FMOD;
+using FMODUnity;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private InputManager inputManager;
     private Animator anim;
+    private FMODEventPlayable playable;
 
-    public event EventHandler OnStepSound;
+    public event System.EventHandler OnStepSound;
+
+    //fmod yo el mas capo
+
+    [SerializeField] EventReference stepsound;
+    public FMOD.Studio.EventInstance playerState;
+
 
     private Vector2 movementSpeed;
     private Vector2 moveVector;
@@ -35,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (lighter.activeSelf)
             lighterIsOn = true;
+
+        playerState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
+        playerState.start();
     }
 
     private void Update()
@@ -89,8 +101,10 @@ public class PlayerMovement : MonoBehaviour
     public void StepSoundEvent()
     {
         OnStepSound?.Invoke(this, EventArgs.Empty);
+        FMODUnity.RuntimeManager.PlayOneShot(stepsound);
+      
     }
-
+   
     private void FlipSprite()
     {
         if (moveVector.x < 0)
