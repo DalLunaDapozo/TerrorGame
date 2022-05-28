@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     //fmod yo el mas capo
 
     [SerializeField] EventReference stepsound;
+    [SerializeField] EventReference lightersound;
     public FMOD.Studio.EventInstance playerState;
 
 
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
         {
             lighter.SetActive(true);
             lighterIsOn = true;
+            FMODUnity.RuntimeManager.PlayOneShot(lightersound);
         }
             
     }

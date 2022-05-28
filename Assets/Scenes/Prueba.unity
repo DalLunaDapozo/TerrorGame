@@ -4176,6 +4176,13 @@ MonoBehaviour:
       Data3: 1087238327
       Data4: 1843507198
     Path: event:/Player/Footsteps
+  lightersound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   lighterIsOn: 0
   lighter: {fileID: 1902267835}
   movementSpeedLighterOn: {x: 200, y: 200}
