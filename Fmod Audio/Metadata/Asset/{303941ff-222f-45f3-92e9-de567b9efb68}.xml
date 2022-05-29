@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{303941ff-222f-45f3-92e9-de567b9efb68}">
+		<property name="assetPath">
+			<value>Lighter/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b67684d-a700-478a-ac45-b85054b0c6ea}</destination>
+		</relationship>
+	</object>
+</objects>
