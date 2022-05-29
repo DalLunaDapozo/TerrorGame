@@ -3369,7 +3369,7 @@ MonoBehaviour:
       Data2: 1315200951
       Data3: 1821349518
       Data4: 605133977
-    Path: event:/Storm
+    Path: event:/Ambience/Storm
   Event: 
   PlayEvent: 1
   StopEvent: 2

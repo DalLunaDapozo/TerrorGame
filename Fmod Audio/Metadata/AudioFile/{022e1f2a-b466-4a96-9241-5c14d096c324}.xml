@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{3f68894f-824d-43aa-bb5e-2adbe0615df2}">
+	<object class="AudioFile" id="{022e1f2a-b466-4a96-9241-5c14d096c324}">
 		<property name="assetPath">
-			<value>15. Footsteps, Floor, One Person Walking Up And Down Wooden Steps.wav</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>Footsteps_Player/Player_Footsteps_Creaks_06.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>11.199999999999999</value>
+			<value>0.75989583333333333</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{8b67684d-a700-478a-ac45-b85054b0c6ea}</destination>

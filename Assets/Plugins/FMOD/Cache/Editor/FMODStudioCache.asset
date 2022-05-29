@@ -1,45 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7822960076072732941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Player.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Fmod projects/Burlesque/Build/Desktop/Player.bank
-  Name: Player
-  StudioPath: bank:/Player
-  lastModified: 637893553448110231
-  FileSizes:
-  - Name: Desktop
-    Value: 7712
-  Exists: 1
---- !u!114 &-3043256707780399937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../Fmod projects/Burlesque/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637893553447800166
-  FileSizes:
-  - Name: Desktop
-    Value: 456960
-  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,20 +13,20 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 1361986304903687600}
-  - {fileID: -3043256707780399937}
-  - {fileID: -7822960076072732941}
+  - {fileID: 8339625914614872455}
+  - {fileID: 497733320271191901}
+  - {fileID: 8979696958210543925}
   EditorEvents:
-  - {fileID: 7490367266535235377}
   - {fileID: 1584612018786259472}
+  - {fileID: 8245037949346549270}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -3043256707780399937}
+  - {fileID: 497733320271191901}
   StringsBanks:
-  - {fileID: 1361986304903687600}
-  cacheTime: 637893553448110231
+  - {fileID: 8339625914614872455}
+  cacheTime: 637893767373189586
   cacheVersion: 131591
---- !u!114 &1361986304903687600
+--- !u!114 &497733320271191901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,15 +36,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../../../Fmod projects/Burlesque/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637893553447820170
+  Path: Fmod Audio/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637893767372879537
   FileSizes:
   - Name: Desktop
-    Value: 862
+    Value: 457120
   Exists: 1
 --- !u!114 &1584612018786259472
 MonoBehaviour:
@@ -105,15 +65,15 @@ MonoBehaviour:
     Data3: 1087238327
     Data4: 1843507198
   Banks:
-  - {fileID: -7822960076072732941}
+  - {fileID: 8979696958210543925}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 682
---- !u!114 &7490367266535235377
+  Length: 1035
+--- !u!114 &8245037949346549270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,16 +83,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Storm
+  m_Name: event:/Ambience/Storm
   m_EditorClassIdentifier: 
-  Path: event:/Storm
+  Path: event:/Ambience/Storm
   Guid:
     Data1: 746722149
     Data2: 1315200951
     Data3: 1821349518
     Data4: 605133977
   Banks:
-  - {fileID: -3043256707780399937}
+  - {fileID: 497733320271191901}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -140,3 +100,43 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 34149
+--- !u!114 &8339625914614872455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Fmod Audio/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637893767372904539
+  FileSizes:
+  - Name: Desktop
+    Value: 872
+  Exists: 1
+--- !u!114 &8979696958210543925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Player.bank
+  m_EditorClassIdentifier: 
+  Path: Fmod Audio/Build/Desktop/Player.bank
+  Name: Player
+  StudioPath: bank:/Player
+  lastModified: 637893767373189586
+  FileSizes:
+  - Name: Desktop
+    Value: 154976
+  Exists: 1
