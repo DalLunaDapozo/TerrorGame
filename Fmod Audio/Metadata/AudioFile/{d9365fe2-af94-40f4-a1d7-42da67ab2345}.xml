@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{d9365fe2-af94-40f4-a1d7-42da67ab2345}">
 		<property name="assetPath">
-			<value>WEATHER-RAIN10-HVY-THUNDER.wav</value>
+			<value>Ambience/WEATHER-RAIN10-HVY-THUNDER.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

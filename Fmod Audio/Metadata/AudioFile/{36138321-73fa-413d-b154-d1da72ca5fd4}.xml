@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{36138321-73fa-413d-b154-d1da72ca5fd4}">
+		<property name="assetPath">
+			<value>Ambience/EA - Heavy Rain on Corrugated Roof 01-002 ST.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>150</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b67684d-a700-478a-ac45-b85054b0c6ea}</destination>
+		</relationship>
+	</object>
+</objects>

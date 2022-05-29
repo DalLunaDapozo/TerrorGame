@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7c459a33-54c5-4d5a-846a-736589e2485f}">
+		<property name="assetPath">
+			<value>Ambience/Wind Low Rumble.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>64.862040816326527</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b67684d-a700-478a-ac45-b85054b0c6ea}</destination>
+		</relationship>
+	</object>
+</objects>
