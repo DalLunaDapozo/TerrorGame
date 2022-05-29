@@ -291,9 +291,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{56e0f334-7184-4ad9-91b3-7350e2a89133}">
-		<property name="volume">
-			<value>-5.5</value>
-		</property>
 		<property name="name">
 			<value>Ambience</value>
 		</property>
@@ -431,7 +428,7 @@
 			<value>-15.5</value>
 		</property>
 		<property name="highGain">
-			<value>-30</value>
+			<value>-42</value>
 		</property>
 	</object>
 </objects>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{79470ecb-186c-40c5-b2a7-2c7900739cf4}">
 		<property name="assetPath">
-			<value>SO_NAT-WindTunnel.ogg</value>
+			<value>Ambience/SO_NAT-WindTunnel.ogg</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
