@@ -7,7 +7,7 @@ using FMODUnity;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private InputManager inputManager;
+    [HideInInspector] public InputManager inputManager;
     private Animator anim;
     private FMODEventPlayable playable;
     private MonsterIA monsterIA;
@@ -39,17 +39,29 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
             
         inputManager = new InputManager();
-        inputManager.Player.Enable();
-
-        inputManager.Player.Lighter.performed += LighterAction;
+       
         monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
-        monsterIA.OnPlayerCatched += StopMovement;
+        
     }
 
+    private void OnEnable()
+    {
+        inputManager.Player.Enable();
+        inputManager.Player.Lighter.performed += LighterAction;
+        monsterIA.OnPlayerCatched += StopMovement;
+    }
+    private void OnDisable()
+    {
+        inputManager.Player.Disable();
+        inputManager.Player.Lighter.performed -= LighterAction;
+        monsterIA.OnPlayerCatched -= StopMovement;
+    }
+    
     private void Start()
     {
-        if (lighter.activeSelf)
+        if (!lighter.activeSelf)
             lighterIsOn = true;
+
 
         playerState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
         playerState.start();
