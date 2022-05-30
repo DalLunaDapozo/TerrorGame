@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private InputManager inputManager;
     private Animator anim;
     private FMODEventPlayable playable;
-
+    private MonsterIA monsterIA;
+    
     public event System.EventHandler OnStepSound;
 
     //fmod yo el mas capo
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 movementSpeedLighterOn;
     [SerializeField] private Vector2 movementSpeedLighterOff;
 
+    private bool catchedByMonster;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         inputManager.Player.Enable();
 
         inputManager.Player.Lighter.performed += LighterAction;
+        monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+        monsterIA.OnPlayerCatched += StopMovement;
     }
 
     private void Start()
@@ -60,7 +65,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(movementSpeed.x * moveVector.x, movementSpeed.y * moveVector.y) * Time.deltaTime;
+        if (!catchedByMonster)
+            rb.velocity = new Vector2(movementSpeed.x * moveVector.x, movementSpeed.y * moveVector.y) * Time.deltaTime;
+        else
+            rb.velocity = Vector2.zero;
     }
 
     private void ChangeMovementSpeed()
@@ -82,6 +90,11 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Walk", true);
         else
             anim.SetBool("Walk", false);
+    }
+
+    private void StopMovement(object sender, System.EventArgs e)
+    {
+        catchedByMonster = true;
     }
 
     private void LighterAction(InputAction.CallbackContext callbackContext)
@@ -117,9 +130,7 @@ public class PlayerMovement : MonoBehaviour
         else if (moveVector.x > 0)
         
             GameObject.Find("PlayerSprite").transform.localScale = new Vector2(1, 1);
-            
-        
-            
+                
     }
 
 }

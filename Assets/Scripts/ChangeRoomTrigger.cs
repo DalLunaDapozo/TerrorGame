@@ -9,10 +9,13 @@ public class ChangeRoomTrigger : MonoBehaviour
     private CinemachineVirtualCamera cam;
     private PlayerLocation playerLocation;
 
+    
+
     private void Start()
     {
         cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         playerLocation = GameObject.Find("Player").GetComponent<PlayerLocation>();
+       
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,8 +24,9 @@ public class ChangeRoomTrigger : MonoBehaviour
         {
             TransitionRoom();
         }
-    }
 
+      
+    }
     private void TransitionRoom()
     {
         cam.Follow = target;
