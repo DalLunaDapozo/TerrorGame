@@ -3,6 +3,7 @@ using System;
 using UnityEngine.InputSystem;
 using FMOD;
 using FMODUnity;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private FMODEventPlayable playable;
     private MonsterIA monsterIA;
-    
+
     public event System.EventHandler OnStepSound;
 
     //fmod yo el mas capo
@@ -27,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     public bool lighterIsOn;
 
     [SerializeField] private GameObject lighter;
+    private Light2D lightIntensity;
+    [SerializeField] private float lightIntensityLow;
+    [SerializeField] private float lightIntensityHigh;
 
     [SerializeField] private Vector2 movementSpeedLighterOn;
     [SerializeField] private Vector2 movementSpeedLighterOff;
@@ -37,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        lightIntensity = lighter.GetComponent<Light2D>();
             
         inputManager = new InputManager();
        
@@ -59,8 +65,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void Start()
     {
-        if (!lighter.activeSelf)
-            lighterIsOn = true;
+        lighterIsOn = true;
+        lightIntensity.intensity = lightIntensityHigh;
 
 
         playerState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
@@ -113,12 +119,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (lighterIsOn)
         {
-            lighter.SetActive(false);
+            lightIntensity.intensity = lightIntensityLow;
             lighterIsOn = false;        
         }
         else
         {
-            lighter.SetActive(true);
+            lightIntensity.intensity = lightIntensityHigh;
             lighterIsOn = true;
             FMODUnity.RuntimeManager.PlayOneShot(lightersound);
         }
