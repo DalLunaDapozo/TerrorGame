@@ -110,7 +110,7 @@ public class MonsterIA : MonoBehaviour
 
         BoxCollider2D floorSize = CurrentRoomTransform.GetComponent<BoxCollider2D>();
 
-        minX = (floorSize.bounds.center.x - (floorSize.bounds.extents.x);
+        minX = (floorSize.bounds.center.x - (floorSize.bounds.extents.x));
         maxX = (floorSize.bounds.center.x + floorSize.bounds.extents.x);
         minY = (floorSize.bounds.center.y - floorSize.bounds.extents.y);
         maxY = (floorSize.bounds.center.y + floorSize.bounds.extents.y);
