@@ -19,7 +19,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] EventReference stepsound;
     [SerializeField] EventReference lightersound;
+    [SerializeField] EventReference lighteroff;
+    [SerializeField] EventReference lighterloop;
     public FMOD.Studio.EventInstance playerState;
+    public FMOD.Studio.EventInstance lighterloopInstance;
+
 
 
     private Vector2 movementSpeed;
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public bool lighterIsOn;
 
     [SerializeField] private GameObject lighter;
+    [SerializeField] private GameObject fire;
     private Light2D lightIntensity;
     [SerializeField] private float lightIntensityLow;
     [SerializeField] private float lightIntensityHigh;
@@ -66,11 +71,16 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         lighterIsOn = true;
+        fire.SetActive(true);
         lightIntensity.intensity = lightIntensityHigh;
 
 
         playerState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
         playerState.start();
+
+        lighterloopInstance = FMODUnity.RuntimeManager.CreateInstance(lighterloop);
+
+
     }
 
     private void Update()
@@ -79,6 +89,18 @@ public class PlayerMovement : MonoBehaviour
         ChangeMovementSpeed();
         WalkAnimation();
         FlipSprite();
+
+        if (lighterIsOn)
+        {
+            lighterloopInstance.start();
+            lighterloopInstance.release();
+
+        }
+        else
+        {
+            lighterloopInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+
     }
 
     private void FixedUpdate()
@@ -119,11 +141,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (lighterIsOn)
         {
+            fire.SetActive(false);
             lightIntensity.intensity = lightIntensityLow;
-            lighterIsOn = false;        
+            lighterIsOn = false;
+            FMODUnity.RuntimeManager.PlayOneShot(lighteroff);
         }
         else
         {
+            fire.SetActive(true);
             lightIntensity.intensity = lightIntensityHigh;
             lighterIsOn = true;
             FMODUnity.RuntimeManager.PlayOneShot(lightersound);
