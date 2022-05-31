@@ -57,7 +57,7 @@ public class PointToGo : MonoBehaviour
             monster.GetFloorSize();
             monster.goingToAnotherRoom = false;
             monster.oneRoomPicked = false;
-            monster.RestartTimer();
+            monster.RestartTimerBeforeChangingRoom();
         }
     }
 

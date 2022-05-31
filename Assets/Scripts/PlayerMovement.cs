@@ -8,34 +8,24 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [HideInInspector] public InputManager inputManager;
+    private InputManager inputManager;
     private Animator anim;
     private FMODEventPlayable playable;
     private MonsterIA monsterIA;
+    private Lighter lighter;
 
+    [SerializeField] private GameObject soundWave;
     public event System.EventHandler OnStepSound;
 
-    //fmod yo el mas capo
+    [SerializeField] private Transform lastStepSound;
+
+    //Sound
 
     [SerializeField] EventReference stepsound;
-    [SerializeField] EventReference lightersound;
-    [SerializeField] EventReference lighteroff;
-    [SerializeField] EventReference lighterloop;
     public FMOD.Studio.EventInstance playerState;
-    public FMOD.Studio.EventInstance lighterloopInstance;
-
-
-
+  
     private Vector2 movementSpeed;
     private Vector2 moveVector;
-
-    public bool lighterIsOn;
-
-    [SerializeField] private GameObject lighter;
-    [SerializeField] private GameObject fire;
-    private Light2D lightIntensity;
-    [SerializeField] private float lightIntensityLow;
-    [SerializeField] private float lightIntensityHigh;
 
     [SerializeField] private Vector2 movementSpeedLighterOn;
     [SerializeField] private Vector2 movementSpeedLighterOff;
@@ -46,41 +36,29 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
 
-        lightIntensity = lighter.GetComponent<Light2D>();
-            
         inputManager = new InputManager();
        
         monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
         
     }
-
+ 
     private void OnEnable()
     {
         inputManager.Player.Enable();
-        inputManager.Player.Lighter.performed += LighterAction;
         monsterIA.OnPlayerCatched += StopMovement;
     }
     private void OnDisable()
     {
         inputManager.Player.Disable();
-        inputManager.Player.Lighter.performed -= LighterAction;
         monsterIA.OnPlayerCatched -= StopMovement;
     }
     
     private void Start()
     {
-        lighterIsOn = true;
-        fire.SetActive(true);
-        lightIntensity.intensity = lightIntensityHigh;
-
-
         playerState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
         playerState.start();
-
-        lighterloopInstance = FMODUnity.RuntimeManager.CreateInstance(lighterloop);
-
-
     }
 
     private void Update()
@@ -89,17 +67,6 @@ public class PlayerMovement : MonoBehaviour
         ChangeMovementSpeed();
         WalkAnimation();
         FlipSprite();
-
-        if (lighterIsOn)
-        {
-            lighterloopInstance.start();
-            lighterloopInstance.release();
-
-        }
-        else
-        {
-            lighterloopInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        }
 
     }
 
@@ -113,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangeMovementSpeed()
     {
-        if (lighterIsOn)
+        if (lighter.lighterIsOn)
             movementSpeed = movementSpeedLighterOn;
         else
             movementSpeed = movementSpeedLighterOff;
@@ -127,9 +94,16 @@ public class PlayerMovement : MonoBehaviour
     private void WalkAnimation()
     {
         if (moveVector != Vector2.zero)
-            anim.SetBool("Walk", true);
+        {
+            anim.SetBool("Walk_LightOn", lighter.lighterIsOn);
+            anim.SetBool("Walk_LightOff", !lighter.lighterIsOn);
+        }
         else
-            anim.SetBool("Walk", false);
+        {
+            anim.SetBool("Walk_LightOn", false);
+            anim.SetBool("Walk_LightOff", false);
+        }
+            
     }
 
     private void StopMovement(object sender, System.EventArgs e)
@@ -137,30 +111,12 @@ public class PlayerMovement : MonoBehaviour
         catchedByMonster = true;
     }
 
-    private void LighterAction(InputAction.CallbackContext callbackContext)
-    {
-        if (lighterIsOn)
-        {
-            fire.SetActive(false);
-            lightIntensity.intensity = lightIntensityLow;
-            lighterIsOn = false;
-            FMODUnity.RuntimeManager.PlayOneShot(lighteroff);
-        }
-        else
-        {
-            fire.SetActive(true);
-            lightIntensity.intensity = lightIntensityHigh;
-            lighterIsOn = true;
-            FMODUnity.RuntimeManager.PlayOneShot(lightersound);
-        }
-            
-    }
-
     public void StepSoundEvent()
     {
+        lastStepSound.transform.position = transform.position;
+        Instantiate(soundWave, transform.position, Quaternion.identity);
         OnStepSound?.Invoke(this, EventArgs.Empty);
-        FMODUnity.RuntimeManager.PlayOneShot(stepsound);
-      
+        FMODUnity.RuntimeManager.PlayOneShot(stepsound); 
     }
    
     private void FlipSprite()

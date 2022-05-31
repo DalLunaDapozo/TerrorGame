@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 using System;
 
 public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen }
@@ -52,6 +53,15 @@ public class MonsterIA : MonoBehaviour
     [SerializeField] private float alertMin;
     [SerializeField] private float decreaseTime;
     [SerializeField] private float stepAlertAmount;
+    [SerializeField] private float alertMovementSpeed;
+    [SerializeField] private float moveSpeedRateWhileInAlert;
+    [SerializeField] private float timeBeforeStartFollowingSound;
+
+    private float alertMinMoveSpeed;
+
+    public bool chasingLastSound;
+
+    public Transform lastSpotHeard;
 
     private bool playerCatched = false;
     
@@ -71,15 +81,16 @@ public class MonsterIA : MonoBehaviour
     private void Start()
     {
         GetFloorSize();
-        RestartTimer();
+        RestartTimerBeforeChangingRoom();
         moveSpot = GetNewPosition();
+        alertMinMoveSpeed = alertMovementSpeed;
     }
 
     private void Update()
     {
         PlayerCurrentRoom();
         StatusDependingOnPlayerDistance();
-        StatusBehavoiur();
+        StatusBehaviour();
         AlertFieldOverTime();
         TimerBeforeGoingToAnotherRoom();
         
@@ -149,21 +160,10 @@ public class MonsterIA : MonoBehaviour
 
         
     }
-    
     private void Move(float moveSpeed)
     {
         transform.position = Vector2.MoveTowards(transform.position, moveSpot, moveSpeed * Time.deltaTime);
     }
-
-    public void AddPointToList(Transform point)
-    {
-        pointsToGo.Add(point);
-    }
-    public void RemovePointFromList(Transform point)
-    {
-        pointsToGo.Remove(point);
-    }
-
     private void TimerBeforeGoingToAnotherRoom()
     {
         if (currentTimeBeforeChangingRooms <= 0 && !oneRoomPicked)
@@ -177,31 +177,36 @@ public class MonsterIA : MonoBehaviour
         else
             currentTimeBeforeChangingRooms -= Time.deltaTime;
     }
-
-   
-
-    public void RestartTimer()
-    {
-        currentTimeBeforeChangingRooms = timeBeforeChangingRooms;
-    }
-
     private Vector2 ChooseRandomRoomToGo()
     {
         int index = UnityEngine.Random.Range(0, pointsToGo.Count);
         return pointsToGo[index].transform.position;
     }
-    
     private void AuxiliarMethod_CurrentRoomTransform(string roomName)
     {
         CurrentRoomTransform = GameObject.Find(roomName).gameObject.transform;
     }
-
-
+    public void AddPointToList(Transform point)
+    {
+        pointsToGo.Add(point);
+    }
+    public void RemovePointFromList(Transform point)
+    {
+        pointsToGo.Remove(point);
+    }
+    public void RestartTimerBeforeChangingRoom()
+    {
+        currentTimeBeforeChangingRooms = timeBeforeChangingRooms;
+    }
+    
     //ALERT STATUS
 
     private void AlertListenEvents(object sender, System.EventArgs e)
     {
-        alertCurrent += stepAlertAmount;
+        if (status == Status.patrol)
+            alertCurrent += stepAlertAmount;
+        else if(status == Status.alert)
+            alertCurrent += stepAlertAmount * 2f;
     }
     private void AlertFieldOverTime()
     {
@@ -209,25 +214,60 @@ public class MonsterIA : MonoBehaviour
         {
             alertCurrent -= Time.deltaTime * decreaseTime;
         }
-    }
-    private void TimeThatStaysInAlertMode()
+    }  
+    private void AlertBehaviour()
     {
+        Collider2D circle = Physics2D.OverlapCircle(transform.position, alertCurrent, 1 << 7);
 
+        if (circle != null)
+        {
+            Debug.Log("Step Heard");
+            moveSpot = (circle.transform.position);
+           
+        }
+        IncreaseMovementSpeedWhenAlert();
+        AlertChaseSequence();
     }
-    
+
+    private void IncreaseMovementSpeedWhenAlert()
+    {
+        if (alertMovementSpeed < 6f)
+        {
+            alertMovementSpeed += moveSpeedRateWhileInAlert;
+        }
+    }
+
+    private void AlertChaseSequence()
+    {
+        if (!chasingLastSound)
+        {
+            if (timeBeforeStartFollowingSound < 0f)
+                chasingLastSound = true;
+
+            else
+                timeBeforeStartFollowingSound -= Time.deltaTime;
+
+        }
+        else
+            Move(alertMovementSpeed);    
+    }
+
     //BEHAVIOUR
 
-    private void StatusBehavoiur()
+    private void StatusBehaviour()
     {
         switch (status)
         {
             case Status.alert:
-                
-          
+
+                AlertBehaviour();
+
                 break;
             
             case Status.patrol:
 
+                alertMovementSpeed = alertMinMoveSpeed;
+                chasingLastSound = false;
                 PatrolMovement();
 
                 break;
@@ -271,7 +311,6 @@ public class MonsterIA : MonoBehaviour
             OnPlayerCatched?.Invoke(this, EventArgs.Empty);
     }
     
-
     //DEBUG METHODS
     private void OnDrawGizmos()
     {
