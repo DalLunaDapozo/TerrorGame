@@ -278,13 +278,14 @@ public class MonsterIA : MonoBehaviour
         {
             case Status.alert:
 
-                timeBeforeStartFollowingSoundCurrent = timeBeforeStartFollowingSound;
+                
                 AlertBehaviour();
 
                 break;
             
             case Status.patrol:
 
+                timeBeforeStartFollowingSoundCurrent = timeBeforeStartFollowingSound;
                 alertMovementSpeed = alertMinMoveSpeed;
                 chasingLastSound = false;
                 PatrolMovement();
