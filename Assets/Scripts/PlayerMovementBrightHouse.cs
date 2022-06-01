@@ -16,11 +16,13 @@ public class PlayerMovementBrightHouse : MonoBehaviour
 
     //Sound
 
+    [SerializeField] private int footstepatt;
     [SerializeField] EventReference stepsound;
     [SerializeField] EventReference stepsoundOnCarpet;
     
     public FMOD.Studio.EventInstance stepSoundInstance;
     public FMOD.Studio.EventInstance stepSoundOnCarpetInstance;
+    public FMODUnity.EventReference fmodEvent;
 
     [SerializeField] private Vector2 movementSpeed;
     private Vector2 moveVector;
@@ -47,8 +49,9 @@ public class PlayerMovementBrightHouse : MonoBehaviour
 
     private void Start()
     {
-        stepSoundInstance = FMODUnity.RuntimeManager.CreateInstance(stepsound);
+        stepSoundInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
         stepSoundInstance.start();
+        
 
         stepSoundOnCarpetInstance = FMODUnity.RuntimeManager.CreateInstance(stepsoundOnCarpet);
         stepSoundOnCarpetInstance.start();
@@ -57,7 +60,7 @@ public class PlayerMovementBrightHouse : MonoBehaviour
     private void Update()
     {
         ReadMovementValue();
-        
+        stepSoundInstance.setParameterByName("Material", footstepatt);
         WalkAnimation();
         FlipSprite();
 
@@ -88,8 +91,12 @@ public class PlayerMovementBrightHouse : MonoBehaviour
 
         if (overCarpet)
             FMODUnity.RuntimeManager.PlayOneShot(stepsoundOnCarpet);
+
+
         else
             FMODUnity.RuntimeManager.PlayOneShot(stepsound);
+
+
     }
 
     private void FlipSprite()
