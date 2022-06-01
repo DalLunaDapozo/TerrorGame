@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         inputManager = new InputManager();
        
+        if(monsterIA != null)
         monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
         
     }
@@ -47,12 +48,14 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         inputManager.Player.Enable();
-        monsterIA.OnPlayerCatched += StopMovement;
+        if (monsterIA != null)
+            monsterIA.OnPlayerCatched += StopMovement;
     }
     private void OnDisable()
     {
         inputManager.Player.Disable();
-        monsterIA.OnPlayerCatched -= StopMovement;
+        if (monsterIA != null)
+            monsterIA.OnPlayerCatched -= StopMovement;
     }
     
     private void Start()

@@ -16,11 +16,15 @@ public class PointToGo : MonoBehaviour
 
     private void Awake()
     {
+        if(monster != null)
         monster = GameObject.Find("Monster").GetComponent<MonsterIA>();
     }
 
     private void Update()
     {
+        if (monster == null)
+            return;
+        
         IsAvailable();
         SetActive(isActive);
         AddRemoveFromList();

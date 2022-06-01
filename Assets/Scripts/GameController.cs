@@ -14,8 +14,12 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
-        monsterIA.OnPlayerCatched += GameOver;
+        if(monsterIA != null)
+        {
+            monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+            monsterIA.OnPlayerCatched += GameOver;
+        }
+            
         player.GetComponent<PlayerController>();
         player.GetComponent<PlayerMovement>();
     }

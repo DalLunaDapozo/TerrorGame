@@ -7,6 +7,7 @@ TagManager:
   - Object
   - Monster
   - LastSpot
+  - Carpet
   layers:
   - Default
   - TransparentFX
