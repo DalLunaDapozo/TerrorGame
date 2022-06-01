@@ -14,14 +14,28 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if(monsterIA != null)
-        {
-            monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
-            monsterIA.OnPlayerCatched += GameOver;
-        }
-            
+        
         player.GetComponent<PlayerController>();
         player.GetComponent<PlayerMovement>();
+
+       
+        
+        monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+
+        if (monsterIA == null)
+            return;
+    }
+
+    private void OnEnable()
+    {
+        if (monsterIA != null)
+            monsterIA.OnPlayerCatched += GameOver;
+    }
+
+    private void OnDisable()
+    {
+        if (monsterIA != null)
+            monsterIA.OnPlayerCatched -= GameOver;
     }
 
     private void GameOver(object sender, System.EventArgs e)
@@ -36,7 +50,7 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(timeBeforeRestart);
 
-        SceneManager.LoadScene("Prueba");
+        SceneManager.LoadScene("DarkHouse");
     }
 
     

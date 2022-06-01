@@ -17,13 +17,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject soundWave;
     public event System.EventHandler OnStepSound;
 
-    [SerializeField] private Transform lastStepSound;
+    [SerializeField] public Transform lastStepSound;
 
     //Sound
 
     [SerializeField] EventReference stepsound;
     public FMOD.Studio.EventInstance playerState;
-  
+
+    [SerializeField] EventReference stepsoundOnCarpet;
+    public FMOD.Studio.EventInstance stepSoundOnCarpetInstance;
+
     private Vector2 movementSpeed;
     private Vector2 moveVector;
 
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 movementSpeedLighterOff;
 
     private bool catchedByMonster;
+    public bool overCarpet;
 
     private void Awake()
     {
@@ -40,9 +44,10 @@ public class PlayerMovement : MonoBehaviour
 
         inputManager = new InputManager();
        
-        if(monsterIA != null)
+       
         monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
-        
+        if (monsterIA == null)
+            return;
     }
  
     private void OnEnable()
@@ -62,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
     {
         playerState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
         playerState.start();
+
+        stepSoundOnCarpetInstance = FMODUnity.RuntimeManager.CreateInstance(stepsoundOnCarpet);
+        stepSoundOnCarpetInstance.start();
     }
 
     private void Update()
@@ -116,10 +124,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void StepSoundEvent()
     {
-        lastStepSound.transform.position = transform.position;
-        Instantiate(soundWave, transform.position, Quaternion.identity);
-        OnStepSound?.Invoke(this, EventArgs.Empty);
-        FMODUnity.RuntimeManager.PlayOneShot(stepsound); 
+        if (overCarpet)
+            FMODUnity.RuntimeManager.PlayOneShot(stepsoundOnCarpet);
+        else
+        {
+            OnStepSound?.Invoke(this, EventArgs.Empty);
+            FMODUnity.RuntimeManager.PlayOneShot(stepsound);
+            lastStepSound.transform.position = transform.position;
+            //Instantiate(soundWave, transform.position, Quaternion.identity);
+        }
     }
    
     private void FlipSprite()
@@ -134,5 +147,24 @@ public class PlayerMovement : MonoBehaviour
             GameObject.Find("PlayerSprite").transform.localScale = new Vector2(1, 1);
                 
     }
+   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Carpet"))
+        {
+            overCarpet = true;
+        }
 
+        if (collision.CompareTag("Teleport"))
+        {
+            transform.position = collision.GetComponent<ChangeRoomTrigger>().GetDestination().position;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Carpet"))
+        {
+            overCarpet = false;
+        }
+    }
 }

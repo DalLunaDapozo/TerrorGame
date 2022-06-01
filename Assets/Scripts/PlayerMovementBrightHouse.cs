@@ -99,6 +99,11 @@ public class PlayerMovementBrightHouse : MonoBehaviour
 
     }
 
+    public void TeleportPlayer(Transform pointToGo)
+    {
+        transform.position = pointToGo.position;
+    }
+
     private void FlipSprite()
     {
         if (moveVector.x < 0)
@@ -117,6 +122,11 @@ public class PlayerMovementBrightHouse : MonoBehaviour
         if (collision.CompareTag("Carpet"))
         {
             overCarpet = true;
+        }
+
+        if (collision.CompareTag("Teleport"))
+        {
+            transform.position = collision.GetComponent<ChangeRoomTrigger>().GetDestination().position;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

@@ -9,6 +9,7 @@ public class Lighter : MonoBehaviour
     private Light2D light2D;
     private InputManager input;
     private GameObject fire;
+    private PlayerMovement player;
     private FMOD.Studio.EventInstance lighterloopInstance;
     
     [SerializeField] EventReference lightersound;
@@ -18,6 +19,8 @@ public class Lighter : MonoBehaviour
     [SerializeField] private float lightIntensityLow;
     [SerializeField] private float lightIntensityHigh;
 
+    public event System.EventHandler OnLighterSound;
+
     public bool lighterIsOn;
     
     private void Awake()
@@ -25,6 +28,7 @@ public class Lighter : MonoBehaviour
         input = new InputManager();
         light2D = GetComponent<Light2D>();
         fire = GameObject.Find("Fire");
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
     private void OnEnable()
     {
@@ -55,7 +59,6 @@ public class Lighter : MonoBehaviour
         {
             lighterloopInstance.start();
             lighterloopInstance.release();
-
         }
         else
         {
@@ -73,10 +76,21 @@ public class Lighter : MonoBehaviour
         }
         else
         {
-            fire.SetActive(true);
-            light2D.intensity = lightIntensityHigh;
-            lighterIsOn = true;
+
             FMODUnity.RuntimeManager.PlayOneShot(lightersound);
+            OnLighterSound?.Invoke(this, System.EventArgs.Empty);
+            player.lastStepSound.transform.position = transform.position;
+
+            float percentChance = 0.5f;
+            if (Random.value <= percentChance)
+            {
+                fire.SetActive(true);
+                light2D.intensity = lightIntensityHigh;
+                lighterIsOn = true;
+
+            }
+            else
+                return;
         }
 
     }

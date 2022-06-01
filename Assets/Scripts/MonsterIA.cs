@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen }
+public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen, secondRoom }
 
 public class MonsterIA : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class MonsterIA : MonoBehaviour
     private PlayerLocation playerLocation;
     private GameController gameController;
     private BoxCollider2D boxCollider;
+    private Lighter lighter;
 
     //EVENTS
     public event System.EventHandler OnPlayerCatched;
@@ -52,10 +53,16 @@ public class MonsterIA : MonoBehaviour
     [SerializeField] private float alertCurrent;
     [SerializeField] private float alertMin;
     [SerializeField] private float decreaseTime;
-    [SerializeField] private float stepAlertAmount;
+    
     [SerializeField] private float alertMovementSpeed;
     [SerializeField] private float moveSpeedRateWhileInAlert;
     [SerializeField] private float timeBeforeStartFollowingSound;
+    private float timeBeforeStartFollowingSoundCurrent;
+
+    [Header("How much sounds alert the monster")]
+    [SerializeField] private float stepAlertAmount;
+    [SerializeField] private float lighterAlertAmount;
+
 
     private float alertMinMoveSpeed;
 
@@ -70,12 +77,14 @@ public class MonsterIA : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponentInChildren<BoxCollider2D>();
         player = GameObject.Find("Player").gameObject.transform;
-        
+        lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
+
         playerMovement = player.GetComponent<PlayerMovement>();
         playerLocation = player.GetComponent<PlayerLocation>();
         gameController = GameObject.Find("GameManager").GetComponent<GameController>();
 
-        playerMovement.OnStepSound += AlertListenEvents;
+        playerMovement.OnStepSound += StepSoundEvent; 
+        lighter.OnLighterSound += LighterSoundEvent;
     }
 
     private void Start()
@@ -201,13 +210,22 @@ public class MonsterIA : MonoBehaviour
     
     //ALERT STATUS
 
-    private void AlertListenEvents(object sender, System.EventArgs e)
+    private void StepSoundEvent(object sender, System.EventArgs e)
     {
         if (status == Status.patrol)
             alertCurrent += stepAlertAmount;
-        else if(status == Status.alert)
+        else if (status == Status.alert)
             alertCurrent += stepAlertAmount * 2f;
     }
+
+    private void LighterSoundEvent(object sender, System.EventArgs e)
+    {
+        if (status == Status.patrol)
+            alertCurrent += lighterAlertAmount;
+        else if (status == Status.alert)
+            alertCurrent += lighterAlertAmount * 2f;
+    }
+    
     private void AlertFieldOverTime()
     {
         if (alertCurrent > alertMin)
@@ -241,11 +259,11 @@ public class MonsterIA : MonoBehaviour
     {
         if (!chasingLastSound)
         {
-            if (timeBeforeStartFollowingSound < 0f)
+            if (timeBeforeStartFollowingSoundCurrent < 0f)
                 chasingLastSound = true;
 
             else
-                timeBeforeStartFollowingSound -= Time.deltaTime;
+                timeBeforeStartFollowingSoundCurrent -= Time.deltaTime;
 
         }
         else
@@ -260,6 +278,7 @@ public class MonsterIA : MonoBehaviour
         {
             case Status.alert:
 
+                timeBeforeStartFollowingSoundCurrent = timeBeforeStartFollowingSound;
                 AlertBehaviour();
 
                 break;
