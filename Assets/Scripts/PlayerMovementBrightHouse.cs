@@ -55,6 +55,7 @@ public class PlayerMovementBrightHouse : MonoBehaviour
 
         stepSoundOnCarpetInstance = FMODUnity.RuntimeManager.CreateInstance(stepsoundOnCarpet);
         stepSoundOnCarpetInstance.start();
+   
     }
 
     private void Update()
