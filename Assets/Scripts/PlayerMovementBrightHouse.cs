@@ -79,9 +79,20 @@ public class PlayerMovementBrightHouse : MonoBehaviour
     private void WalkAnimation()
     {
         if (moveVector != Vector2.zero)
-            anim.SetBool("Walk_LightOn", true);
+            anim.SetBool("Walk", true);
         else
-            anim.SetBool("Walk_LightOn", false);
+            anim.SetBool("Walk", false);
+
+        if (moveVector.y > 0)
+        {
+            anim.SetBool("Down", false);
+            anim.SetBool("Up", true);
+        }
+        else if (moveVector.y < 0)
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("Down", true);
+        }    
     }
 
 
