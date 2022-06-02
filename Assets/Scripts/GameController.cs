@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public bool isGameOver;
 
+    public bool isBrightDay;
+
     public float timeBeforeRestart;
 
     [SerializeField] private GameObject gameOverText;
@@ -19,7 +21,7 @@ public class GameController : MonoBehaviour
         player.GetComponent<PlayerMovement>();
 
        
-        
+        if(!isBrightDay)
         monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
 
         if (monsterIA == null)
