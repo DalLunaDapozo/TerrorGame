@@ -69,10 +69,15 @@ public class Lighter : MonoBehaviour
     {
         if (lighterIsOn)
         {
-            fire.SetActive(false);
-            light2D.intensity = lightIntensityLow;
-            lighterIsOn = false;
-            FMODUnity.RuntimeManager.PlayOneShot(lighteroff);
+            if (player.isNearCandle)
+                player.candleAnimation = true;
+            else
+            {
+                fire.SetActive(false);
+                light2D.intensity = lightIntensityLow;
+                lighterIsOn = false;
+                FMODUnity.RuntimeManager.PlayOneShot(lighteroff);
+            }
         }
         else
         {

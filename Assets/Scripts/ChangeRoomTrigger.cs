@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class ChangeRoomTrigger : MonoBehaviour
 {
-    public Transform target;
+    public Transform cameraMovesTo;
     public CurrentRoom roomName;
     
     private CinemachineVirtualCamera cam;
     private PlayerLocation playerLocation;
 
-    
+    public float cameraDistance;
+    private float cameraDistanceMax;
 
     public bool isTeleport;
-
-    public Transform pointToGo;
+    public Transform teleportpoint;
     
     private void Start()
     {
@@ -34,12 +34,13 @@ public class ChangeRoomTrigger : MonoBehaviour
     
     public Transform GetDestination()
     {
-        return pointToGo;
+        return teleportpoint;
     }
     
     private void TransitionRoom()
     {
-        cam.Follow = target;
+        cam.Follow = cameraMovesTo;
+        cam.GetComponentInChildren<Camera>().orthographicSize = cameraDistance;
         playerLocation.playerCurrentRoom = roomName;
     }
 }

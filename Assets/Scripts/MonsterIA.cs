@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen, secondRoom }
+public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen, secondRoom, RitualRoom}
 
 public class MonsterIA : MonoBehaviour
 {

@@ -7,79 +7,13 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001F3FCAC5198 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000264B790D088 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] SoundI::release                          :  (000001F4A70A7438)
-[LOG] SoundI::release                          :     Player_Lighter_LOOP_2 (000001F4F62C35B8)
-[LOG] SoundI::release                          : SO_NAT-WindTunnel (000001F4CD293468)
-[LOG] SoundI::release                          :     SO_NAT-WindTunnel (000001F4F62BE7B8)
-[LOG] SoundI::release                          :     SO_NAT-WindTunnel (000001F4CD2968B8)
-[LOG] SoundI::release                          : Wind Low Rumble (000001F3FE9F6E78)
-[LOG] SoundI::release                          :     Wind Low Rumble (000001F4F62C30D8)
-[LOG] SoundI::release                          :     Wind Low Rumble (000001F4CD298C28)
-[LOG] SoundI::release                          : WEATHER-RAIN10-HVY-THUNDER (000001F3FE9EEFE8)
-[LOG] SoundI::release                          :     WEATHER-RAIN10-HVY-THUNDER (000001F4F62BCF58)
-[LOG] SoundI::release                          :     WEATHER-RAIN10-HVY-THUNDER (000001F4CD2961F8)
-[LOG] SoundI::release                          : ES_Rain Light 7 - SFX Producer (000001F3FE9EEE38)
-[LOG] SoundI::release                          :     ES_Rain Light 7 - SFX Producer (000001F4F62C23D8)
-[LOG] SoundI::release                          :     ES_Rain Light 7 - SFX Producer (000001F4CD2946F8)
-[LOG] SoundI::release                          : 04. Rain, On Metal Roof, Weather (000001F3FE9EDF08)
-[LOG] SoundI::release                          :     04. Rain, On Metal Roof, Weather (000001F4F62C11F8)
-[LOG] SoundI::release                          :     04. Rain, On Metal Roof, Weather (000001F4CD294038)
-[LOG] SoundI::release                          : Wood Creaks & Bends (000001F3FE9FB708)
-[LOG] SoundI::release                          :     Wood Creaks & Bends (000001F4F62BFE78)
-[LOG] SoundI::release                          :     Wood Creaks & Bends (000001F4CD297998)
-[LOG] SoundI::release                          :  (000001F4A70A5328)
-[LOG] SoundI::release                          :     Player_Lighter_LOOP_1 (000001F4F62BF178)
-[LOG] SoundI::release                          :  (000001F4A70A6188)
-[LOG] SoundI::release                          :     Player_Footsteps_Cloth_00 (000001F4F62C1BB8)
-[LOG] SoundI::release                          :  (000001F4A70A68B8)
-[LOG] SoundI::release                          :     Player_Footsteps_Cloth_01 (000001F4F62C2718)
-[LOG] SoundI::release                          :  (000001F4A70A5608)
-[LOG] SoundI::release                          :     Player_Footsteps_Cloth_02 (000001F4F62BFB38)
-[LOG] SoundI::release                          :  (000001F4A70A51B8)
-[LOG] SoundI::release                          :     Player_Footsteps_Cloth_03 (000001F4F62C01B8)
-[LOG] SoundI::release                          :  (000001F4A70A7B68)
-[LOG] SoundI::release                          :     Player_Footsteps_Cloth_04 (000001F4F62C2098)
-[LOG] SoundI::release                          :  (000001F4A70A89C8)
-[LOG] SoundI::release                          :     Player_Footsteps_Cloth_05 (000001F4F62BF658)
-[LOG] SoundI::release                          :  (000001F4A70A8858)
-[LOG] SoundI::release                          :     Player_Footsteps_01 (000001F4F62BF4B8)
-[LOG] SoundI::release                          :  (000001F4A70A5A58)
-[LOG] SoundI::release                          :     Player_Footsteps_02 (000001F4F62BEFD8)
-[LOG] SoundI::release                          :  (000001F4A70A8B38)
-[LOG] SoundI::release                          :     Player_Footsteps_03 (000001F4F62BFCD8)
-[LOG] SoundI::release                          :  (000001F4A70A93D8)
-[LOG] SoundI::release                          :     Player_Footsteps_04 (000001F4F62C0358)
-[LOG] SoundI::release                          :  (000001F4A70A4358)
-[LOG] SoundI::release                          :     Player_Footsteps_05 (000001F4F62C2A58)
-[LOG] SoundI::release                          :  (000001F4A70A8E18)
-[LOG] SoundI::release                          :     Player_Footsteps_Creaks_00 (000001F4F62BEAF8)
-[LOG] SoundI::release                          :  (000001F4A70A6B98)
-[LOG] SoundI::release                          :     Player_Footsteps_Creaks_01 (000001F4F62C09D8)
-[LOG] SoundI::release                          :  (000001F4A70A90F8)
-[LOG] SoundI::release                          :     Player_Footsteps_Creaks_02 (000001F4F62BF7F8)
-[LOG] SoundI::release                          :  (000001F4A70A7158)
-[LOG] SoundI::release                          :     Player_Footsteps_Creaks_03 (000001F4F62BDF98)
-[LOG] SoundI::release                          :  (000001F4A70A5D38)
-[LOG] SoundI::release                          :     Player_Footsteps_Creaks_04 (000001F4F62C1878)
-[LOG] SoundI::release                          :  (000001F4A70A96B8)
-[LOG] SoundI::release                          :     Player_Footsteps_Creaks_05 (000001F4F62BE138)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -87,5 +21,3 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.

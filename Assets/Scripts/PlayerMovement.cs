@@ -3,6 +3,7 @@ using System;
 using UnityEngine.InputSystem;
 using FMOD;
 using FMODUnity;
+using System.Collections;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,20 +11,16 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private InputManager inputManager;
     private Animator anim;
-    private FMODEventPlayable playable;
     private MonsterIA monsterIA;
     private Lighter lighter;
 
     [SerializeField] private GameObject soundWave;
     public event System.EventHandler OnStepSound;
-
     [SerializeField] public Transform lastStepSound;
 
-    //Sound
 
     [SerializeField] EventReference stepsound;
     public FMOD.Studio.EventInstance playerState;
-
     [SerializeField] EventReference stepsoundOnCarpet;
     public FMOD.Studio.EventInstance stepSoundOnCarpetInstance;
 
@@ -32,20 +29,32 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 movementSpeedLighterOn;
     [SerializeField] private Vector2 movementSpeedLighterOff;
+    [SerializeField] private Vector2 noLighterMovementSpeed;
 
-    private bool catchedByMonster;
-    public bool overCarpet;
+    private bool doingSomethingImportant;
+    private bool overCarpet;
+    public bool noLighterScript;
+
+    public bool isNearCandle;
+    public bool candleAnimation;
+    public bool lighterIsOn;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
-
+      
         inputManager = new InputManager();
-       
-       
-        monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+
+        if(!noLighterScript)
+        {
+            lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
+            monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerLighter");
+        }
+        else
+            anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerNoLighter");
+
         if (monsterIA == null)
             return;
     }
@@ -70,24 +79,42 @@ public class PlayerMovement : MonoBehaviour
 
         stepSoundOnCarpetInstance = FMODUnity.RuntimeManager.CreateInstance(stepsoundOnCarpet);
         stepSoundOnCarpetInstance.start();
+
     }
 
     private void Update()
     {
-        ReadMovementValue();
-        ChangeMovementSpeed();
-        WalkAnimation();
-        FlipSprite();
+        if (candleAnimation)
+            LightingAnimation();
+        else
+        {
+            ReadMovementValue();
+            FlipSprite();
+        }
+      
+        if (noLighterScript)
+        {
+            NoLighterWalkAnimation();
+            movementSpeed = noLighterMovementSpeed;
+        }
+        else
+        {
+            lighterIsOn = lighter.lighterIsOn;           
+            LighterWalkAnimation();
+            ChangeMovementSpeed();
+        }
+           
 
     }
 
     private void FixedUpdate()
     {
-        if (!catchedByMonster)
+        if (!doingSomethingImportant)
             rb.velocity = new Vector2(movementSpeed.x * moveVector.x, movementSpeed.y * moveVector.y) * Time.deltaTime;
         else
             rb.velocity = Vector2.zero;
     }
+
 
     private void ChangeMovementSpeed()
     {
@@ -101,8 +128,25 @@ public class PlayerMovement : MonoBehaviour
     {
         moveVector = inputManager.Player.Movement.ReadValue<Vector2>();
     }
+    private void NoLighterWalkAnimation()
+    {
+        if (moveVector != Vector2.zero)
+            anim.SetBool("Walk", true);
+        else
+            anim.SetBool("Walk", false);
 
-    private void WalkAnimation()
+        if (moveVector.y > 0)
+        {
+            anim.SetBool("Down", false);
+            anim.SetBool("Up", true);
+        }
+        else if (moveVector.y < 0)
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("Down", true);
+        }
+    }
+    private void LighterWalkAnimation()
     {
         if (moveVector != Vector2.zero)
         {
@@ -119,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopMovement(object sender, System.EventArgs e)
     {
-        catchedByMonster = true;
+        doingSomethingImportant = true;
     }
 
     public void StepSoundEvent()
@@ -133,6 +177,10 @@ public class PlayerMovement : MonoBehaviour
             lastStepSound.transform.position = transform.position;
             //Instantiate(soundWave, transform.position, Quaternion.identity);
         }
+    }
+    public void TeleportPlayer(Transform pointToGo)
+    {
+        transform.position = pointToGo.position;
     }
    
     private void FlipSprite()
@@ -155,6 +203,11 @@ public class PlayerMovement : MonoBehaviour
             overCarpet = true;
         }
 
+        if(collision.CompareTag("Candle"))
+        {
+            isNearCandle = true;
+        }
+
         if (collision.CompareTag("Teleport"))
         {
             transform.position = collision.GetComponent<ChangeRoomTrigger>().GetDestination().position;
@@ -166,5 +219,25 @@ public class PlayerMovement : MonoBehaviour
         {
             overCarpet = false;
         }
+
+        if (collision.CompareTag("Candle"))
+        {
+            isNearCandle = false;
+        }
     }
+
+    private void LightingAnimation()
+    {
+        doingSomethingImportant = true;
+        anim.SetBool("LightingAnimation", true);
+        
+    }
+
+    public void LightingAnimationEventToStop()
+    {
+        anim.SetBool("LightingAnimation", false);
+        doingSomethingImportant = false;
+        candleAnimation = false; 
+    }
+
 }
