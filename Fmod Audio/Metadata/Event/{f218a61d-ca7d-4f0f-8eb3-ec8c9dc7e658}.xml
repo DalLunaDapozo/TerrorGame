@@ -98,11 +98,17 @@
 		<property name="length">
 			<value>91.872653061224483</value>
 		</property>
+		<property name="startOffset">
+			<value>50</value>
+		</property>
 		<property name="pitch">
 			<value>-5</value>
 		</property>
+		<property name="looping">
+			<value>true</value>
+		</property>
 		<relationship name="modulators">
-			<destination>{ed29215f-91e3-4258-a612-691378addf32}</destination>
+			<destination>{b4378dbe-a296-4e7b-aefb-5b787de1e7b6}</destination>
 		</relationship>
 		<relationship name="audioFile">
 			<destination>{055bc3ff-296a-4403-a950-236a63d2783a}</destination>
@@ -142,14 +148,16 @@
 	<object class="MixerBusEffectChain" id="{ffed8aec-764c-4ff4-82b0-ffc85d752dd6}">
 		<relationship name="effects">
 			<destination>{a2ef0a02-71de-41a5-a65c-bb19bf0df4af}</destination>
-			<destination>{f2293f79-8a80-4746-8173-4ba1687bc9db}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c2a3771e-efb6-4802-ab12-563db9d61b8e}" />
 	<object class="MixerBusFader" id="{4b2302d0-66f3-4fd8-865d-37208b48206b}" />
-	<object class="RandomizerModulator" id="{ed29215f-91e3-4258-a612-691378addf32}">
+	<object class="RandomizerModulator" id="{b4378dbe-a296-4e7b-aefb-5b787de1e7b6}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>startOffset</value>
+		</property>
+		<property name="amount">
+			<value>50</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{4501b8e7-ccf7-41dd-8bca-41f99c2c5c5e}">
@@ -161,25 +169,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{13e692ee-3916-4f3f-bb34-7d5192dad823}" />
 	<object class="MixerBusFader" id="{a2ef0a02-71de-41a5-a65c-bb19bf0df4af}" />
-	<object class="MixerSend" id="{f2293f79-8a80-4746-8173-4ba1687bc9db}">
-		<property name="level">
-			<value>0</value>
-		</property>
-		<property name="inputFormat">
-			<value>0</value>
-		</property>
-		<relationship name="mixerReturn">
-			<destination>{e344a319-18a3-4687-b395-3506c461216e}</destination>
-		</relationship>
-	</object>
-	<object class="ThreeEQEffect" id="{d67c309e-c296-4980-9f63-06895d22d3a9}">
-		<property name="midGain">
-			<value>-16</value>
-		</property>
-		<property name="highGain">
-			<value>-19.5</value>
-		</property>
-	</object>
+	<object class="ThreeEQEffect" id="{d67c309e-c296-4980-9f63-06895d22d3a9}" />
 	<object class="MixerBusFader" id="{7b112a87-6744-4973-a564-f8d1e49ff997}" />
 	<object class="MixerSend" id="{abd947d5-2989-4ee3-abcf-ecc864e0f0f7}">
 		<property name="level">

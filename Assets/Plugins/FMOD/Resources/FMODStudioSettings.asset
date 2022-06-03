@@ -511,6 +511,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Ambience
+  - Monster
   - Player
   BanksToLoad: []
   LiveUpdatePort: 9264
