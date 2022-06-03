@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using FMODUnity;
 
 public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen, secondRoom, RitualRoom}
 
@@ -64,6 +65,9 @@ public class MonsterIA : MonoBehaviour
     [SerializeField] private float lighterAlertAmount;
 
 
+    [SerializeField] EventReference alertGrowl;
+    public FMOD.Studio.EventInstance alertGrowlInstance;
+    
     private float alertMinMoveSpeed;
 
     public bool chasingLastSound;
@@ -89,6 +93,9 @@ public class MonsterIA : MonoBehaviour
 
     private void Start()
     {
+
+        alertGrowlInstance = FMODUnity.RuntimeManager.CreateInstance(alertGrowl);
+        alertGrowlInstance.start();
         GetFloorSize();
         RestartTimerBeforeChangingRoom();
         moveSpot = GetNewPosition();
@@ -240,6 +247,7 @@ public class MonsterIA : MonoBehaviour
         if (circle != null)
         {
             Debug.Log("Step Heard");
+            FMODUnity.RuntimeManager.PlayOneShot(alertGrowl);
             moveSpot = (circle.transform.position);
            
         }
