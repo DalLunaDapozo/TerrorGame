@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 using FMODUnity;
 
-public enum CurrentRoom { mainroom, bedroom, bathroom, storage, kitchen, secondRoom, RitualRoom}
+public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor}
 
 public class MonsterIA : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class MonsterIA : MonoBehaviour
     //PUBLIC VARIABLES
     [Header("Status")]
     [SerializeField] private Status status = Status.patrol;
-    [SerializeField] public CurrentRoom currentRoom = CurrentRoom.mainroom;
+    [SerializeField] public CurrentRoom currentRoom = CurrentRoom.MainRoom;
     [SerializeField] private CurrentRoom playerCurrentRoom;
     
     [Header("Patrol Status")]
@@ -85,7 +85,7 @@ public class MonsterIA : MonoBehaviour
 
         playerMovement = player.GetComponent<PlayerMovement>();
         playerLocation = player.GetComponent<PlayerLocation>();
-        gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         playerMovement.OnStepSound += StepSoundEvent; 
         lighter.OnLighterSound += LighterSoundEvent;
@@ -117,19 +117,19 @@ public class MonsterIA : MonoBehaviour
     {
         switch (currentRoom)
         {
-            case CurrentRoom.mainroom:
+            case CurrentRoom.MainRoom:
                 AuxiliarMethod_CurrentRoomTransform("MainRoom");
                 break;
-            case CurrentRoom.bedroom:
+            case CurrentRoom.BedRoom:
                 AuxiliarMethod_CurrentRoomTransform("BedRoom");
                 break;
-            case CurrentRoom.bathroom:
+            case CurrentRoom.BathRoom:
                 AuxiliarMethod_CurrentRoomTransform("BathRoom");
                 break;
-            case CurrentRoom.storage:
+            case CurrentRoom.Storage:
                 AuxiliarMethod_CurrentRoomTransform("Storage");
                 break;
-            case CurrentRoom.kitchen:
+            case CurrentRoom.Kitchen:
                 AuxiliarMethod_CurrentRoomTransform("Kitchen");
                 break;
         }

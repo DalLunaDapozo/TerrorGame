@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Storm : MonoBehaviour
 {
+
+    private PlayerLocation playerLocation;
+    
     [SerializeField] private float minTimeBetweenEvent;
     [SerializeField] private float maxTimeBetweenEvent;
 
     [SerializeField] private float timer;
+    
     private bool eventOn;
 
-    [SerializeField] private Animator[] windowEffects;
-    [SerializeField] private Animator[] stormLights;
+    public CurrentRoom playerCurrentRoom;
+
+    [SerializeField] private GameObject[] windowEffects;
+    [SerializeField] private GameObject[] stormLights;
+
+    private void Awake()
+    {
+        playerLocation = GameObject.Find("Player").GetComponent<PlayerLocation>();
+    }
 
     private void Start()
     {
@@ -27,6 +38,7 @@ public class Storm : MonoBehaviour
     private void Update()
     {
         TimerBetweenEvent();
+        playerCurrentRoom = playerLocation.playerCurrentRoom;
     }
     private void TimerBetweenEvent()
     {
@@ -38,45 +50,29 @@ public class Storm : MonoBehaviour
             StormEventTest();
     }
 
+    private void ActivateDependingOnPlayerLocation()
+    {
+
+    }
+
     private void StormEventTest()
     {
         eventOn = true;
 
         for (int i = 0; i < windowEffects.Length;i++)
         {
-            windowEffects[i].SetTrigger("Event");
+            if (windowEffects[i].GetComponent<PlayerLocation>().playerCurrentRoom == playerCurrentRoom)
+            windowEffects[i].GetComponent<Animator>().SetTrigger("Event");
             
         }
         for (int i = 0; i < stormLights.Length; i++)
         {
-            stormLights[i].SetTrigger("Storm");
+            if (stormLights[i].GetComponent<PlayerLocation>().playerCurrentRoom == playerCurrentRoom)
+                stormLights[i].GetComponent<Animator>().SetTrigger("Storm");
         }
         eventOn = false;
        
         GenerateRandomNumber();
         
     }
-
-    private IEnumerator StormEvent()
-    {
-        eventOn = true;
-
-        windowEffects[0].SetTrigger("Event");
-
-        /*for (int i = 0; i < windowEffects.Length;i++)
-        {
-            windowEffects[i].SetTrigger("Event");
-            
-        }
-        for (int i = 0; i < stormLights.Length; i++)
-        {
-            stormLights[i].SetTrigger("Storm");
-        }*/
-
-        yield return new WaitForSeconds(.1f);
-
-        GenerateRandomNumber();
-        eventOn = false;
-    }
-
 }

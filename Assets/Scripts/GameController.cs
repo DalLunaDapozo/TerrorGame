@@ -28,6 +28,12 @@ public class GameController : MonoBehaviour
             return;
     }
 
+    private void Update()
+    {
+        if (isGameOver)
+            StartCoroutine("GameOverSequence");
+    }
+
     private void OnEnable()
     {
         if (monsterIA != null)
