@@ -118,9 +118,9 @@ TextureImporter:
       name: Lighting_front-Sheet_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 5
         y: 2
-        width: 13
+        width: 17
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -139,9 +139,9 @@ TextureImporter:
       name: Lighting_front-Sheet_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 34
         y: 2
-        width: 13
+        width: 17
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -160,9 +160,9 @@ TextureImporter:
       name: Lighting_front-Sheet_2
       rect:
         serializedVersion: 2
-        x: 67
+        x: 63
         y: 2
-        width: 13
+        width: 17
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -181,9 +181,9 @@ TextureImporter:
       name: Lighting_front-Sheet_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 92
         y: 2
-        width: 13
+        width: 17
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}

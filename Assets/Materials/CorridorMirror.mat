@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BathroomMirror
+  m_Name: CorridorMirror
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _RECEIVE_SHADOWS_OFF _SPECULAR_SETUP
   m_LightmapFlags: 4
@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 8400000, guid: 0d57dff079c67bc4485538d94faeb577, type: 2}
+        m_Texture: {fileID: 8400000, guid: 0c96972370f31c04f9c0c28d1ecd7d82, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: 0d57dff079c67bc4485538d94faeb577, type: 2}
+        m_Texture: {fileID: 8400000, guid: 0c96972370f31c04f9c0c28d1ecd7d82, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:

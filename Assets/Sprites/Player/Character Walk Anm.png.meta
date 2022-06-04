@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: 6d7c8b42b484f274f99c824f7d654c0d
+guid: cd77edfaa1f1c8e49bff9459644675c1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5896203561969402743
-    second: WalkBackwards_0
+      213: 8223891314133919120
+    second: Character Walk Anm_0
   - first:
-      213: 3095662423627889905
-    second: WalkBackwards_1
+      213: -6013062718472909483
+    second: Character Walk Anm_1
   - first:
-      213: 8333109131992824229
-    second: WalkBackwards_2
+      213: 8736984143145156699
+    second: Character Walk Anm_2
   - first:
-      213: 6253164569297091305
-    second: WalkBackwards_3
+      213: 2680536924004972194
+    second: Character Walk Anm_3
   - first:
-      213: -2965343314865731941
-    second: WalkBackwards_4
+      213: 6987985574017519209
+    second: Character Walk Anm_4
   - first:
-      213: 4321237412922591328
-    second: WalkBackwards_5
+      213: 1852268491110160638
+    second: Character Walk Anm_5
   - first:
-      213: 6566336219838154847
-    second: WalkBackwards_6
+      213: -7249862090366677464
+    second: Character Walk Anm_6
   - first:
-      213: 5913271708457510803
-    second: WalkBackwards_7
+      213: 6560076729940877068
+    second: Character Walk Anm_7
   - first:
-      213: -3089387209224004541
-    second: WalkBackwards_8
+      213: 2543386910515768307
+    second: Character Walk Anm_8
   - first:
-      213: -8764288212062274165
-    second: WalkBackwards_9
+      213: -1632954452839232979
+    second: Character Walk Anm_9
   - first:
-      213: -5207063749186424914
-    second: WalkBackwards_10
+      213: -2292792997314401491
+    second: Character Walk Anm_10
   - first:
-      213: -2683717941576291647
-    second: WalkBackwards_11
+      213: 2722888184518687289
+    second: Character Walk Anm_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -104,7 +104,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,19 +116,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,12 +127,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WalkBackwards_0
+      name: Character Walk Anm_0
       rect:
         serializedVersion: 2
         x: 3
         y: 0
-        width: 9
+        width: 10
         height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -153,19 +141,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 773449276e583d150800000000000000
-      internalID: 5896203561969402743
+      spriteID: 0956f520491212270800000000000000
+      internalID: 8223891314133919120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_1
+      name: Character Walk Anm_1
       rect:
         serializedVersion: 2
         x: 20
         y: 0
-        width: 9
+        width: 10
         height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -174,19 +162,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fc7dd0a29006fa20800000000000000
-      internalID: 3095662423627889905
+      spriteID: 55d074de05f4d8ca0800000000000000
+      internalID: -6013062718472909483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_2
+      name: Character Walk Anm_2
       rect:
         serializedVersion: 2
         x: 37
         y: 0
-        width: 9
+        width: 10
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -195,19 +183,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a9fef6da9625a370800000000000000
-      internalID: 8333109131992824229
+      spriteID: b504364a9c0004970800000000000000
+      internalID: 8736984143145156699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_3
+      name: Character Walk Anm_3
       rect:
         serializedVersion: 2
         x: 54
         y: 0
-        width: 9
+        width: 10
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -216,19 +204,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eaf20b8b04b7c650800000000000000
-      internalID: 6253164569297091305
+      spriteID: 2a672aa512e233520800000000000000
+      internalID: 2680536924004972194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_4
+      name: Character Walk Anm_4
       rect:
         serializedVersion: 2
         x: 71
         y: 0
-        width: 9
+        width: 10
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -237,19 +225,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b96495857fbf8d6d0800000000000000
-      internalID: -2965343314865731941
+      spriteID: 96e4eda0bdf4af060800000000000000
+      internalID: 6987985574017519209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_5
+      name: Character Walk Anm_5
       rect:
         serializedVersion: 2
         x: 88
         y: 0
-        width: 9
+        width: 10
         height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -258,14 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 068016b388e18fb30800000000000000
-      internalID: 4321237412922591328
+      spriteID: ef81541016494b910800000000000000
+      internalID: 1852268491110160638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_6
+      name: Character Walk Anm_6
       rect:
         serializedVersion: 2
         x: 105
@@ -279,19 +267,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f580c338000502b50800000000000000
-      internalID: 6566336219838154847
+      spriteID: 82e8f1917d0536b90800000000000000
+      internalID: -7249862090366677464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_7
+      name: Character Walk Anm_7
       rect:
         serializedVersion: 2
         x: 122
         y: 0
-        width: 9
+        width: 10
         height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -300,19 +288,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3972afaf949201250800000000000000
-      internalID: 5913271708457510803
+      spriteID: c0f9e6377031a0b50800000000000000
+      internalID: 6560076729940877068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_8
+      name: Character Walk Anm_8
       rect:
         serializedVersion: 2
         x: 139
         y: 0
-        width: 9
+        width: 10
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -321,19 +309,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c519493ba4025d0800000000000000
-      internalID: -3089387209224004541
+      spriteID: 3fbabaf6beceb4320800000000000000
+      internalID: 2543386910515768307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_9
+      name: Character Walk Anm_9
       rect:
         serializedVersion: 2
         x: 156
         y: 0
-        width: 9
+        width: 10
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -342,19 +330,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8d72ea6e4efe5680800000000000000
-      internalID: -8764288212062274165
+      spriteID: d2a0020b3949659e0800000000000000
+      internalID: -1632954452839232979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_10
+      name: Character Walk Anm_10
       rect:
         serializedVersion: 2
         x: 173
         y: 0
-        width: 9
+        width: 10
         height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -363,19 +351,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eafedeabb1bccb7b0800000000000000
-      internalID: -5207063749186424914
+      spriteID: d2b629baaec5e20e0800000000000000
+      internalID: -2292792997314401491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkBackwards_11
+      name: Character Walk Anm_11
       rect:
         serializedVersion: 2
         x: 190
         y: 0
-        width: 9
+        width: 10
         height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -384,8 +372,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1caa00740c481cad0800000000000000
-      internalID: -2683717941576291647
+      spriteID: 93a38599064a9c520800000000000000
+      internalID: 2722888184518687289
       vertices: []
       indices: 
       edges: []
