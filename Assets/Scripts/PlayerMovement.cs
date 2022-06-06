@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private InputManager inputManager;
     private Animator anim;
-    private MonsterIA monsterIA;
+    private MonsterAI monsterIA;
     private Lighter lighter;
 
     [SerializeField] private GameObject soundWave;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if(!noLighterScript)
         {
             lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
-            monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+            monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>();
             anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerLighter");
         }
         else

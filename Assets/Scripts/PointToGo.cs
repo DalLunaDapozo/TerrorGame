@@ -6,7 +6,7 @@ public class PointToGo : MonoBehaviour
 {
     public CurrentRoom roomIsOn;
 
-    public MonsterIA monster;
+    public MonsterAI monster;
     private float distance;
 
     [SerializeField] private GameObject child;
@@ -16,7 +16,7 @@ public class PointToGo : MonoBehaviour
 
     private void Awake()
     {
-        monster = GameObject.Find("Monster").GetComponent<MonsterIA>();
+        monster = GameObject.Find("Monster").GetComponent<MonsterAI>();
 
         if (monster == null)
             return;

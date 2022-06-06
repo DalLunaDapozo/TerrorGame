@@ -5,11 +5,11 @@ public class MonsterRoomTrigger : MonoBehaviour
 {
     
     public CurrentRoom roomName;
-    private MonsterIA monster;
+    private MonsterAI monster;
 
     private void Start()
     { 
-        monster = GameObject.Find("Monster").GetComponent<MonsterIA>();
+        monster = GameObject.Find("Monster").GetComponent<MonsterAI>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

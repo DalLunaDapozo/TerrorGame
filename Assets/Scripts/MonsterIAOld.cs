@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using FMODUnity;
+using Pathfinding;
 
-public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor}
-
-public class MonsterIA : MonoBehaviour
+public class MonsterIAOld : MonoBehaviour
 {
     public enum Status {alert, patrol, gotcha}
    
     //COMPONENTS
-    private Rigidbody2D rb;
     private PlayerMovement playerMovement;
     private PlayerLocation playerLocation;
     private GameController gameController;
-    private BoxCollider2D boxCollider;
     private Lighter lighter;
+    private Rigidbody2D rb;
+
+    private AIPath aiPath;
+    private Seeker seeker;
+    private Path path;
+    public int currentWayPoint;
+    public bool reachedEndOfPath;
+    public float speed = 200f;
+    public float newtWaypointDistance = 3f;
+
 
     //EVENTS
     public event System.EventHandler OnPlayerCatched;
@@ -75,13 +82,19 @@ public class MonsterIA : MonoBehaviour
     public Transform lastSpotHeard;
 
     private bool playerCatched = false;
-    
+
+    //private bool hasGrowl = false;
+
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponentInChildren<BoxCollider2D>();
         player = GameObject.Find("Player").gameObject.transform;
         lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
+
+        rb = GetComponent<Rigidbody2D>();
+
+        aiPath = GetComponent<AIPath>();
+     
+        seeker = GetComponent<Seeker>();
 
         playerMovement = player.GetComponent<PlayerMovement>();
         playerLocation = player.GetComponent<PlayerLocation>();
@@ -100,10 +113,60 @@ public class MonsterIA : MonoBehaviour
         RestartTimerBeforeChangingRoom();
         moveSpot = GetNewPosition();
         alertMinMoveSpeed = alertMovementSpeed;
+
+        InvokeRepeating("UpdatePath", 0f, .5f);
+    }
+
+    void UpdatePath()
+    {
+        if(seeker.IsDone())
+        seeker.StartPath(transform.position, moveSpot, OnPathComplete);
+    }
+
+    private void FixedUpdate()
+    {
+        
+
+        if (path == null)
+            return;
+
+        if (currentWayPoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+
+
+        }
+        else
+            reachedEndOfPath = false;
+
+        Vector2 direction = (path.vectorPath[currentWayPoint] - transform.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
+
+        rb.AddForce(force);
+
+        float distance = Vector2.Distance(transform.position, path.vectorPath[currentWayPoint]);
+
+        if (distance < newtWaypointDistance)
+        {
+            currentWayPoint++;
+        }
+
+        if (rb.velocity.x >= 0.01f)
+        {
+            transform.localScale = new Vector3(-1f,1f,1);
+        }
+        else if (rb.velocity.x <= -0.01f)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1);
+        }
+
     }
 
     private void Update()
     {
+       
+
         PlayerCurrentRoom();
         StatusDependingOnPlayerDistance();
         StatusBehaviour();
@@ -166,20 +229,31 @@ public class MonsterIA : MonoBehaviour
                     currentWaitTimeBetweenPoints -= Time.deltaTime;
             }
 
-            Move(patrolMovementSpeed);
+           
         }
         else
         {
             moveSpot = randomRoomToGo;
-            Move(movingToAnotherRoomMovementSpeed);
+            
         }
 
         
     }
     private void Move(float moveSpeed)
     {
+       
         transform.position = Vector2.MoveTowards(transform.position, moveSpot, moveSpeed * Time.deltaTime);
     }
+    
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWayPoint = 0;
+        }
+    }
+    
     private void TimerBeforeGoingToAnotherRoom()
     {
         if (currentTimeBeforeChangingRooms <= 0 && !oneRoomPicked)
@@ -249,7 +323,7 @@ public class MonsterIA : MonoBehaviour
             Debug.Log("Step Heard");
             FMODUnity.RuntimeManager.PlayOneShot(alertGrowl);
             moveSpot = (circle.transform.position);
-           
+            //hasGrowl = true;
         }
         IncreaseMovementSpeedWhenAlert();
         AlertChaseSequence();
@@ -273,9 +347,7 @@ public class MonsterIA : MonoBehaviour
             else
                 timeBeforeStartFollowingSoundCurrent -= Time.deltaTime;
 
-        }
-        else
-            Move(alertMovementSpeed);    
+        }          
     }
 
     //BEHAVIOUR
@@ -286,13 +358,14 @@ public class MonsterIA : MonoBehaviour
         {
             case Status.alert:
 
-                
+            
                 AlertBehaviour();
 
                 break;
             
             case Status.patrol:
 
+                //hasGrowl = false;
                 timeBeforeStartFollowingSoundCurrent = timeBeforeStartFollowingSound;
                 alertMovementSpeed = alertMinMoveSpeed;
                 chasingLastSound = false;

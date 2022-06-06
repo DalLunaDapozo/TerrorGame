@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private MonsterIA monsterIA;
+    private MonsterAI monsterIA;
     public GameObject player;
     public bool isGameOver;
 
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
        
         if(!isBrightDay)
-        monsterIA = GameObject.Find("Monster").GetComponent<MonsterIA>();
+        monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>();
 
         if (monsterIA == null)
             return;

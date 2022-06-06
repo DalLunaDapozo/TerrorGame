@@ -3,12 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private MonsterIA monsterIa;
+    private MonsterAI monsterIa;
     private PlayerMovement movement;
 
     private void Awake()
     {
-        monsterIa = GameObject.Find("Monster").GetComponent<MonsterIA>();
+        monsterIa = GameObject.Find("Monster").GetComponent<MonsterAI>();
         monsterIa.OnPlayerCatched += OnBeingCatched;
         movement = GetComponent<PlayerMovement>();
         
