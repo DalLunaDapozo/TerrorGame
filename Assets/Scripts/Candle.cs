@@ -6,7 +6,10 @@ public class Candle : MonoBehaviour
 
     public bool canLightCandle;
     public bool lightIsOn;
-    
+
+    [SerializeField]
+    private Skull associatedSkull;
+
     private InputManager input;
     private Animator anim;
     private BoxCollider2D boxCol;

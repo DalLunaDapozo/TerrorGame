@@ -5,7 +5,7 @@ using Pathfinding;
 
 //ENUMS
 #region ENUMS
-public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor }
+public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor, Library, Closet }
 public enum Status { alert, patrol, gotcha }
 #endregion
 
@@ -33,9 +33,6 @@ public class MonsterAI : MonoBehaviour
     
     private int currentWayPoint;
     
-    private bool reachedEndOfPath;
-    private bool canMove;
-
     private Vector2 moveSpot;
 
     //PUBLIC
@@ -226,6 +223,9 @@ public class MonsterAI : MonoBehaviour
                 break;
             case CurrentRoom.Kitchen:
                 AuxiliarMethod_CurrentRoomTransform("Kitchen");
+                break;
+            case CurrentRoom.Library:
+                AuxiliarMethod_CurrentRoomTransform("Library");
                 break;
         }
 
