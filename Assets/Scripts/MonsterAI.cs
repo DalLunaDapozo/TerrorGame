@@ -9,7 +9,7 @@ public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondF
 public enum Status { alert, patrol, gotcha }
 #endregion
 
-public class MonsterAI : MonoBehaviour
+public class MonsterAI : MonoBehaviour 
 {
     #region VARIABLES
 

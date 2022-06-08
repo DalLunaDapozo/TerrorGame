@@ -7,6 +7,7 @@ public class PointToGo : MonoBehaviour
     public CurrentRoom roomIsOn;
 
     public MonsterAI monster;
+
     private float distance;
 
     [SerializeField] private GameObject child;
@@ -16,17 +17,12 @@ public class PointToGo : MonoBehaviour
 
     private void Awake()
     {
-        monster = GameObject.Find("Monster").GetComponent<MonsterAI>();
-
-        if (monster == null)
-            return;
+        try { monster = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+        catch { Debug.Log("hola"); }
     }
 
     private void Update()
     {
-        if (monster == null)
-            return;
-        
         IsAvailable();
         SetActive(isActive);
         AddRemoveFromList();
@@ -55,6 +51,9 @@ public class PointToGo : MonoBehaviour
 
     private void MonsterNearPoint()
     {
+        if (monster == null)
+            return;
+
         distance = Vector2.Distance(transform.position, monster.transform.position);
 
         if (distance <= 0.5f)
@@ -69,6 +68,11 @@ public class PointToGo : MonoBehaviour
 
     private void IsAvailable()
     {
+        if (monster == null)
+        {
+            return;
+        }
+        
         if (monster.currentRoom == roomIsOn)
         {
             isActive = false;

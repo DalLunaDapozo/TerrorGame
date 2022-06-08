@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneController.LoadScene("BrightHouse", 1f ,1f );
+        SceneController.LoadScene("DarkHouse", 1f ,1f );
     }
 
     public void Quit()

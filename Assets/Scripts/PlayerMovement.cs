@@ -48,8 +48,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(!noLighterScript)
         {
+            try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+            catch { UnityEngine.Debug.Log("hola"); }
+            
             lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
-            monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>();
             anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerLighter");
         }
         else

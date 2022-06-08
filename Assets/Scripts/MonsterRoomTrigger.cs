@@ -6,7 +6,12 @@ public class MonsterRoomTrigger : MonoBehaviour
     
     public CurrentRoom roomName;
     private MonsterAI monster;
+    private void Awake()
+    {
+        try { monster = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+        catch { Debug.Log("hola"); }
 
+    }
     private void Start()
     { 
         monster = GameObject.Find("Monster").GetComponent<MonsterAI>();

@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+
+        try { monsterIa = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+        catch { Debug.Log("hola"); }
+      
+
         monsterIa = GameObject.Find("Monster").GetComponent<MonsterAI>();
         monsterIa.OnPlayerCatched += OnBeingCatched;
         movement = GetComponent<PlayerMovement>();

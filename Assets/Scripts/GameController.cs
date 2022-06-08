@@ -20,9 +20,15 @@ public class GameController : MonoBehaviour
         player.GetComponent<PlayerController>();
         player.GetComponent<PlayerMovement>();
 
-       
-        if(!isBrightDay)
-        monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>();
+        try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+        catch { Debug.Log("hola"); }
+
+
+
+        if (!isBrightDay)
+            try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+            catch { Debug.Log("hola"); }
+        
 
         if (monsterIA == null)
             return;
