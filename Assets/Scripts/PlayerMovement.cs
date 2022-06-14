@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private MonsterAI monsterIA;
     private Lighter lighter;
+    private PlayerLocation location;
 
     [SerializeField] private GameObject soundWave;
     public event System.EventHandler OnStepSound;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 movementSpeedLighterOn;
     [SerializeField] private Vector2 movementSpeedLighterOff;
+    [SerializeField] private Vector2 movementSpeedRunning;
     [SerializeField] private Vector2 noLighterMovementSpeed;
 
     private bool doingSomethingImportant;
@@ -39,11 +41,21 @@ public class PlayerMovement : MonoBehaviour
     public bool candleAnimation;
     public bool lighterIsOn;
 
+    public bool inSecondFloor = true;
+
+    //RUNNING
+
+    public bool IsRunning = false;
+    private float animationSpeed;
+    private float timeBeforeStartRunning = 2f;
+    private float currentTime;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-      
+        location = GetComponent<PlayerLocation>();
+
         inputManager = new InputManager();
 
         if(!noLighterScript)
@@ -81,7 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
         stepSoundOnCarpetInstance = FMODUnity.RuntimeManager.CreateInstance(stepsoundOnCarpet);
         stepSoundOnCarpetInstance.start();
-
+        inSecondFloor = true;
+        currentTime = timeBeforeStartRunning;
     }
 
     private void Update()
@@ -105,8 +118,6 @@ public class PlayerMovement : MonoBehaviour
             LighterWalkAnimation();
             ChangeMovementSpeed();
         }
-           
-
     }
 
     private void FixedUpdate()
@@ -121,9 +132,24 @@ public class PlayerMovement : MonoBehaviour
     private void ChangeMovementSpeed()
     {
         if (lighter.lighterIsOn)
-            movementSpeed = movementSpeedLighterOn;
+        {
+            if(IsRunning && inSecondFloor)
+            {
+                animationSpeed = 1.6f;
+                movementSpeed = movementSpeedRunning;
+            }  
+            else
+            {
+                movementSpeed = movementSpeedLighterOn;
+                animationSpeed = 1f;
+            }
+        }   
         else
+        {
             movementSpeed = movementSpeedLighterOff;
+            animationSpeed = 1f;
+        }
+            
     }
 
     private void ReadMovementValue()
@@ -150,13 +176,24 @@ public class PlayerMovement : MonoBehaviour
     }
     private void LighterWalkAnimation()
     {
+        
+        
         if (moveVector != Vector2.zero)
         {
+            anim.SetFloat("WalkAnimationSpeed", animationSpeed);
+            
+            if (currentTime > 0)
+                currentTime -= Time.deltaTime;
+            else if (currentTime <= 0)
+                IsRunning = true;
+
             anim.SetBool("Walk_LightOn", lighter.lighterIsOn);
             anim.SetBool("Walk_LightOff", !lighter.lighterIsOn);
         }
         else
         {
+            currentTime = timeBeforeStartRunning;
+            IsRunning = false;
             anim.SetBool("Walk_LightOn", false);
             anim.SetBool("Walk_LightOff", false);
         }
@@ -213,6 +250,18 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("Teleport"))
         {
             transform.position = collision.GetComponent<ChangeRoomTrigger>().GetDestination().position;
+            if (inSecondFloor)
+            {
+                location.playerCurrentRoom = CurrentRoom.MainRoom;
+                inSecondFloor = false;
+                
+            }
+            else if(!inSecondFloor)
+            {
+                location.playerCurrentRoom = CurrentRoom.SecondFloorMain;
+                inSecondFloor = true;
+            }
+               
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

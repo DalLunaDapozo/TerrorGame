@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     private MonsterAI monsterIA;
     public GameObject player;
+    private Ritual ritual;
+    
     public bool isGameOver;
 
     public bool isBrightDay;
@@ -13,12 +15,16 @@ public class GameController : MonoBehaviour
     public float timeBeforeRestart;
 
     [SerializeField] private GameObject gameOverText;
+    
 
     private void Awake()
     {
         
         player.GetComponent<PlayerController>();
         player.GetComponent<PlayerMovement>();
+
+        try { ritual = GameObject.Find("RitualCircle").GetComponent<Ritual>(); }
+        catch { Debug.Log("RitualCircle missing"); }
 
         try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
         catch { Debug.Log("hola"); }
@@ -36,14 +42,16 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (isGameOver)
-            StartCoroutine("GameOverSequence");
+        
     }
 
     private void OnEnable()
     {
         if (monsterIA != null)
             monsterIA.OnPlayerCatched += GameOver;
+
+        ritual.OnHeartEnding += FinishGame;
+
     }
 
     private void OnDisable()
@@ -55,7 +63,7 @@ public class GameController : MonoBehaviour
     private void GameOver(object sender, System.EventArgs e)
     {
         isGameOver = true;
-        StartCoroutine("GameOverSequence");
+        StartCoroutine(GameOverSequence());
     }
 
     private IEnumerator GameOverSequence()
@@ -66,6 +74,18 @@ public class GameController : MonoBehaviour
 
         SceneManager.LoadScene("DarkHouse");
     }
+    private IEnumerator WinSequence()
+    {
+      
+        yield return new WaitForSeconds(timeBeforeRestart);
 
-    
+        SceneManager.LoadScene("Menu");
+    }
+
+
+    private void FinishGame(object sender, System.EventArgs e)
+    {
+        isGameOver = true;
+        StartCoroutine(WinSequence());
+    }
 }
