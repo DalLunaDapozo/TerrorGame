@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public FMOD.Studio.EventInstance playerState;
     [SerializeField] EventReference stepsoundOnCarpet;
     public FMOD.Studio.EventInstance stepSoundOnCarpetInstance;
+    [SerializeField] EventReference stepSoundLower;
 
     private Vector2 movementSpeed;
     private Vector2 moveVector;
@@ -216,6 +217,12 @@ public class PlayerMovement : MonoBehaviour
             lastStepSound.transform.position = transform.position;
             //Instantiate(soundWave, transform.position, Quaternion.identity);
         }
+    }
+
+    public void StepSoundLower()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(stepSoundLower);
+
     }
     public void TeleportPlayer(Transform pointToGo)
     {
