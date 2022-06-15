@@ -9,8 +9,6 @@ public class MonsterAnimations : MonoBehaviour
     private SpriteRenderer sprite;
 
     [SerializeField] private bool isMoving;
-    [SerializeField] EventReference stepsound;
-    public FMOD.Studio.EventInstance monsterState;
 
     public FMODUnity.StudioEventEmitter eventEmitter;
 
@@ -20,15 +18,6 @@ public class MonsterAnimations : MonoBehaviour
         path = GetComponent<AIPath>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         eventEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
-    }
-
-    private void Start()
-    {
-        monsterState = FMODUnity.RuntimeManager.CreateInstance(stepsound);
-        monsterState.start();
-
-       
-
     }
 
     private void Update()

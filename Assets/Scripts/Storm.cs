@@ -19,6 +19,8 @@ public class Storm : MonoBehaviour
     [SerializeField] private GameObject[] windowEffects;
     [SerializeField] private GameObject[] stormLights;
 
+    [SerializeField] private FMODUnity.StudioEventEmitter thunderEvent;
+
     private void Awake()
     {
         playerLocation = GameObject.Find("Player").GetComponent<PlayerLocation>();
@@ -58,6 +60,8 @@ public class Storm : MonoBehaviour
     private void StormEventTest()
     {
         eventOn = true;
+
+        thunderEvent.Play();
 
         for (int i = 0; i < windowEffects.Length;i++)
         {

@@ -69,10 +69,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 637908839277283950
+  lastModified: 637908890434571414
   FileSizes:
   - Name: Desktop
-    Value: 3836448
+    Value: 4679744
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -104,12 +104,13 @@ MonoBehaviour:
   - {fileID: 3149815103299434502}
   - {fileID: -2737919511848182601}
   - {fileID: 1020051394749402913}
+  - {fileID: 5616482145816444796}
   EditorParameters: []
   MasterBanks:
   - {fileID: 497733320271191901}
   StringsBanks:
   - {fileID: 8339625914614872455}
-  cacheTime: 637908839288510113
+  cacheTime: 637908890435856648
   cacheVersion: 131591
 --- !u!114 &497733320271191901
 MonoBehaviour:
@@ -126,7 +127,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637908189596857140
+  lastModified: 637908890434921477
   FileSizes:
   - Name: Desktop
     Value: 3064064
@@ -179,7 +180,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 4256487198379991909}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -309,11 +310,38 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Monster.bank
   Name: Monster
   StudioPath: bank:/Monster
-  lastModified: 637908839285638897
+  lastModified: 637908890435241534
   FileSizes:
   - Name: Desktop
-    Value: 326784
+    Value: 327040
   Exists: 1
+--- !u!114 &5616482145816444796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Thunder
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Thunder
+  Guid:
+    Data1: 1390359261
+    Data2: 1117144733
+    Data3: 606493577
+    Data4: -738004064
+  Banks:
+  - {fileID: -1524016098146320874}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18643
 --- !u!114 &6688899790263664105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,10 +384,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637908839279383664
+  lastModified: 637908890434946483
   FileSizes:
   - Name: Desktop
-    Value: 1508
+    Value: 1546
   Exists: 1
 --- !u!114 &8712374884795956920
 MonoBehaviour:
@@ -403,7 +431,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637908839288510113
+  lastModified: 637908890435856648
   FileSizes:
   - Name: Desktop
     Value: 337472
