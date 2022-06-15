@@ -4,9 +4,10 @@ using FMODUnity;
 
 public class MonsterAnimations : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
     private AIPath path;
     private SpriteRenderer sprite;
+    private MonsterAI monsterAI;
 
     [SerializeField] private bool isMoving;
 
@@ -17,6 +18,7 @@ public class MonsterAnimations : MonoBehaviour
         anim = GetComponent<Animator>();
         path = GetComponent<AIPath>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        monsterAI = GetComponent<MonsterAI>();
         eventEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
@@ -39,6 +41,12 @@ public class MonsterAnimations : MonoBehaviour
       
         anim.SetBool("Walk", isMoving);
 
+        if (monsterAI.playerCatched)
+        {
+            anim.Play("MonsterKilling_1");
+        }
+
+       
     }
 
     public void StepSound()

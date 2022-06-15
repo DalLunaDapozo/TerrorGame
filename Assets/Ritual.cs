@@ -16,8 +16,6 @@ public class Ritual : MonoBehaviour
 
     private void Awake()
     {
-        
-
         anim = GetComponent<Animator>();
     }
 

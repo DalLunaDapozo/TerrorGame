@@ -42,9 +42,9 @@ public class Lighter : MonoBehaviour
     }
     private void Start()
     {
-        lighterIsOn = true;
-        fire.SetActive(true);
-        light2D.intensity = lightIntensityHigh;
+        lighterIsOn = false;
+        fire.SetActive(false);
+        light2D.intensity = lightIntensityLow;
 
         lighterloopInstance = FMODUnity.RuntimeManager.CreateInstance(lighterloop);
     }
@@ -70,7 +70,7 @@ public class Lighter : MonoBehaviour
         if (lighterIsOn)
         {
             if (player.isNearCandle)
-                player.candleAnimation = true;
+                player.SendMessage("LightingAnimation");
             else
             {
                 fire.SetActive(false);

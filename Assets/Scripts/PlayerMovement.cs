@@ -6,6 +6,7 @@ using FMODUnity;
 using System.Collections;
 using UnityEngine.Experimental.Rendering.Universal;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private MonsterAI monsterIA;
     private Lighter lighter;
     private PlayerLocation location;
+
+    private GameController gameController;
 
     [SerializeField] private GameObject soundWave;
     public event System.EventHandler OnStepSound;
@@ -34,12 +37,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 movementSpeedRunning;
     [SerializeField] private Vector2 noLighterMovementSpeed;
 
-    private bool doingSomethingImportant;
+  
     private bool overCarpet;
     public bool noLighterScript;
 
     public bool isNearCandle;
-    public bool candleAnimation;
     public bool lighterIsOn;
 
     public bool inSecondFloor = true;
@@ -62,8 +64,11 @@ public class PlayerMovement : MonoBehaviour
         if(!noLighterScript)
         {
             try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
-            catch { UnityEngine.Debug.Log("hola"); }
-            
+            catch { UnityEngine.Debug.Log("GameController Not Found"); }
+
+            try { gameController = GameObject.Find("GameController").GetComponent<GameController>(); }
+            catch { UnityEngine.Debug.Log("GameController Not Found"); }
+
             lighter = GameObject.Find("Lighter").GetComponent<Lighter>();
             anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerLighter");
         }
@@ -76,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
  
     private void OnEnable()
     {
-        inputManager.Player.Enable();
+        
         if (monsterIA != null)
             monsterIA.OnPlayerCatched += StopMovement;
     }
@@ -96,17 +101,23 @@ public class PlayerMovement : MonoBehaviour
         stepSoundOnCarpetInstance.start();
         inSecondFloor = true;
         currentTime = timeBeforeStartRunning;
+        
+        StartCoroutine(RebornRutine());
     }
 
     private void Update()
     {
-        if (candleAnimation)
-            LightingAnimation();
-        else
+     
+        if(gameController.firstTime && lighterIsOn)
         {
-            ReadMovementValue();
-            FlipSprite();
+            lighter.lighterIsOn = true;
+            gameController.firstTime = false;
+            inputManager.Player.Enable();
         }
+        
+        ReadMovementValue();
+        FlipSprite();
+        
       
         if (noLighterScript)
         {
@@ -123,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!doingSomethingImportant)
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("LightingAnimation"))
             rb.velocity = new Vector2(movementSpeed.x * moveVector.x, movementSpeed.y * moveVector.y) * Time.deltaTime;
         else
             rb.velocity = Vector2.zero;
@@ -203,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopMovement(object sender, System.EventArgs e)
     {
-        doingSomethingImportant = true;
+        inputManager.Player.Disable();
     }
 
     public void StepSoundEvent()
@@ -284,18 +295,33 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void LightingAnimation()
+    public IEnumerator LightingAnimation()
     {
-        doingSomethingImportant = true;
         anim.SetBool("LightingAnimation", true);
-        
+
+        inputManager.Player.Disable();
+
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        inputManager.Player.Enable();
+
+        anim.SetBool("LightingAnimation", false);
+
     }
 
-    public void LightingAnimationEventToStop()
+    public IEnumerator RebornRutine()
     {
-        anim.SetBool("LightingAnimation", false);
-        doingSomethingImportant = false;
-        candleAnimation = false; 
+        anim.Play("Reborn");
+
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+
+        if (gameController.firstTime)
+            yield return new WaitForSeconds(0);
+            
+        else
+            inputManager.Player.Enable();
+
     }
+ 
 
 }

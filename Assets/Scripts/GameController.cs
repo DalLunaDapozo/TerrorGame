@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -15,8 +16,11 @@ public class GameController : MonoBehaviour
     public float timeBeforeRestart;
 
     [SerializeField] private GameObject gameOverText;
-    
+    [SerializeField] private GameObject pressEText;
 
+
+    public bool firstTime;
+    
     private void Awake()
     {
         
@@ -40,9 +44,15 @@ public class GameController : MonoBehaviour
             return;
     }
 
+    private void Start()
+    {
+        firstTime = true;
+    }
+
     private void Update()
     {
-        
+        if (firstTime == false)
+            pressEText.SetActive(false);
     }
 
     private void OnEnable()

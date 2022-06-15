@@ -20,6 +20,7 @@ public class MonsterAI : MonoBehaviour
     private Transform player;
     private GameController gameController;
     private Lighter lighter;
+    private MonsterAnimations monsterAnimations;
 
     #endregion
 
@@ -94,8 +95,8 @@ public class MonsterAI : MonoBehaviour
     [SerializeField] private float lighterAlertAmount;
 
     private float timeBeforeStartFollowingSoundCurrent;
-    private bool chasingLastSound = false;
-    private bool playerCatched = false;
+    public bool chasingLastSound = false;
+    public bool playerCatched = false;
 
     //EVENT
     
@@ -121,6 +122,7 @@ public class MonsterAI : MonoBehaviour
 
         seeker = GetComponent<Seeker>();
         aiPath = GetComponent<AIPath>();
+        monsterAnimations = GetComponent<MonsterAnimations>();
 
         //TO FIND !!! ( (0) )
 
@@ -346,10 +348,16 @@ public class MonsterAI : MonoBehaviour
         if (!chasingLastSound)
         {
             if (timeBeforeStartFollowingSoundCurrent < 0f)
+            {
                 chasingLastSound = true;
-
+                monsterAnimations.anim.SetBool("Alert", false);
+            }
             else
+            {
                 timeBeforeStartFollowingSoundCurrent -= Time.deltaTime;
+                monsterAnimations.anim.SetBool("Alert", true);
+            }
+               
         }
     }
     private void OnCatchingPlayer()
@@ -383,7 +391,7 @@ public class MonsterAI : MonoBehaviour
                
                 playerCatched = true;
                 OnCatchingPlayer();
-
+       
                 break;
         }
 
