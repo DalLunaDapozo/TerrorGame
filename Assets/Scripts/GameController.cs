@@ -2,13 +2,15 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     private MonsterAI monsterIA;
     public GameObject player;
     private Ritual ritual;
-    
+    private MadnessManager madness;
+
     public bool isGameOver;
 
     public bool isBrightDay;
@@ -17,6 +19,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject gameOverText;
     [SerializeField] private GameObject pressEText;
+    [SerializeField] private Animator fade;
 
 
     public bool firstTime;
@@ -33,7 +36,8 @@ public class GameController : MonoBehaviour
         try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
         catch { Debug.Log("hola"); }
 
-
+        try { madness = GameObject.Find("MadnessManager").GetComponent<MadnessManager>(); }
+        catch { Debug.Log("MadnessManager missing"); }
 
         if (!isBrightDay)
             try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
@@ -61,7 +65,7 @@ public class GameController : MonoBehaviour
             monsterIA.OnPlayerCatched += GameOver;
 
         ritual.OnHeartEnding += FinishGame;
-
+        madness.HeartAttackEvent += GameOver;
     }
 
     private void OnDisable()
@@ -72,24 +76,29 @@ public class GameController : MonoBehaviour
 
     private void GameOver(object sender, System.EventArgs e)
     {
-        isGameOver = true;
         StartCoroutine(GameOverSequence());
     }
 
     private IEnumerator GameOverSequence()
     {
-        gameOverText.SetActive(true);
-
-        yield return new WaitForSeconds(timeBeforeRestart);
-
-        SceneManager.LoadScene("DarkHouse");
+        fade.SetBool("in", true);
+        yield return new WaitForSeconds(fade.GetCurrentAnimatorStateInfo(0).length);
+        fade.SetBool("in", false);
+        player.transform.position = ritual.transform.position;
+        fade.SetBool("out", true);
+        yield return new WaitForSeconds(fade.GetCurrentAnimatorStateInfo(0).length);
+        fade.SetBool("out", false);
+        
+        player.SendMessage("RebornRutine");
+        isGameOver = false;
     }
     private IEnumerator WinSequence()
-    {
+    {   
       
         yield return new WaitForSeconds(timeBeforeRestart);
 
-        SceneManager.LoadScene("Menu");
+
+        SceneController.LoadScene("Menu", 1f, 1f);
     }
 
 

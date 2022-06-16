@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private MonsterAI monsterIA;
     private Lighter lighter;
     private PlayerLocation location;
+    private MadnessManager madness;
 
     private GameController gameController;
 
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 movementSpeedRunning;
     [SerializeField] private Vector2 noLighterMovementSpeed;
 
+    public float idleAnimationSpeed;
   
     private bool overCarpet;
     public bool noLighterScript;
@@ -65,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
         {
             try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
             catch { UnityEngine.Debug.Log("GameController Not Found"); }
+
+            try { madness = GameObject.Find("MadnessManager").GetComponent<MadnessManager>(); }
+            catch { UnityEngine.Debug.Log("MadnessManager Not Found"); }
 
             try { gameController = GameObject.Find("GameController").GetComponent<GameController>(); }
             catch { UnityEngine.Debug.Log("GameController Not Found"); }
@@ -107,11 +112,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-     
-        if(gameController.firstTime && lighterIsOn)
+
+        anim.SetFloat("IdleSpeed", idleAnimationSpeed);       
+        
+        if(!madness.canDie && lighterIsOn)
         {
             lighter.lighterIsOn = true;
             gameController.firstTime = false;
+            madness.canDie = true;
             inputManager.Player.Enable();
         }
         
@@ -311,8 +319,9 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator RebornRutine()
     {
+        anim.SetBool("HeartAttack", false);
         anim.Play("Reborn");
-
+       
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
         if (gameController.firstTime)
@@ -324,4 +333,11 @@ public class PlayerMovement : MonoBehaviour
     }
  
 
+    public void HeartAttackAnimation()
+    {
+        inputManager.Player.Disable();
+        anim.SetBool("HeartAttack", true);
+    }
+
+  
 }
