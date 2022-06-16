@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7914820845383309051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Door Closed
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Door Closed
+  Guid:
+    Data1: 715757425
+    Data2: 1116862018
+    Data3: -1705963868
+    Data4: -1880189306
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 400
+--- !u!114 &-6868469987784640540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Heartbeat
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Heartbeat
+  Guid:
+    Data1: -89575262
+    Data2: 1228280566
+    Data3: -1072787297
+    Data4: 2006763353
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6500
 --- !u!114 &-5807405632279751553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +123,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 637908895185847640
+  lastModified: 637909989598054920
   FileSizes:
   - Name: Desktop
     Value: 4679744
@@ -92,6 +146,7 @@ MonoBehaviour:
   - {fileID: 8979696958210543925}
   - {fileID: -1524016098146320874}
   - {fileID: 4256487198379991909}
+  - {fileID: 4833757284492970252}
   EditorEvents:
   - {fileID: 1584612018786259472}
   - {fileID: 2759566150998978911}
@@ -105,12 +160,14 @@ MonoBehaviour:
   - {fileID: -2737919511848182601}
   - {fileID: 1020051394749402913}
   - {fileID: 5616482145816444796}
+  - {fileID: -7914820845383309051}
+  - {fileID: -6868469987784640540}
   EditorParameters: []
   MasterBanks:
   - {fileID: 497733320271191901}
   StringsBanks:
   - {fileID: 8339625914614872455}
-  cacheTime: 637908895185957664
+  cacheTime: 637909989605506224
   cacheVersion: 131591
 --- !u!114 &497733320271191901
 MonoBehaviour:
@@ -127,7 +184,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637908189596857140
+  lastModified: 637909989598329974
   FileSizes:
   - Name: Desktop
     Value: 3064064
@@ -288,13 +345,13 @@ MonoBehaviour:
     Data4: -396101435
   Banks:
   - {fileID: 4256487198379991909}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3500
+  Length: 3560
 --- !u!114 &4256487198379991909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,10 +367,30 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Monster.bank
   Name: Monster
   StudioPath: bank:/Monster
-  lastModified: 637908895185957664
+  lastModified: 637909989601115454
   FileSizes:
   - Name: Desktop
-    Value: 327040
+    Value: 319968
+  Exists: 1
+--- !u!114 &4833757284492970252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Extras.bank
+  m_EditorClassIdentifier: 
+  Path: Fmod Audio/Build/Desktop/Extras.bank
+  Name: Extras
+  StudioPath: bank:/Extras
+  lastModified: 637909989605506224
+  FileSizes:
+  - Name: Desktop
+    Value: 79488
   Exists: 1
 --- !u!114 &5616482145816444796
 MonoBehaviour:
@@ -341,7 +418,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 18643
+  Length: 19069
 --- !u!114 &6688899790263664105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,10 +461,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637908895185927657
+  lastModified: 637909989598344970
   FileSizes:
   - Name: Desktop
-    Value: 1546
+    Value: 1684
   Exists: 1
 --- !u!114 &8712374884795956920
 MonoBehaviour:
@@ -431,7 +508,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637908839288510113
+  lastModified: 637909989604025968
   FileSizes:
   - Name: Desktop
     Value: 337472

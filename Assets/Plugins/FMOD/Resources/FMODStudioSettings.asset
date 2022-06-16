@@ -511,6 +511,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Ambience
+  - Extras
   - Monster
   - Player
   BanksToLoad: []
