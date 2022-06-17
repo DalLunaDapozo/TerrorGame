@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 using FMODUnity;
 using Pathfinding;
 
@@ -85,6 +86,7 @@ public class MonsterAI : MonoBehaviour
     [SerializeField] private float alertCurrent;
     [SerializeField] private float decreaseTime;
     [SerializeField] private float gotchaDistance;
+    [SerializeField] private float gotchaDistanceGrowRate;
     [SerializeField] private float alertMinRadius;
     [SerializeField] private float moveSpeedRateWhileInAlert;
     [SerializeField] private float timeBeforeStartFollowingSound;
@@ -96,11 +98,16 @@ public class MonsterAI : MonoBehaviour
 
     private float timeBeforeStartFollowingSoundCurrent;
     public bool chasingLastSound = false;
+   
     public bool playerCatched = false;
+    private bool isKilling = false;
+
+    public bool hasGrowled;
 
     //EVENT
     
     public event System.EventHandler OnPlayerCatched;
+    public event System.EventHandler StopPlayerMovement;
 
     #endregion
 
@@ -312,24 +319,31 @@ public class MonsterAI : MonoBehaviour
 
         if (circle != null)
         {
-            //FMODUnity.RuntimeManager.PlayOneShot(alertGrowl);
             moveSpot = (circle.transform.position);
-            //hasGrowl = true;
+            chasingLastSound = true;
         }
-        
-        WaitBeforeChaseSound();
+
+        if (Vector2.Distance(moveSpot, transform.position) < 0.2f)
+        {
+            chasingLastSound = false;
+        }
+
+        if (!hasGrowled)
+            StartCoroutine("AlertAnimation");
+
         IncreaseMovementSpeedWhenAlert();
     }
     private void DecreaseAlertFieldOverTime()
     {
         if (alertCurrent > alertMinRadius)
-        {
             alertCurrent -= Time.deltaTime * decreaseTime;
-        }
+
+        if (gotchaDistance >= 2.5f)
+            gotchaDistance -= Time.deltaTime * decreaseTime;
     }
     private void AlertVariablesGoDefault()
     {
-        //hasGrowl = false;
+       
         chasingLastSound = false;
         timeBeforeStartFollowingSoundCurrent = timeBeforeStartFollowingSound;
 
@@ -341,32 +355,55 @@ public class MonsterAI : MonoBehaviour
         if (movementSpeed < maxSpeedCap)
         {
             movementSpeed += moveSpeedRateWhileInAlert;
+            gotchaDistance += gotchaDistanceGrowRate;
         }
     }
-    private void WaitBeforeChaseSound()
-    {
-        if (!chasingLastSound)
-        {
-            if (timeBeforeStartFollowingSoundCurrent < 0f)
-            {
-                chasingLastSound = true;
-                monsterAnimations.anim.SetBool("Alert", false);
-            }
-            else
-            {
-                timeBeforeStartFollowingSoundCurrent -= Time.deltaTime;
-                monsterAnimations.anim.SetBool("Alert", true);
-            }
-               
-        }
-    }
+   
     private void OnCatchingPlayer()
     {
-        if (playerCatched)
-            OnPlayerCatched?.Invoke(this, System.EventArgs.Empty);
+        OnPlayerCatched?.Invoke(this, System.EventArgs.Empty);
+      
+        chasingLastSound = false;
     }
-    
-   #endregion
+
+    IEnumerator AlertAnimation()
+    {
+        hasGrowled = true;
+        monsterAnimations.anim.SetBool("Alert", true);
+
+        aiPath.canMove = false;
+
+        yield return new WaitForSeconds(monsterAnimations.anim.GetCurrentAnimatorStateInfo(0).length);
+
+        aiPath.canMove = true;
+
+        monsterAnimations.anim.SetBool("Alert", false);
+        chasingLastSound = true;
+    }
+    IEnumerator KillingAnimation()
+    {
+        StopPlayerMovement?.Invoke(this, System.EventArgs.Empty);
+        
+        playerCatched = true;
+      
+        monsterAnimations.anim.SetBool("isKilling", true);
+        player.GetComponent<PlayerMovement>().SetActivateSprite(false);
+
+        aiPath.canMove = false;
+       
+        yield return new WaitForSeconds(monsterAnimations.anim.GetCurrentAnimatorStateInfo(0).length + 2);
+
+        
+
+        OnCatchingPlayer();
+
+        yield return new WaitForSeconds(3);
+        monsterAnimations.anim.SetBool("isKilling", false);
+        aiPath.canMove = true;
+        alertCurrent = alertMinRadius;
+        playerCatched = false;
+    }
+    #endregion
 
     #region BEHAVIOUR METHODS
 
@@ -377,21 +414,23 @@ public class MonsterAI : MonoBehaviour
             case Status.alert:
 
                 Main_AlertBehaviour();
-
+               
                 break;
 
             case Status.patrol:
 
+                isKilling = false;
+                hasGrowled = false;
                 AlertVariablesGoDefault();
                 Main_PatrolBehaviour();
                 
                 break;
 
             case Status.gotcha:
-               
-                playerCatched = true;
-                OnCatchingPlayer();
-       
+
+                if(!playerCatched)
+                StartCoroutine("KillingAnimation");
+                
                 break;
         }
 
@@ -408,12 +447,14 @@ public class MonsterAI : MonoBehaviour
         {
             status = Status.alert;
         }
-        else if (distance > alertCurrent)
+        else if (distance > alertCurrent && !chasingLastSound)
         {
             status = Status.patrol;
         }
 
     }
+
+
 
     #endregion
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Pathfinding;
 using FMODUnity;
+using System.Collections;
 
 public class MonsterAnimations : MonoBehaviour
 {
@@ -8,10 +9,15 @@ public class MonsterAnimations : MonoBehaviour
     private AIPath path;
     private SpriteRenderer sprite;
     private MonsterAI monsterAI;
+    private PlayerMovement player;
 
     [SerializeField] private bool isMoving;
 
+    [SerializeField] private FMODUnity.StudioEventEmitter alertGrowl;
+
     public FMODUnity.StudioEventEmitter eventEmitter;
+
+ 
 
     private void Awake()
     {
@@ -20,6 +26,9 @@ public class MonsterAnimations : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         monsterAI = GetComponent<MonsterAI>();
         eventEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
+
+        try { player = GameObject.Find("Player").GetComponent<PlayerMovement>(); }
+        catch { Debug.Log("Player missing"); }
     }
 
     private void Update()
@@ -40,20 +49,19 @@ public class MonsterAnimations : MonoBehaviour
 
       
         anim.SetBool("Walk", isMoving);
-
-        if (monsterAI.playerCatched)
-        {
-            anim.Play("MonsterKilling_1");
-        }
-
        
+    }
+
+   
+
+    public void AlertGrowl()
+    {
+        alertGrowl.Play();
     }
 
     public void StepSound()
     {
-        
         eventEmitter.Play();
-        //FMODUnity.RuntimeManager.PlayOneShotAttached(stepsound, gameObject);
     }
 
 }

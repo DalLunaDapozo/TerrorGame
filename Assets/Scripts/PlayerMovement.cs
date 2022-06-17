@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Lighter lighter;
     private PlayerLocation location;
     private MadnessManager madness;
+    private SpriteRenderer sprite;
 
     private GameController gameController;
 
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         location = GetComponent<PlayerLocation>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
 
         inputManager = new InputManager();
 
@@ -86,15 +88,16 @@ public class PlayerMovement : MonoBehaviour
  
     private void OnEnable()
     {
-        
         if (monsterIA != null)
-            monsterIA.OnPlayerCatched += StopMovement;
+            monsterIA.StopPlayerMovement += StopMovement;
+
+        gameController.PlayerSpawned += OnSpawned;
     }
     private void OnDisable()
     {
         inputManager.Player.Disable();
         if (monsterIA != null)
-            monsterIA.OnPlayerCatched -= StopMovement;
+            monsterIA.StopPlayerMovement -= StopMovement;
     }
     
     private void Start()
@@ -223,6 +226,9 @@ public class PlayerMovement : MonoBehaviour
     private void StopMovement(object sender, System.EventArgs e)
     {
         inputManager.Player.Disable();
+        lighter.lighterIsOn = false;
+        lighter.SetFire(false);
+        lighter.SetLightIntensity(0f);
     }
 
     public void StepSoundEvent()
@@ -332,6 +338,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
  
+    public void SetActivateSprite(bool a)
+    {
+        sprite.enabled = a;
+    }
+
 
     public void HeartAttackAnimation()
     {
@@ -339,5 +350,12 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("HeartAttack", true);
     }
 
+    private void OnSpawned(object sender, System.EventArgs e)
+    {
+        inputManager.Player.Enable();
+        lighter.lighterIsOn = true;
+        lighter.SetFire(true);
+        lighter.SetLightIntensity(lighter.lightIntensityHigh);
+    }
   
 }

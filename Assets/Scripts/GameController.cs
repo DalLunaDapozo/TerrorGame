@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     private MonsterAI monsterIA;
-    public GameObject player;
+    public PlayerMovement player;
+    private PlayerLocation playerLocation;
     private Ritual ritual;
     private MadnessManager madness;
 
@@ -22,13 +23,17 @@ public class GameController : MonoBehaviour
     [SerializeField] private Animator fade;
 
 
+    public event System.EventHandler PlayerSpawned;
+
     public bool firstTime;
     
     private void Awake()
     {
-        
-        player.GetComponent<PlayerController>();
-        player.GetComponent<PlayerMovement>();
+       
+        try { player = GameObject.Find("Player").GetComponent<PlayerMovement>(); }
+        catch { Debug.Log("Player missing"); }
+
+        playerLocation = player.GetComponent<PlayerLocation>();
 
         try { ritual = GameObject.Find("RitualCircle").GetComponent<Ritual>(); }
         catch { Debug.Log("RitualCircle missing"); }
@@ -82,15 +87,25 @@ public class GameController : MonoBehaviour
     private IEnumerator GameOverSequence()
     {
         fade.SetBool("in", true);
-        yield return new WaitForSeconds(fade.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(fade.GetCurrentAnimatorStateInfo(0).length + 2f);
+        
         fade.SetBool("in", false);
-        player.transform.position = ritual.transform.position;
         fade.SetBool("out", true);
+        player.SetActivateSprite(false);
+        player.transform.position = ritual.transform.position;
+
+        playerLocation.playerCurrentRoom = CurrentRoom.RitualRoom;
+
         yield return new WaitForSeconds(fade.GetCurrentAnimatorStateInfo(0).length);
+        player.SetActivateSprite(true);
+        player.SendMessage("RebornRutine");
+        
+        player.lighterIsOn = true;
         fade.SetBool("out", false);
         
-        player.SendMessage("RebornRutine");
         isGameOver = false;
+
+        PlayerSpawned?.Invoke(this, System.EventArgs.Empty);
     }
     private IEnumerator WinSequence()
     {   

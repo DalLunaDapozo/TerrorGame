@@ -41,7 +41,7 @@ public class ChangeRoomTrigger : MonoBehaviour
     
     private void TransitionRoom()
     {
-        if (player.lighterIsOn)
+        if (player.lighterIsOn && playerLocation.playerCurrentRoom != roomName)
         {
             cam.Follow = cameraMovesTo;
             cam.GetComponentInChildren<Camera>().orthographicSize = cameraDistance;

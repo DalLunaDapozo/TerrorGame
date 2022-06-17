@@ -59,37 +59,31 @@ public class MadnessManager : MonoBehaviour
             cam.Follow = player.transform;
 
             timeElapsedWithLightsOff += Time.deltaTime;
-
+           
             if (!PlayerShouldDie())
             {
                 if(childCamera.orthographicSize > minDistance)
                 childCamera.orthographicSize -= lerpRate;
-                
+
                 if(canDie)
                     shakeIntensity += shakeRate;
-               
             }
             else
             {
-
                 if (canDie)
-                {
                     StartCoroutine(HeartAttack());
-                }
-                
+
                 timeElapsedWithLightsOff = 0;
             }
-               
+
         }
         else
         {
             cam.Follow = GameObject.Find(roomWherePlayerIs.ToString() + "CameraPoint").transform;
             shakeIntensity = 0;
             timeElapsedWithLightsOff = 0;
-            if (childCamera.orthographicSize < maxDistance)
-            {
+            if(childCamera.orthographicSize < maxDistance)
                 childCamera.orthographicSize += lerpRate * lerpMultiplier;
-            }   
         }
     }
 
@@ -98,11 +92,14 @@ public class MadnessManager : MonoBehaviour
         
         gameController.isGameOver = true;
         player.HeartAttackAnimation();
-       
+        
         yield return new WaitForSeconds(1f);
-      
+        shakeIntensity = 0;
         canDie = false;
+        
         HeartAttackEvent?.Invoke(this, System.EventArgs.Empty);
+
+        cam.Follow = GameObject.Find("RitualRoomCameraPoint").transform;
     }
 
     private bool PlayerShouldDie()

@@ -17,7 +17,7 @@ public class Lighter : MonoBehaviour
     [SerializeField] EventReference lighterloop;
     
     [SerializeField] private float lightIntensityLow;
-    [SerializeField] private float lightIntensityHigh;
+    [SerializeField] public float lightIntensityHigh;
 
     public event System.EventHandler OnLighterSound;
 
@@ -98,5 +98,15 @@ public class Lighter : MonoBehaviour
                 return;
         }
 
+    }
+
+    public void SetFire(bool a)
+    {
+        fire.SetActive(a);
+    }
+
+    public void SetLightIntensity(float a)
+    {
+        light2D.intensity = a;
     }
 }
