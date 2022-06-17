@@ -102,9 +102,6 @@
 		<property name="startOffset">
 			<value>50</value>
 		</property>
-		<property name="pitch">
-			<value>-8.5</value>
-		</property>
 		<property name="looping">
 			<value>true</value>
 		</property>
@@ -184,6 +181,7 @@
 		<relationship name="effects">
 			<destination>{44f49bbb-f94b-4643-9958-cdafd4f3be43}</destination>
 			<destination>{49a341b0-6a24-4b86-bb0d-1112b195be7c}</destination>
+			<destination>{b2888e7c-a31b-4160-b33d-86b8d8a052ed}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{3691e350-8801-4103-b53b-d215dc6685e4}" />
@@ -238,4 +236,12 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{49a341b0-6a24-4b86-bb0d-1112b195be7c}" />
+	<object class="ThreeEQEffect" id="{b2888e7c-a31b-4160-b33d-86b8d8a052ed}">
+		<property name="lowGain">
+			<value>-18.5</value>
+		</property>
+		<property name="midGain">
+			<value>-5</value>
+		</property>
+	</object>
 </objects>

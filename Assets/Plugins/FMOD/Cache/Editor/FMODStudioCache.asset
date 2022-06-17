@@ -82,6 +82,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1100
+--- !u!114 &-3713276146397111061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Candles
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Candles
+  Guid:
+    Data1: -450802622
+    Data2: 1175568633
+    Data3: 588107692
+    Data4: -1656916733
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10560
+--- !u!114 &-3013654632254178773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Reborn
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Reborn
+  Guid:
+    Data1: -2040000818
+    Data2: 1215542690
+    Data3: -207652424
+    Data4: 2042476890
+  Banks:
+  - {fileID: 8979696958210543925}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7500
 --- !u!114 &-2737919511848182601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +178,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 637910831803795426
+  lastModified: 637910950138918997
   FileSizes:
   - Name: Desktop
     Value: 4679744
@@ -163,12 +217,15 @@ MonoBehaviour:
   - {fileID: 5616482145816444796}
   - {fileID: -7914820845383309051}
   - {fileID: -6868469987784640540}
+  - {fileID: -3713276146397111061}
+  - {fileID: 8472991394774984275}
+  - {fileID: -3013654632254178773}
   EditorParameters: []
   MasterBanks:
   - {fileID: 497733320271191901}
   StringsBanks:
   - {fileID: 8339625914614872455}
-  cacheTime: 637910831805030645
+  cacheTime: 637910950140679307
   cacheVersion: 131591
 --- !u!114 &497733320271191901
 MonoBehaviour:
@@ -185,10 +242,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637910831804230499
+  lastModified: 637910950139719137
   FileSizes:
   - Name: Desktop
-    Value: 3064064
+    Value: 3064160
   Exists: 1
 --- !u!114 &637452831016777006
 MonoBehaviour:
@@ -368,10 +425,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Monster.bank
   Name: Monster
   StudioPath: bank:/Monster
-  lastModified: 637910831804550559
+  lastModified: 637910950140074201
   FileSizes:
   - Name: Desktop
-    Value: 320256
+    Value: 320384
   Exists: 1
 --- !u!114 &4473594270210570075
 MonoBehaviour:
@@ -388,7 +445,7 @@ MonoBehaviour:
   Name: Heartbeat Proximity
   StudioPath: 
   Min: 0
-  Max: 100
+  Max: 86
   Default: 0
   ID:
     data1: 792528977
@@ -412,10 +469,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Extras.bank
   Name: Extras
   StudioPath: bank:/Extras
-  lastModified: 637910831804000465
+  lastModified: 637910950139169042
   FileSizes:
   - Name: Desktop
-    Value: 80864
+    Value: 238240
   Exists: 1
 --- !u!114 &5616482145816444796
 MonoBehaviour:
@@ -486,11 +543,38 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637910831804250507
+  lastModified: 637910950139744150
   FileSizes:
   - Name: Desktop
-    Value: 1746
+    Value: 1868
   Exists: 1
+--- !u!114 &8472991394774984275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Door Open
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Door Open
+  Guid:
+    Data1: -337563240
+    Data2: 1236556179
+    Data3: -1335243862
+    Data4: -1963913977
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3384
 --- !u!114 &8712374884795956920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,10 +617,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637910831805030645
+  lastModified: 637910950140679307
   FileSizes:
   - Name: Desktop
-    Value: 337472
+    Value: 410816
   Exists: 1
 --- !u!114 &9200082155272844658
 MonoBehaviour:

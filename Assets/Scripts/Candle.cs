@@ -7,9 +7,11 @@ public class Candle : MonoBehaviour
     public bool canLightCandle;
     public bool lightIsOn;
 
+
     private InputManager input;
     private Animator anim;
     private BoxCollider2D boxCol;
+
 
     private void Awake()
     {
