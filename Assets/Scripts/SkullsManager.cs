@@ -33,11 +33,15 @@ public class SkullsManager : MonoBehaviour
                 skulls[i].isOn = true;
             }
 
-            if (skulls[i].isOn == true)
+            if (skulls[0].isOn
+                && skulls[1].isOn
+                 && skulls[2].isOn
+                  && skulls[3].isOn
+                   && skulls[4].isOn)
             {
                 allCandlesOn = true;
             }
-          
+
         }
 
         if (skulls[0].isOn && !firstCandleOn)

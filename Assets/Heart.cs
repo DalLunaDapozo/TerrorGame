@@ -7,8 +7,15 @@ public class Heart : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter emitter;
     [SerializeField] private Transform ritualCircle;
 
+    [SerializeField] private GameObject inanimatedHeart;
+
     public float distance;
     public float heartbeatspeed;
+
+    private void OnEnable()
+    {
+        inanimatedHeart.SetActive(false);
+    }
 
     private void Update()
     {

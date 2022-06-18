@@ -12,6 +12,7 @@ public class Candle : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCol;
 
+    [SerializeField] private GameObject fire;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class Candle : MonoBehaviour
         {
             lightIsOn = true;
             boxCol.enabled = false;
+            fire.SetActive(true);
         }
 
     }

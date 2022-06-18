@@ -8,11 +8,13 @@ public class Ritual : MonoBehaviour
   
 
     [SerializeField] SkullsManager skullsManager;
-    
     [SerializeField] private GameObject key;
     
     public event System.EventHandler OnHeartEnding;
     public bool lightOnStart;
+
+    [SerializeField] FMODUnity.EventReference ritualSound;
+    public FMOD.Studio.EventInstance ritualSoundState;
 
     private void Awake()
     {
@@ -32,7 +34,9 @@ public class Ritual : MonoBehaviour
 
     public void PlayRitualAnimation()
     {
+        
         anim.SetTrigger("Ritual");
+        FMODUnity.RuntimeManager.PlayOneShot(ritualSound);
     }    
 
     private void SpawnObject(GameObject something)
