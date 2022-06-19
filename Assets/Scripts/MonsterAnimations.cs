@@ -14,11 +14,10 @@ public class MonsterAnimations : MonoBehaviour
     [SerializeField] private bool isMoving;
 
     [SerializeField] private FMODUnity.StudioEventEmitter alertGrowl;
-
+    [SerializeField] FMODUnity.EventReference crackSound;
+    
     public FMODUnity.StudioEventEmitter eventEmitter;
-
- 
-
+  
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -53,7 +52,11 @@ public class MonsterAnimations : MonoBehaviour
     }
 
    
-
+    public void KillingSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(crackSound, gameObject);
+    }
+    
     public void AlertGrowl()
     {
         alertGrowl.Play();
