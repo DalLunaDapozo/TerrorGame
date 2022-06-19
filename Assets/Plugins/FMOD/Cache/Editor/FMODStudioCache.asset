@@ -21,7 +21,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 4833757284492970252}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 637910050179840747
+  lastModified: 637912605576825887
   FileSizes:
   - Name: Desktop
     Value: 4679744
@@ -220,12 +220,16 @@ MonoBehaviour:
   - {fileID: -3713276146397111061}
   - {fileID: 8472991394774984275}
   - {fileID: -3013654632254178773}
+  - {fileID: 3758828158217997270}
+  - {fileID: 8497808874145975830}
+  - {fileID: 1593495805863071172}
+  - {fileID: 5007652981338286362}
   EditorParameters: []
   MasterBanks:
   - {fileID: 497733320271191901}
   StringsBanks:
   - {fileID: 8339625914614872455}
-  cacheTime: 637911738405716275
+  cacheTime: 637912605579971436
   cacheVersion: 131591
 --- !u!114 &497733320271191901
 MonoBehaviour:
@@ -242,7 +246,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637911738405455233
+  lastModified: 637912605579216302
   FileSizes:
   - Name: Desktop
     Value: 3064160
@@ -328,6 +332,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1035
+--- !u!114 &1593495805863071172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Key Appears
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Key Appears
+  Guid:
+    Data1: 369368052
+    Data2: 1074505116
+    Data3: -1846897000
+    Data4: -1183611493
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 871
 --- !u!114 &1970281134579836096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +441,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 80
   Length: 3560
+--- !u!114 &3758828158217997270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Neck Snap
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Neck Snap
+  Guid:
+    Data1: -462866816
+    Data2: 1232080645
+    Data3: 113704380
+    Data4: 889817602
+  Banks:
+  - {fileID: 8979696958210543925}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4090
 --- !u!114 &4256487198379991909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +483,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Monster.bank
   Name: Monster
   StudioPath: bank:/Monster
-  lastModified: 637911738405686271
+  lastModified: 637912605579496356
   FileSizes:
   - Name: Desktop
     Value: 320384
@@ -469,11 +527,38 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Extras.bank
   Name: Extras
   StudioPath: bank:/Extras
-  lastModified: 637911738404703530
+  lastModified: 637912605578861244
   FileSizes:
   - Name: Desktop
-    Value: 238240
+    Value: 325312
   Exists: 1
+--- !u!114 &5007652981338286362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Clock
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Clock
+  Guid:
+    Data1: -1670448670
+    Data2: 1328744409
+    Data3: -694180445
+    Data4: 585052768
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8888
 --- !u!114 &5616482145816444796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,10 +628,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637911738405465237
+  lastModified: 637912605579231304
   FileSizes:
   - Name: Desktop
-    Value: 1868
+    Value: 2046
   Exists: 1
 --- !u!114 &8472991394774984275
 MonoBehaviour:
@@ -569,12 +654,39 @@ MonoBehaviour:
   Banks:
   - {fileID: 4833757284492970252}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 3384
+--- !u!114 &8497808874145975830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Extras/Key Pick Up
+  m_EditorClassIdentifier: 
+  Path: event:/Extras/Key Pick Up
+  Guid:
+    Data1: -1187183981
+    Data2: 1181016595
+    Data3: 1738859951
+    Data4: 163924184
+  Banks:
+  - {fileID: 4833757284492970252}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 780
 --- !u!114 &8712374884795956920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,10 +729,10 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637911738405716275
+  lastModified: 637912605579971436
   FileSizes:
   - Name: Desktop
-    Value: 410816
+    Value: 459136
   Exists: 1
 --- !u!114 &9200082155272844658
 MonoBehaviour:
