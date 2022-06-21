@@ -490,7 +490,7 @@ public class MonsterAI : MonoBehaviour
     //AUXILIAR VARIABLES
     private void SoundEventAmount(float amount)
     {
-        if (!player.GetComponent<PlayerMovement>().inSecondFloor)
+        if (!player.GetComponent<PlayerLocation>().isSecondFloor)
         {
             if (status == Status.patrol)
                 alertCurrent += amount;

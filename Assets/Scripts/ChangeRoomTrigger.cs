@@ -17,15 +17,15 @@ public class ChangeRoomTrigger : MonoBehaviour
 
     public bool isTeleport;
     public Transform teleportpoint;
-    
-    private void Start()
+    private void Awake()
     {
         cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerLocation = player.GetComponent<PlayerLocation>();
 
+        player.OnUsingStairs += PlayerUsingStairs;
     }
-
+//ERNESTO TE AMO
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -48,5 +48,10 @@ public class ChangeRoomTrigger : MonoBehaviour
         }
           
         playerLocation.playerCurrentRoom = roomName;
+    }
+    
+    public void PlayerUsingStairs(object sender, System.EventArgs e)
+    {
+        TransitionRoom();
     }
 }

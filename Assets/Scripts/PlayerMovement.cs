@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public event System.EventHandler OnStepSound;
     [SerializeField] public Transform lastStepSound;
 
+    public event System.EventHandler OnUsingStairs;
 
     [SerializeField] EventReference stepsound;
     public FMOD.Studio.EventInstance playerState;
@@ -47,8 +48,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isNearCandle;
     public bool lighterIsOn;
 
-    public bool inSecondFloor = true;
-
+ 
     //RUNNING
 
     public bool IsRunning = false;
@@ -107,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
         stepSoundOnCarpetInstance = FMODUnity.RuntimeManager.CreateInstance(stepsoundOnCarpet);
         stepSoundOnCarpetInstance.start();
-        inSecondFloor = true;
         currentTime = timeBeforeStartRunning;
         
         StartCoroutine(RebornRutine());
@@ -156,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (lighter.lighterIsOn)
         {
-            if(IsRunning && inSecondFloor)
+            if(IsRunning && location.isSecondFloor)
             {
                 animationSpeed = 1.6f;
                 movementSpeed = movementSpeedRunning;
@@ -282,18 +281,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("Teleport"))
         {
             transform.position = collision.GetComponent<ChangeRoomTrigger>().GetDestination().position;
-            if (inSecondFloor)
-            {
-                location.playerCurrentRoom = CurrentRoom.MainRoom;
-                inSecondFloor = false;
-                
-            }
-            else if(!inSecondFloor)
-            {
-                location.playerCurrentRoom = CurrentRoom.SecondFloorMain;
-                inSecondFloor = true;
-            }
-               
+            OnUsingStairs?.Invoke(this, System.EventArgs.Empty);     
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -356,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
         lighter.lighterIsOn = true;
         lighter.SetFire(true);
         lighter.SetLightIntensity(lighter.lightIntensityHigh);
-        inSecondFloor = true;
+        location.playerCurrentRoom = CurrentRoom.RitualRoom;
     }
   
 }
