@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1399449230032012825}
   - component: {fileID: 8289109852743148690}
   - component: {fileID: 7401968213239808915}
+  - component: {fileID: 9089443166476542723}
   m_Layer: 0
   m_Name: SpawnableKey
   m_TagString: Untagged
@@ -179,3 +180,33 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &9089443166476542723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768419496835415218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Hand
+  EventReference:
+    Guid:
+      Data1: -1187183981
+      Data2: 1181016595
+      Data3: 1738859951
+      Data4: 163924184
+    Path: event:/Extras/Key Pick Up
+  Event: 
+  PlayEvent: 5
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

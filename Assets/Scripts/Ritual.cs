@@ -16,6 +16,9 @@ public class Ritual : MonoBehaviour
     [SerializeField] FMODUnity.EventReference ritualSound;
     public FMOD.Studio.EventInstance ritualSoundState;
 
+    [SerializeField] FMODUnity.EventReference objectSpawnSound;
+    public FMOD.Studio.EventInstance objectSpawnState;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -24,7 +27,7 @@ public class Ritual : MonoBehaviour
     private void Start()
     {
         if (lightOnStart)
-            PlayRitualAnimation();
+            PlayRitualAnimation(ritualSound);
     }
 
     private void OnEnable()
@@ -32,11 +35,11 @@ public class Ritual : MonoBehaviour
         skullsManager.OneKeyCandleLighted += SpawnEvent;
     }
 
-    public void PlayRitualAnimation()
+    public void PlayRitualAnimation(FMODUnity.EventReference sound)
     {
         
         anim.SetTrigger("Ritual");
-        FMODUnity.RuntimeManager.PlayOneShot(ritualSound);
+        FMODUnity.RuntimeManager.PlayOneShot(sound);
     }    
 
     private void SpawnObject(GameObject something)
@@ -46,7 +49,7 @@ public class Ritual : MonoBehaviour
 
     private void SpawnEvent(object sender, System.EventArgs e)
     {
-        PlayRitualAnimation();
+        PlayRitualAnimation(objectSpawnSound);
         SpawnObject(key);
     }
 

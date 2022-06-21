@@ -385,24 +385,31 @@ public class MonsterAI : MonoBehaviour
     }
     IEnumerator KillingAnimation()
     {
+       
+        
+        isKilling = true;
+        
         StopPlayerMovement?.Invoke(this, System.EventArgs.Empty);
         
         playerCatched = true;
-      
-        monsterAnimations.anim.SetBool("isKilling", true);
-        player.GetComponent<PlayerMovement>().SetActivateSprite(false);
-
-        aiPath.canMove = false;
        
-        yield return new WaitForSeconds(monsterAnimations.anim.GetCurrentAnimatorStateInfo(0).length + 2);
+        monsterAnimations.anim.SetBool("isKilling", isKilling);
+        player.GetComponent<PlayerMovement>().SetActivateSprite(false);
+      
 
-        
+        yield return new WaitForSeconds(monsterAnimations.anim.GetCurrentAnimatorStateInfo(0).length + 2);
 
         OnCatchingPlayer();
 
         yield return new WaitForSeconds(3);
-        monsterAnimations.anim.SetBool("isKilling", false);
+        isKilling = false;
+        monsterAnimations.anim.SetBool("isKilling", isKilling);
         aiPath.canMove = true;
+
+        aiPath.canSearch = true;
+        aiPath.isStopped = false;
+
+
         alertCurrent = alertMinRadius;
         playerCatched = false;
     }
@@ -416,22 +423,29 @@ public class MonsterAI : MonoBehaviour
         {
             case Status.alert:
 
-                Main_AlertBehaviour();
+                if (!isKilling)
+                    Main_AlertBehaviour();
                
                 break;
 
             case Status.patrol:
 
-                isKilling = false;
-                hasGrowled = false;
-                AlertVariablesGoDefault();
-                Main_PatrolBehaviour();
-                
+                if (!isKilling)
+                {
+                    hasGrowled = false;
+                    AlertVariablesGoDefault();
+                    Main_PatrolBehaviour();
+                }
+
                 break;
 
             case Status.gotcha:
 
-                if(!playerCatched)
+                aiPath.canMove = false;
+                aiPath.canSearch = false;
+                aiPath.isStopped = true;
+
+                if (!playerCatched)
                 StartCoroutine("KillingAnimation");
                 
                 break;

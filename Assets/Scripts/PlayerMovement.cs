@@ -356,6 +356,7 @@ public class PlayerMovement : MonoBehaviour
         lighter.lighterIsOn = true;
         lighter.SetFire(true);
         lighter.SetLightIntensity(lighter.lightIntensityHigh);
+        inSecondFloor = true;
     }
   
 }
