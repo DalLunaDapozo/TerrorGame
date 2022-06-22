@@ -57,7 +57,11 @@
 			<destination>{9df3cb6b-99a9-4bba-a844-fac6b1ecbc4b}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{97ff318a-e26f-4e0a-9df7-e17cd0bd6884}" />
+	<object class="EventAutomatableProperties" id="{97ff318a-e26f-4e0a-9df7-e17cd0bd6884}">
+		<property name="maximumDistance">
+			<value>15</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{b77964db-f74d-44bb-8005-a2401372de5b}" />
 	<object class="GroupTrack" id="{188dcc57-bfc1-4f58-9ab4-5f4d886c2a89}">
 		<relationship name="modules">
@@ -168,7 +172,8 @@
 	<object class="MixerBusEffectChain" id="{3796d499-08be-4c09-a7fc-c9d54172d442}">
 		<relationship name="effects">
 			<destination>{35a07f06-39e7-4a3a-8683-3d66444ce8db}</destination>
-			<destination>{7abb0d56-cd96-4d70-8be0-dd95a9f15043}</destination>
+			<destination>{76b0a97d-6511-436d-bbb9-0e173f5ea12c}</destination>
+			<destination>{6fc8a032-c5ad-492a-9fbf-da8316be257e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1d9ca923-09e4-40bf-9e6d-9fd461cc75a3}" />
@@ -188,11 +193,41 @@
 	</object>
 	<object class="MixerBusPanner" id="{107331a7-6b8e-4968-afa1-521ec1e40c4a}" />
 	<object class="MixerBusFader" id="{35a07f06-39e7-4a3a-8683-3d66444ce8db}" />
-	<object class="SpatialiserEffect" id="{7abb0d56-cd96-4d70-8be0-dd95a9f15043}" />
-	<object class="MixerSend" id="{3612c801-3100-448b-92a4-56b7e5813bb3}">
-		<property name="level">
-			<value>-13.5</value>
+	<object class="SFXReverbEffect" id="{76b0a97d-6511-436d-bbb9-0e173f5ea12c}">
+		<property name="decayTime">
+			<value>4200</value>
 		</property>
+		<property name="earlyDelay">
+			<value>7.5</value>
+		</property>
+		<property name="lateDelay">
+			<value>54</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>26</value>
+		</property>
+		<property name="diffusion">
+			<value>42</value>
+		</property>
+		<property name="highCut">
+			<value>9000</value>
+		</property>
+		<property name="earlyLateMix">
+			<value>70</value>
+		</property>
+		<property name="wetLevel">
+			<value>-6.5</value>
+		</property>
+		<property name="dryLevel">
+			<value>-2</value>
+		</property>
+	</object>
+	<object class="SpatialiserEffect" id="{6fc8a032-c5ad-492a-9fbf-da8316be257e}">
+		<property name="maximumDistance">
+			<value>15</value>
+		</property>
+	</object>
+	<object class="MixerSend" id="{3612c801-3100-448b-92a4-56b7e5813bb3}">
 		<property name="inputFormat">
 			<value>1</value>
 		</property>
@@ -202,9 +237,6 @@
 	</object>
 	<object class="MixerBusFader" id="{6c109179-11b8-44fb-9236-4d5fb7c14372}" />
 	<object class="MixerSend" id="{30e68116-a843-48b9-967d-2ace090b0d47}">
-		<property name="level">
-			<value>-4</value>
-		</property>
 		<property name="inputFormat">
 			<value>1</value>
 		</property>

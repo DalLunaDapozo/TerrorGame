@@ -1696,10 +1696,10 @@ TextureImporter:
       name: Todo_55
       rect:
         serializedVersion: 2
-        x: 1040
+        x: 1039
         y: 62
-        width: 3
-        height: 3
+        width: 5
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
