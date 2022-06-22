@@ -14,18 +14,17 @@ public class ChangeRoomTrigger : MonoBehaviour
     private float cameraDistanceMax;
 
     public float lerpRate;
-
-    public bool isTeleport;
     public Transform teleportpoint;
+
     private void Awake()
     {
         cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerLocation = player.GetComponent<PlayerLocation>();
 
-        player.OnUsingStairs += PlayerUsingStairs;
+        
     }
-//ERNESTO TE AMO
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -33,7 +32,8 @@ public class ChangeRoomTrigger : MonoBehaviour
             TransitionRoom();
         }
     }
-    
+
+
     public Transform GetDestination()
     {
         return teleportpoint;
@@ -41,7 +41,7 @@ public class ChangeRoomTrigger : MonoBehaviour
     
     private void TransitionRoom()
     {
-        if (player.lighterIsOn && playerLocation.playerCurrentRoom != roomName)
+        if (player.lighterIsOn)
         {
             cam.Follow = cameraMovesTo;
             cam.GetComponentInChildren<Camera>().orthographicSize = cameraDistance;
@@ -50,8 +50,5 @@ public class ChangeRoomTrigger : MonoBehaviour
         playerLocation.playerCurrentRoom = roomName;
     }
     
-    public void PlayerUsingStairs(object sender, System.EventArgs e)
-    {
-        TransitionRoom();
-    }
+ 
 }

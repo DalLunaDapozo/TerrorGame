@@ -277,13 +277,19 @@ public class PlayerMovement : MonoBehaviour
         {
             isNearCandle = true;
         }
-
-        if (collision.CompareTag("Teleport"))
+        
+        if (collision.gameObject.CompareTag("Stairs"))
         {
-            transform.position = collision.GetComponent<ChangeRoomTrigger>().GetDestination().position;
-            OnUsingStairs?.Invoke(this, System.EventArgs.Empty);     
+            transform.position = collision.gameObject.GetComponent<ChangeRoomTrigger>().GetDestination().position;
+            if (location.playerCurrentRoom == CurrentRoom.SecondFloorMain)
+                location.playerCurrentRoom = CurrentRoom.MainRoom;
+            else
+                location.playerCurrentRoom = CurrentRoom.SecondFloorMain;
+
         }
+
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Carpet"))

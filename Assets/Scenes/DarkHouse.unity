@@ -367,8 +367,6 @@ MonoBehaviour:
   roomName: 8
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &24171114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -500,8 +498,6 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &30130964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1021,8 +1017,6 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &77916076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1720,8 +1714,6 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &123274794
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1926,8 +1918,6 @@ MonoBehaviour:
   roomName: 9
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &134130546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2083,8 +2073,6 @@ MonoBehaviour:
   roomName: 1
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &157848158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2531,8 +2519,6 @@ MonoBehaviour:
   roomName: 7
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &191104354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3131,8 +3117,6 @@ MonoBehaviour:
   roomName: 3
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &289227111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3294,8 +3278,6 @@ MonoBehaviour:
   roomName: 4
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &308275152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10465,8 +10447,6 @@ MonoBehaviour:
   roomName: 1
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &510111426
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17955,8 +17935,6 @@ MonoBehaviour:
   roomName: 5
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &819423414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21712,7 +21690,7 @@ GameObject:
   - component: {fileID: 1189061539}
   m_Layer: 0
   m_Name: TeleportTrigger -ToMainRoom
-  m_TagString: Teleport
+  m_TagString: Stairs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21748,8 +21726,6 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 1
-  teleportpoint: {fileID: 1612628564}
 --- !u!61 &1189061540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21763,7 +21739,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.8571945, y: -0.58160084}
+  m_Offset: {x: -0.8181075, y: -0.51785344}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -21774,7 +21750,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9743074, y: 2.0066094}
+  m_Size: {x: 1.9746706, y: 1.8791145}
   m_EdgeRadius: 0
 --- !u!1 &1189155017
 GameObject:
@@ -24858,8 +24834,6 @@ MonoBehaviour:
   roomName: 5
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1441381414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25838,8 +25812,6 @@ MonoBehaviour:
   roomName: 6
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1535138292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26913,8 +26885,6 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1624050301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27258,8 +27228,6 @@ MonoBehaviour:
   roomName: 2
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1637250218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28801,8 +28769,6 @@ MonoBehaviour:
   roomName: 10
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1738693740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29964,8 +29930,6 @@ MonoBehaviour:
   roomName: 8
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1844036903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31971,7 +31935,7 @@ GameObject:
   - component: {fileID: 1956634432}
   m_Layer: 0
   m_Name: TeleportTrigger -ToSecondFloor
-  m_TagString: Teleport
+  m_TagString: Stairs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32007,8 +31971,6 @@ MonoBehaviour:
   roomName: 5
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 1
-  teleportpoint: {fileID: 808414467}
 --- !u!61 &1956634433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32022,7 +31984,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.18502036, y: -0.22850263}
+  m_Offset: {x: 1.5163735, y: -0.22850263}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -32033,7 +31995,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6299593, y: 1.5118473}
+  m_Size: {x: 1.1960542, y: 1.5118473}
   m_EdgeRadius: 0
 --- !u!114 &1958392455 stripped
 MonoBehaviour:
@@ -32517,8 +32479,6 @@ MonoBehaviour:
   roomName: 4
   cameraDistance: 12
   lerpRate: 0
-  isTeleport: 0
-  teleportpoint: {fileID: 0}
 --- !u!61 &1987321779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33093,7 +33053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045867301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.74, y: 36.77, z: 27.80013}
+  m_LocalPosition: {x: 24.9, y: 36.77, z: 27.80013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 577198484}
@@ -33197,10 +33157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d48d829c21ac9f488e2f9b3bd8d437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestMode: 0
+  TestMode: 1
   ItsPlayer: 1
   ritualCircle: {fileID: 0}
-  playerCurrentRoom: 0
+  playerCurrentRoom: 5
   isSecondFloor: 0
 --- !u!114 &2045867307
 MonoBehaviour:

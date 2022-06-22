@@ -13,6 +13,7 @@ TagManager:
   - Hand
   - Door
   - Heart
+  - Stairs
   layers:
   - Default
   - TransparentFX
