@@ -13,6 +13,8 @@ public class Candle : MonoBehaviour
     private BoxCollider2D boxCol;
 
     [SerializeField] private GameObject fire;
+        
+    //HUERGO CABEZA DE CHORLITO
 
     private void Awake()
     {
