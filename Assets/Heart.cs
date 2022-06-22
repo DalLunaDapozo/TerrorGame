@@ -12,6 +12,13 @@ public class Heart : MonoBehaviour
     public float distance;
     public float heartbeatspeed;
 
+    public GameObject wave;
+
+    private void Start()
+    {
+        InvokeRepeating("CreateWave", 2f, 3f);
+    }
+
     private void OnEnable()
     {
         inanimatedHeart.SetActive(false);
@@ -27,6 +34,11 @@ public class Heart : MonoBehaviour
         else
             heartbeatspeed = 0;
 
+    }
+
+    private void CreateWave()
+    {
+        Instantiate(wave, transform.position, Quaternion.identity);
     }
 
 }

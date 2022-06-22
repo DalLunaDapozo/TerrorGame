@@ -367,6 +367,7 @@ MonoBehaviour:
   roomName: 8
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &24171114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -498,6 +499,7 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &30130964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1017,6 +1019,7 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &77916076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1714,6 +1717,7 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &123274794
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1918,6 +1922,7 @@ MonoBehaviour:
   roomName: 9
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &134130546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2073,6 +2078,7 @@ MonoBehaviour:
   roomName: 1
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &157848158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2519,6 +2525,7 @@ MonoBehaviour:
   roomName: 7
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &191104354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3117,6 +3124,7 @@ MonoBehaviour:
   roomName: 3
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &289227111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3278,6 +3286,7 @@ MonoBehaviour:
   roomName: 4
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &308275152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10258,7 +10267,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3638
+  m_SortingOrder: -3630
   m_Sprite: {fileID: 6131814212146634297, guid: 7452cdee5179f2b429ed219f752ced84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -10447,6 +10456,7 @@ MonoBehaviour:
   roomName: 1
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &510111426
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16140,7 +16150,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3638
+  m_SortingOrder: -3630
   m_Sprite: {fileID: -3133634164751943507, guid: 5ccff8b4b7b0cf74d884d4c3862561ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -17935,6 +17945,7 @@ MonoBehaviour:
   roomName: 5
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &819423414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21726,6 +21737,7 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 1612628564}
 --- !u!61 &1189061540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24662,7 +24674,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3643
+  m_SortingOrder: -3635
   m_Sprite: {fileID: -2413806693520163455, guid: a4c260e4c6f8e834081c644b4b8047fb, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.22745098}
   m_FlipX: 0
@@ -24834,6 +24846,7 @@ MonoBehaviour:
   roomName: 5
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1441381414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25812,6 +25825,7 @@ MonoBehaviour:
   roomName: 6
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1535138292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26885,6 +26899,7 @@ MonoBehaviour:
   roomName: 0
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1624050301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27123,6 +27138,7 @@ MonoBehaviour:
   inanimatedHeart: {fileID: 2033097481}
   distance: 0
   heartbeatspeed: 0
+  wave: {fileID: 6584935069197560586, guid: 7c55eabaaa05ac7499af7423ef1eefa9, type: 3}
 --- !u!1 &1633712356
 GameObject:
   m_ObjectHideFlags: 0
@@ -27228,6 +27244,7 @@ MonoBehaviour:
   roomName: 2
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1637250218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28769,6 +28786,7 @@ MonoBehaviour:
   roomName: 10
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1738693740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29930,6 +29948,7 @@ MonoBehaviour:
   roomName: 8
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1844036903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31025,7 +31044,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3791
+  m_SortingOrder: -3783
   m_Sprite: {fileID: 21300000, guid: 8f2055cca8839d1418fb24ad86ad0f4a, type: 3}
   m_Color: {r: 0.7735849, g: 0.5479742, b: 0.25907797, a: 0.44705883}
   m_FlipX: 0
@@ -31971,6 +31990,7 @@ MonoBehaviour:
   roomName: 5
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 808414467}
 --- !u!61 &1956634433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32479,6 +32499,7 @@ MonoBehaviour:
   roomName: 4
   cameraDistance: 12
   lerpRate: 0
+  teleportpoint: {fileID: 0}
 --- !u!61 &1987321779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33053,7 +33074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045867301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.9, y: 36.77, z: 27.80013}
+  m_LocalPosition: {x: -23.8, y: 36.69, z: 27.80013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 577198484}
@@ -33157,7 +33178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d48d829c21ac9f488e2f9b3bd8d437a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestMode: 1
+  TestMode: 0
   ItsPlayer: 1
   ritualCircle: {fileID: 0}
   playerCurrentRoom: 5
