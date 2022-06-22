@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{a5656974-e9ca-405a-8e96-0aac5f16552a}">
+		<property name="name">
+			<value>Clock Bell</value>
+		</property>
+		<relationship name="folder">
+			<destination>{18dc6e23-e17f-483c-a89d-b866dd1e8ee8}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{41785242-125b-4446-a225-6daddd1dcf39}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{41785242-125b-4446-a225-6daddd1dcf39}">
+		<property name="maximum">
+			<value>10</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

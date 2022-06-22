@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{36bd4719-13be-4de5-8ec1-9bb6df0b8c03}">
 		<property name="assetPath">
-			<value>Appear_chime_high.wav</value>
+			<value>Extras/Appear_chime_high.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
