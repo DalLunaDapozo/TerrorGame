@@ -31,6 +31,7 @@ public class MadnessManager : MonoBehaviour
 
     public event System.EventHandler HeartAttackEvent;
 
+    public bool madnessOn;
 
     public bool canDie;
 
@@ -56,6 +57,7 @@ public class MadnessManager : MonoBehaviour
 
         if (!player.lighterIsOn)
         {
+            madnessOn = true;
             cam.Follow = player.transform;
 
             timeElapsedWithLightsOff += Time.deltaTime;
@@ -79,6 +81,7 @@ public class MadnessManager : MonoBehaviour
         }
         else
         {
+            madnessOn = false;
             cam.Follow = GameObject.Find(roomWherePlayerIs.ToString() + "CameraPoint").transform;
             shakeIntensity = 0;
             timeElapsedWithLightsOff = 0;

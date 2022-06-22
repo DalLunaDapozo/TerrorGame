@@ -19,6 +19,15 @@ public class Ritual : MonoBehaviour
     [SerializeField] FMODUnity.EventReference objectSpawnSound;
     public FMOD.Studio.EventInstance objectSpawnState;
 
+    [SerializeField] private Material material;
+
+    public float r;
+    public float b;
+    public float g;
+    public float intensity;
+
+    public Color color;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -28,11 +37,18 @@ public class Ritual : MonoBehaviour
     {
         if (lightOnStart)
             PlayRitualAnimation(ritualSound);
+        color = new Color(r * intensity, g * intensity, b * intensity);
     }
 
     private void OnEnable()
     {
         skullsManager.OneKeyCandleLighted += SpawnEvent;
+    }
+
+    private void Update()
+    {
+        color = new Color(r * intensity, g * intensity, b * intensity);
+        material.SetColor("_EmissionColor", color);
     }
 
     public void PlayRitualAnimation(FMODUnity.EventReference sound)
