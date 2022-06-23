@@ -386,7 +386,6 @@ public class MonsterAI : MonoBehaviour
     IEnumerator KillingAnimation()
     {
        
-        
         isKilling = true;
         
         StopPlayerMovement?.Invoke(this, System.EventArgs.Empty);
@@ -402,13 +401,14 @@ public class MonsterAI : MonoBehaviour
         OnCatchingPlayer();
 
         yield return new WaitForSeconds(3);
+        
         isKilling = false;
         monsterAnimations.anim.SetBool("isKilling", isKilling);
+        
         aiPath.canMove = true;
 
         aiPath.canSearch = true;
         aiPath.isStopped = false;
-
 
         alertCurrent = alertMinRadius;
         playerCatched = false;

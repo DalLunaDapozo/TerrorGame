@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 movementSpeedRunning;
     [SerializeField] private Vector2 noLighterMovementSpeed;
 
+    [SerializeField] private Transform lastStepStart;
+
     public float idleAnimationSpeed;
   
     private bool overCarpet;
@@ -238,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
         {
             OnStepSound?.Invoke(this, EventArgs.Empty);
             FMODUnity.RuntimeManager.PlayOneShot(stepsound);
-            lastStepSound.transform.position = transform.position;
+            lastStepSound.transform.position = lastStepStart.position;
             //Instantiate(soundWave, transform.position, Quaternion.identity);
         }
     }
