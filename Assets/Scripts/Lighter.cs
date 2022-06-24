@@ -56,7 +56,7 @@ public class Lighter : MonoBehaviour
             input.Keyboard.Lighter.performed += LighterAction;
         }
 
-        monster.OnPlayerCatched += TurnOff;
+        monster.StopPlayerMovement += TurnOff;
         gameController.PlayerSpawned += TurnOn;
     }  
     private void OnDisable()

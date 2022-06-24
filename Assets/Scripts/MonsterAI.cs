@@ -323,13 +323,12 @@ public class MonsterAI : MonoBehaviour
             chasingLastSound = true;
         }
 
-        if (player.GetComponent<PlayerLocation>().playerCurrentRoom != CurrentRoom.Closet )
+        
+        if (Vector2.Distance(moveSpot, transform.position) < 0.2f)
         {
-            if (Vector2.Distance(moveSpot, transform.position) < 0.2f)
-            {
-                chasingLastSound = false;
-            }
+            chasingLastSound = false;
         }
+        
 
         if (!hasGrowled)
             StartCoroutine("AlertAnimation");
@@ -490,7 +489,7 @@ public class MonsterAI : MonoBehaviour
     //AUXILIAR VARIABLES
     private void SoundEventAmount(float amount)
     {
-        if (!player.GetComponent<PlayerLocation>().isSecondFloor)
+        if (!player.GetComponent<PlayerLocation>().isSecondFloor && player.GetComponent<PlayerLocation>().playerCurrentRoom != CurrentRoom.Closet)
         {
             if (status == Status.patrol)
                 alertCurrent += amount;
