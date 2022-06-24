@@ -517,4 +517,10 @@ public class MonsterAI : MonoBehaviour
     }
    
     #endregion
+
+
+    public void ScanPathfind()
+    {
+
+    }
 }

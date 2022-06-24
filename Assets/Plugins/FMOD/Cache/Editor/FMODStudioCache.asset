@@ -125,7 +125,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637915262523644631
+  lastModified: 637911738405455233
   FileSizes:
   - Name: Desktop
     Value: 3064160
@@ -199,7 +199,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637915262528108322
+  lastModified: 637914567162737257
   FileSizes:
   - Name: Desktop
     Value: 459136
@@ -408,7 +408,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637915262526955231
+  lastModified: 637914484913821782
   FileSizes:
   - Name: Desktop
     Value: 2140
@@ -529,7 +529,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Monster.bank
   Name: Monster
   StudioPath: bank:/Monster
-  lastModified: 637915262526980232
+  lastModified: 637911738405686271
   FileSizes:
   - Name: Desktop
     Value: 320384
@@ -582,7 +582,7 @@ MonoBehaviour:
   - {fileID: -5864314106570345343}
   StringsBanks:
   - {fileID: -2173809205619282443}
-  cacheTime: 637915262528108322
+  cacheTime: 637914567162737257
   cacheVersion: 131591
 --- !u!114 &497733320271191901
 MonoBehaviour:
@@ -832,7 +832,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 637915262522079399
+  lastModified: 637910050179840747
   FileSizes:
   - Name: Desktop
     Value: 4679744
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   Path: Fmod Audio/Build/Desktop/Extras.bank
   Name: Extras
   StudioPath: bank:/Extras
-  lastModified: 637915262523449591
+  lastModified: 637914567162567255
   FileSizes:
   - Name: Desktop
     Value: 592256

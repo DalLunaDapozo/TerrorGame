@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnDisable()
     {
-        inputManager.Player.Disable();
+        inputManager.Keyboard.Disable();
         if (monsterIA != null)
             monsterIA.StopPlayerMovement -= StopMovement;
     }
@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             lighter.lighterIsOn = true;
             gameController.firstTime = false;
             madness.canDie = true;
-            inputManager.Player.Enable();
+            inputManager.Keyboard.Enable();
         }
         
         ReadMovementValue();
@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ReadMovementValue()
     {
-        moveVector = inputManager.Player.Movement.ReadValue<Vector2>();
+        moveVector = inputManager.Keyboard.Movement.ReadValue<Vector2>();
     }
     private void NoLighterWalkAnimation()
     {
@@ -226,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopMovement(object sender, System.EventArgs e)
     {
-        inputManager.Player.Disable();
+        inputManager.Keyboard.Disable();
         lighter.lighterIsOn = false;
         lighter.SetFire(false);
         lighter.SetLightIntensity(0f);
@@ -309,11 +309,11 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetBool("LightingAnimation", true);
 
-        inputManager.Player.Disable();
+        inputManager.Keyboard.Disable();
 
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 
-        inputManager.Player.Enable();
+        inputManager.Keyboard.Enable();
 
         anim.SetBool("LightingAnimation", false);
 
@@ -330,7 +330,7 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(0);
             
         else
-            inputManager.Player.Enable();
+            inputManager.Keyboard.Enable();
 
     }
  
@@ -342,13 +342,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void HeartAttackAnimation()
     {
-        inputManager.Player.Disable();
+        inputManager.Keyboard.Disable();
         anim.SetBool("HeartAttack", true);
     }
 
     private void OnSpawned(object sender, System.EventArgs e)
     {
-        inputManager.Player.Enable();
+        inputManager.Keyboard.Enable();
         lighter.lighterIsOn = true;
         lighter.SetFire(true);
         lighter.SetLightIntensity(lighter.lightIntensityHigh);

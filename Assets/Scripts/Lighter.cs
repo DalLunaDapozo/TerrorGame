@@ -10,6 +10,8 @@ public class Lighter : MonoBehaviour
     private InputManager input;
     private GameObject fire;
     private PlayerMovement player;
+    private MonsterAI monster;
+    private GameController gameController;
     private FMOD.Studio.EventInstance lighterloopInstance;
     
     [SerializeField] EventReference lightersound;
@@ -22,23 +24,48 @@ public class Lighter : MonoBehaviour
     public event System.EventHandler OnLighterSound;
 
     public bool lighterIsOn;
-    
+
+    public bool gamepad;
+    public bool gas;
+
     private void Awake()
     {
         input = new InputManager();
         light2D = GetComponent<Light2D>();
         fire = GameObject.Find("Fire");
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        try { monster = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+        catch { Debug.Log("Monster not found"); }
     }
     private void OnEnable()
     {
-        input.Player.Enable();
-        input.Player.Lighter.performed += LighterAction;
+        if(gamepad)
+        {
+            input.Gamepad.Enable();
+
+            input.Gamepad.Spark.performed += Spark;
+            input.Gamepad.Gas.performed += GasOn;
+            input.Gamepad.Gas.canceled += GasOff;
+        }
+        else
+        {
+            input.Keyboard.Enable();
+            input.Keyboard.Lighter.performed += LighterAction;
+        }
+
+        monster.OnPlayerCatched += TurnOff;
+        gameController.PlayerSpawned += TurnOn;
     }  
     private void OnDisable()
     {
-        input.Player.Disable();
-        input.Player.Lighter.performed -= LighterAction;
+        input.Gamepad.Disable();
+        input.Keyboard.Disable();
+
+        monster.OnPlayerCatched -= TurnOff;
+        gameController.PlayerSpawned -= TurnOn;
     }
     private void Start()
     {
@@ -51,6 +78,21 @@ public class Lighter : MonoBehaviour
     private void Update()
     {
         FireLoopSound();
+
+        if(gamepad)
+        {
+            if (gas && lighterIsOn)
+            {
+                fire.SetActive(true);
+                light2D.intensity = lightIntensityHigh;
+            }
+            else if (!gas)
+            {
+                fire.SetActive(false);
+                light2D.intensity = lightIntensityLow;
+                lighterIsOn = false;
+            }
+        }
     }
 
     private void FireLoopSound()
@@ -105,8 +147,54 @@ public class Lighter : MonoBehaviour
         fire.SetActive(a);
     }
 
+    private void TurnOff(object sender, System.EventArgs e)
+    {
+        lighterIsOn = false;
+        input.Keyboard.Disable();
+    }
+
+    private void TurnOn(object sender, System.EventArgs e)
+    {
+        lighterIsOn = true;
+        input.Keyboard.Enable();
+    }
     public void SetLightIntensity(float a)
     {
         light2D.intensity = a;
+    }
+
+    private void GasOn(InputAction.CallbackContext callbackContext)
+    {
+        gas = true;
+    }
+    private void GasOff(InputAction.CallbackContext callbackContext)
+    {
+        gas = false;
+    }
+    private void Spark(InputAction.CallbackContext callbackContext)
+    {
+        if (lighterIsOn)
+            return;
+        else
+        {
+            if (gas)
+            {
+                float percentChance = 0.5f;
+                if (Random.value <= percentChance)
+                {
+                    lighterIsOn = true;
+
+                }
+
+            }
+
+            fire.SetActive(true);
+            light2D.intensity = lightIntensityHigh;
+            FMODUnity.RuntimeManager.PlayOneShot(lightersound);
+            OnLighterSound?.Invoke(this, System.EventArgs.Empty);
+            player.lastStepSound.transform.position = transform.position;
+            light2D.intensity = lightIntensityLow;
+            fire.SetActive(false);
+        }
     }
 }
