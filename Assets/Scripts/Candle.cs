@@ -13,6 +13,8 @@ public class Candle : MonoBehaviour
     private BoxCollider2D boxCol;
 
     [SerializeField] private GameObject fire;
+        
+    //HUERGO CABEZA DE CHORLITO
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class Candle : MonoBehaviour
 
     private void OnEnable()
     {
-        input.Player.Enable();
+        input.Keyboard.Enable();
     }
 
     private void Update()
@@ -33,7 +35,7 @@ public class Candle : MonoBehaviour
             anim.SetTrigger("FireCandle");
         }
 
-        if (!lightIsOn && input.Player.Lighter.triggered && canLightCandle)
+        if (!lightIsOn && input.Keyboard.Lighter.triggered && canLightCandle)
         {
             lightIsOn = true;
             boxCol.enabled = false;
