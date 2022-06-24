@@ -23,7 +23,8 @@ public class MadnessManager : MonoBehaviour
 
     [SerializeField] private float shakeIntensity;
     [SerializeField] private float shakeRate;
-
+    [SerializeField] private float shakeMax;
+    
     [SerializeField] private float maxTimeWithLightsOff;
     public float timeElapsedWithLightsOff;
 
@@ -68,7 +69,8 @@ public class MadnessManager : MonoBehaviour
                 childCamera.orthographicSize -= lerpRate;
 
                 if(canDie)
-                    shakeIntensity += shakeRate;
+                    if(shakeIntensity < shakeMax)
+                        shakeIntensity += shakeRate;    
             }
             else
             {

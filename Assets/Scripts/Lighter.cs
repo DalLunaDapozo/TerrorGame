@@ -151,12 +151,14 @@ public class Lighter : MonoBehaviour
     {
         lighterIsOn = false;
         input.Keyboard.Disable();
+        input.Gamepad.Disable();
     }
 
     private void TurnOn(object sender, System.EventArgs e)
     {
         lighterIsOn = true;
         input.Keyboard.Enable();
+        input.Gamepad.Enable();
     }
     public void SetLightIntensity(float a)
     {
