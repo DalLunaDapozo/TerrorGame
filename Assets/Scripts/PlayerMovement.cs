@@ -119,6 +119,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+            return;
+
         anim.SetFloat("IdleSpeed", idleAnimationSpeed);       
         
         if(!madness.canDie && lighterIsOn)
