@@ -33,6 +33,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c1a8542-c841-4c4a-85f6-529d0bdc1128"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -154,6 +162,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Lighter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""941caab9-b521-47e2-b8c7-bd8075559c13"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -298,6 +317,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
         m_Keyboard_Movement = m_Keyboard.FindAction("Movement", throwIfNotFound: true);
         m_Keyboard_Lighter = m_Keyboard.FindAction("Lighter", throwIfNotFound: true);
+        m_Keyboard_Action = m_Keyboard.FindAction("Action", throwIfNotFound: true);
         // Gamepad
         m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
         m_Gamepad_Movement = m_Gamepad.FindAction("Movement", throwIfNotFound: true);
@@ -354,12 +374,14 @@ public class @InputManager : IInputActionCollection, IDisposable
     private IKeyboardActions m_KeyboardActionsCallbackInterface;
     private readonly InputAction m_Keyboard_Movement;
     private readonly InputAction m_Keyboard_Lighter;
+    private readonly InputAction m_Keyboard_Action;
     public struct KeyboardActions
     {
         private @InputManager m_Wrapper;
         public KeyboardActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Keyboard_Movement;
         public InputAction @Lighter => m_Wrapper.m_Keyboard_Lighter;
+        public InputAction @Action => m_Wrapper.m_Keyboard_Action;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -375,6 +397,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Lighter.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnLighter;
                 @Lighter.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnLighter;
                 @Lighter.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnLighter;
+                @Action.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAction;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -385,6 +410,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Lighter.started += instance.OnLighter;
                 @Lighter.performed += instance.OnLighter;
                 @Lighter.canceled += instance.OnLighter;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
             }
         }
     }
@@ -460,6 +488,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLighter(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
     public interface IGamepadActions
     {

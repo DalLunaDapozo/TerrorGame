@@ -6,7 +6,7 @@ using Pathfinding;
 
 //ENUMS
 #region ENUMS
-public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor, Library, Closet }
+public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor, Library, Closet, Backyard }
 public enum Status { alert, patrol, gotcha }
 #endregion
 
@@ -221,20 +221,8 @@ public class MonsterAI : MonoBehaviour
             case CurrentRoom.MainRoom:
                 AuxiliarMethod_CurrentRoomTransform("MainRoom");
                 break;
-            case CurrentRoom.BedRoom:
-                AuxiliarMethod_CurrentRoomTransform("BedRoom");
-                break;
-            case CurrentRoom.BathRoom:
-                AuxiliarMethod_CurrentRoomTransform("BathRoom");
-                break;
-            case CurrentRoom.Storage:
-                AuxiliarMethod_CurrentRoomTransform("Storage");
-                break;
             case CurrentRoom.Kitchen:
                 AuxiliarMethod_CurrentRoomTransform("Kitchen");
-                break;
-            case CurrentRoom.Library:
-                AuxiliarMethod_CurrentRoomTransform("Library");
                 break;
         }
 
@@ -489,7 +477,7 @@ public class MonsterAI : MonoBehaviour
     //AUXILIAR VARIABLES
     private void SoundEventAmount(float amount)
     {
-        if (!player.GetComponent<PlayerLocation>().isSecondFloor && player.GetComponent<PlayerLocation>().playerCurrentRoom != CurrentRoom.Closet)
+        if (player.GetComponent<PlayerLocation>().playerCurrentRoom == CurrentRoom.MainRoom || player.GetComponent<PlayerLocation>().playerCurrentRoom == CurrentRoom.Kitchen)
         {
             if (status == Status.patrol)
                 alertCurrent += amount;

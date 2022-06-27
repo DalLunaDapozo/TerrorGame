@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Transform lastStepSound;
 
     public event System.EventHandler OnUsingStairs;
+    public event System.EventHandler OnActionPress;
 
     [SerializeField] EventReference stepsound;
     public FMOD.Studio.EventInstance playerState;
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             monsterIA.StopPlayerMovement += StopMovement;
 
         gameController.PlayerSpawned += OnSpawned;
+        inputManager.Keyboard.Action.performed += ActionPress;
     }
     private void OnDisable()
     {
@@ -355,4 +357,9 @@ public class PlayerMovement : MonoBehaviour
         location.playerCurrentRoom = CurrentRoom.RitualRoom;
     }
   
+    private void ActionPress(InputAction.CallbackContext callbackContext)
+    {
+        OnActionPress?.Invoke(this, EventArgs.Empty);
+    }
+
 }
