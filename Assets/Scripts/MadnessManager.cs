@@ -84,7 +84,12 @@ public class MadnessManager : MonoBehaviour
         else
         {
             madnessOn = false;
-            cam.Follow = GameObject.Find(roomWherePlayerIs.ToString() + "CameraPoint").transform;
+
+            if (playerLocation.playerCurrentRoom != CurrentRoom.MirrorWorld1
+                && playerLocation.playerCurrentRoom != CurrentRoom.MirrorWorld2)
+            
+                cam.Follow = GameObject.Find(roomWherePlayerIs.ToString() + "CameraPoint").transform;
+            
             shakeIntensity = 0;
             timeElapsedWithLightsOff = 0;
             if(childCamera.orthographicSize < maxDistance)

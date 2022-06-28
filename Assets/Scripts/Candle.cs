@@ -8,7 +8,7 @@ public class Candle : MonoBehaviour
     public bool lightIsOn;
 
 
-    private InputManager input;
+    private PlayerInput input;
     private Animator anim;
     private BoxCollider2D boxCol;
 
@@ -18,7 +18,7 @@ public class Candle : MonoBehaviour
 
     private void Awake()
     {
-        input = new InputManager();
+        input = new PlayerInput();
         anim = GetComponent<Animator>();
         boxCol = GetComponent<BoxCollider2D>();
     }

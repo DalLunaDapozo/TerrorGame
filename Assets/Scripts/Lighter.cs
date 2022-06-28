@@ -7,7 +7,7 @@ public class Lighter : MonoBehaviour
 {
 
     private Light2D light2D;
-    private InputManager input;
+    private PlayerInput input;
     private GameObject fire;
     private PlayerMovement player;
     private MonsterAI monster;
@@ -30,7 +30,7 @@ public class Lighter : MonoBehaviour
 
     private void Awake()
     {
-        input = new InputManager();
+        input = new PlayerInput();
         light2D = GetComponent<Light2D>();
         fire = GameObject.Find("Fire");
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();

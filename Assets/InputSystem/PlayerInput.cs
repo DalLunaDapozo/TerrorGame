@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/InputSystem/InputManager.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/InputSystem/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @InputManager : IInputActionCollection, IDisposable
+public class @PlayerInput : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @InputManager()
+    public @PlayerInput()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""InputManager"",
+    ""name"": ""PlayerInput"",
     ""maps"": [
         {
             ""name"": ""Keyboard"",
@@ -377,8 +377,8 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Keyboard_Action;
     public struct KeyboardActions
     {
-        private @InputManager m_Wrapper;
-        public KeyboardActions(@InputManager wrapper) { m_Wrapper = wrapper; }
+        private @PlayerInput m_Wrapper;
+        public KeyboardActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Keyboard_Movement;
         public InputAction @Lighter => m_Wrapper.m_Keyboard_Lighter;
         public InputAction @Action => m_Wrapper.m_Keyboard_Action;
@@ -426,8 +426,8 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Gamepad_Spark;
     public struct GamepadActions
     {
-        private @InputManager m_Wrapper;
-        public GamepadActions(@InputManager wrapper) { m_Wrapper = wrapper; }
+        private @PlayerInput m_Wrapper;
+        public GamepadActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gamepad_Movement;
         public InputAction @Gas => m_Wrapper.m_Gamepad_Gas;
         public InputAction @Spark => m_Wrapper.m_Gamepad_Spark;

@@ -10,7 +10,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private InputManager inputManager;
+    private PlayerInput inputManager;
     private Animator anim;
     private MonsterAI monsterIA;
     private Lighter lighter;
@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform lastStepStart;
 
+    [SerializeField] private GameObject spawnPoint;
+
     public float idleAnimationSpeed;
   
     private bool overCarpet;
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         location = GetComponent<PlayerLocation>();
         sprite = GetComponentInChildren<SpriteRenderer>();
 
-        inputManager = new InputManager();
+        inputManager = new PlayerInput();
 
         if(!noLighterScript)
         {
@@ -293,6 +295,11 @@ public class PlayerMovement : MonoBehaviour
             else
                 location.playerCurrentRoom = CurrentRoom.SecondFloorMain;
 
+        }
+
+        if (collision.CompareTag("Abyss"))
+        {
+            transform.position = spawnPoint.transform.position;
         }
 
     }

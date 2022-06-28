@@ -6,7 +6,7 @@ using Pathfinding;
 
 //ENUMS
 #region ENUMS
-public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor, Library, Closet, Backyard }
+public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor, Library, Closet, Backyard, MirrorWorld1, MirrorWorld2}
 public enum Status { alert, patrol, gotcha }
 #endregion
 

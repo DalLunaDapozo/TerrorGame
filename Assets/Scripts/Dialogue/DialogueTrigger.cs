@@ -12,50 +12,39 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
 
-    private InputManager input;
-
     private void Awake()
     {
-        visualCue.SetActive(false);
         playerInRange = false;
-        input = new InputManager();
-    }
-
-    private void OnEnable()
-    {
-        input.Enable();
-    }
-
-    private void OnDisable()
-    {
-        input.Disable();
+        visualCue.SetActive(false);
     }
 
     private void Update()
     {
-        if (playerInRange)
+        if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying && InputManager.GetInstance().canInteract)
         {
-            if (input.Keyboard.Action.triggered && !DialogueManager.GetInstance().dialogueIsPlaying)
+            visualCue.SetActive(true);
+            if (InputManager.GetInstance().GetSubmitPressed())
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
         }
-
-        visualCue.SetActive(playerInRange);
-
+        else
+        {
+            visualCue.SetActive(false);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.CompareTag("Player"))
+        if (collider.gameObject.tag == "Player")
         {
             playerInRange = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.CompareTag("Player"))
+        if (collider.gameObject.tag == "Player")
         {
             playerInRange = false;
         }

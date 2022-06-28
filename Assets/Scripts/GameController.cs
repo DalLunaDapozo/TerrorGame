@@ -116,6 +116,10 @@ public class GameController : MonoBehaviour
         SceneController.LoadScene("Menu", 1f, 1f);
     }
 
+    public void SetFade(string inOrOut, bool tf)
+    {
+        fade.SetBool(inOrOut, tf);
+    }
 
     private void FinishGame(object sender, System.EventArgs e)
     {
