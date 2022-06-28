@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3414919875329462928}
   - component: {fileID: 6002887996999309805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Invisivle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
