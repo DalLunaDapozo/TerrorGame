@@ -7,11 +7,15 @@ using Cinemachine;
 public class TeleportPlayerTest: MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject spawnPoint;
+    
+    [SerializeField] private GameObject spawnPointMirrorWorld;
+    [SerializeField] private GameObject ExitPoint;
+    [SerializeField] private GameObject spawnPointBathroom;
 
     private GameController gameController;
 
     private bool hasListened;
+    private bool mazeDone;
 
     private void Awake()
     {
@@ -26,12 +30,20 @@ public class TeleportPlayerTest: MonoBehaviour
 
         if (hasSaidYesToMirror && !hasListened)
         {
-            StartCoroutine(TeleportPlayer());
+            StartCoroutine(TeleportPlayer(spawnPointMirrorWorld, 14));
             hasListened = true;
         }
+
+        float distanceBetweenPlayerAndExitPoint = Vector2.Distance(player.transform.position, ExitPoint.transform.position);
+        if (distanceBetweenPlayerAndExitPoint < 0.5f && !mazeDone)
+        {
+            StartCoroutine(TeleportPlayer(spawnPointBathroom, 10));
+            mazeDone = true;
+        }
+
     }
 
-    private IEnumerator TeleportPlayer()
+    private IEnumerator TeleportPlayer(GameObject to, float cameraSize)
     {
         InputManager.GetInstance().canInteract = false;
 
@@ -42,9 +54,9 @@ public class TeleportPlayerTest: MonoBehaviour
         gameController.SetFade("in", false);
         
         gameController.SetFade("out", true);
-        player.transform.position = spawnPoint.transform.position;
+        player.transform.position = to.transform.position;
         player.GetComponent<PlayerLocation>().playerCurrentRoom = CurrentRoom.MirrorWorld1;
-        GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>().GetComponentInChildren<Camera>().orthographicSize = 14;
+        GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>().GetComponentInChildren<Camera>().orthographicSize = cameraSize;
 
         yield return new WaitForSeconds(2f);       
        

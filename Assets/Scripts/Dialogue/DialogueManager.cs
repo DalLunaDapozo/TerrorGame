@@ -245,11 +245,24 @@ public class DialogueManager : MonoBehaviour
         return variableValue;
     }
 
+    public void SetVariableState(string variableName, Ink.Runtime.Object variableValue)
+    {
+        if (dialogueVariables.variables.ContainsKey(variableName))
+        {
+            dialogueVariables.variables.Remove(variableName);
+            dialogueVariables.variables.Add(variableName, variableValue);
+        }
+        else
+        {
+            Debug.LogWarning("Tried to update variable that wasn't initialized by globals.ink: " + variableName);
+        }
+    }
+
     // This method will get called anytime the application exits.
     // Depending on your game, you may want to save variable state in other places.
-   /* public void OnApplicationQuit()
-    {
-        dialogueVariables.SaveVariables();
-    }*/
+    /* public void OnApplicationQuit()
+     {
+         dialogueVariables.SaveVariables();
+     }*/
 
 }
