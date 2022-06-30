@@ -15,6 +15,7 @@ TagManager:
   - Heart
   - Stairs
   - Abyss
+  - Dog
   layers:
   - Default
   - TransparentFX

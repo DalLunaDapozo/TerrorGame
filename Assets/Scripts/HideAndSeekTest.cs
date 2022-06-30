@@ -8,6 +8,8 @@ public class HideAndSeekTest : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numberPopUp;
     [SerializeField] private GameObject cue;
 
+    [SerializeField] private GameObject monster;
+
     [SerializeField] private PlayerMovement player;
 
     private bool hasListened = false;
@@ -27,6 +29,7 @@ public class HideAndSeekTest : MonoBehaviour
     {
         bool hasSaidYesToHide = ((Ink.Runtime.BoolValue)DialogueManager.
         GetInstance().GetVariableState("hide")).value;
+
 
         if (!hasListened && hasSaidYesToHide)
         {
@@ -62,6 +65,7 @@ public class HideAndSeekTest : MonoBehaviour
 
         numberPopUp.gameObject.SetActive(false);
         InputManager.GetInstance().canInteract = true;
+        monster.SetActive(false);
         hasCounted = true;
     }
 }

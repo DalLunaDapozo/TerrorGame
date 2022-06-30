@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform lastStepStart;
 
     [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private GameObject spawnPoint2;
 
     public float idleAnimationSpeed;
   
@@ -300,6 +301,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("Abyss"))
         {
             transform.position = spawnPoint.transform.position;
+        }
+
+        if (collision.CompareTag("Dog"))
+        {
+            transform.position = spawnPoint2.transform.position;
         }
 
     }

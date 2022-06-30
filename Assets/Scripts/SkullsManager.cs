@@ -52,7 +52,7 @@ public class SkullsManager : MonoBehaviour
        
         if (skulls[2].isOn && !thirdCandleOn)
         {
-            OneKeyCandleLighted?.Invoke(this, System.EventArgs.Empty);
+           // OneKeyCandleLighted?.Invoke(this, System.EventArgs.Empty);
             thirdCandleOn = true;
         }
 

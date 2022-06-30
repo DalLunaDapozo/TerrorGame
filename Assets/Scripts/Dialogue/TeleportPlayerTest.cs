@@ -12,6 +12,10 @@ public class TeleportPlayerTest: MonoBehaviour
     [SerializeField] private GameObject ExitPoint;
     [SerializeField] private GameObject spawnPointBathroom;
 
+    [SerializeField] private UnityEngine.Experimental.Rendering.Universal.Light2D globalLight;
+
+    [SerializeField] private GameObject monster;
+
     private GameController gameController;
 
     private bool hasListened;
@@ -30,27 +34,30 @@ public class TeleportPlayerTest: MonoBehaviour
 
         if (hasSaidYesToMirror && !hasListened)
         {
-            StartCoroutine(TeleportPlayer(spawnPointMirrorWorld, 14));
+            StartCoroutine(TeleportPlayer(spawnPointMirrorWorld, 14, 0.1f));
             hasListened = true;
         }
 
         float distanceBetweenPlayerAndExitPoint = Vector2.Distance(player.transform.position, ExitPoint.transform.position);
         if (distanceBetweenPlayerAndExitPoint < 0.5f && !mazeDone)
         {
-            StartCoroutine(TeleportPlayer(spawnPointBathroom, 10));
+            StartCoroutine(TeleportPlayer(spawnPointBathroom, 11.5f, 0.01f));
+            monster.SetActive(false);
             mazeDone = true;
         }
 
     }
 
-    private IEnumerator TeleportPlayer(GameObject to, float cameraSize)
+    private IEnumerator TeleportPlayer(GameObject to, float cameraSize, float light)
     {
         InputManager.GetInstance().canInteract = false;
 
         gameController.SetFade("in", true);
 
         yield return new WaitForSeconds(2f);
-        
+
+        globalLight.intensity = light;
+
         gameController.SetFade("in", false);
         
         gameController.SetFade("out", true);
