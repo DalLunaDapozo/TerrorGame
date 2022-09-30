@@ -28,12 +28,11 @@ public class PickableObject : MonoBehaviour
     private void Start()
     {
         madness.HeartAttackEvent += Drop;
-        monster.OnPlayerCatched += Drop;
+        if(monster != null) monster.OnPlayerCatched += Drop;
     }
 
     private void OnDestroy()
     {
-        monster.OnPlayerCatched -= Drop;
         madness.HeartAttackEvent -= Drop;
     }
 

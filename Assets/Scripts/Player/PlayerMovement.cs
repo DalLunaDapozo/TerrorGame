@@ -51,10 +51,18 @@ public class PlayerMovement : MonoBehaviour
     private bool overCarpet;
     public bool noLighterScript;
 
-    public bool isNearCandle;
-    public bool lighterIsOn;
+    public bool well_hidden = false;
 
- 
+    public bool isNearCandle;
+    public bool isNearHiddeable;
+    public bool lighterIsOn;
+    public bool isHidden;
+
+    private Vector2 hiddeable_object_pos;
+    private Vector2 last_pos_before_hide;
+
+    private OutlineEffect hiddeable_object;
+
     //RUNNING
 
     public bool IsRunning = false;
@@ -74,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         if(!noLighterScript)
         {
             try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
-            catch { UnityEngine.Debug.Log("GameController Not Found"); }
+            catch { UnityEngine.Debug.Log("Monster Not Found"); }
 
             try { madness = GameObject.Find("MadnessManager").GetComponent<MadnessManager>(); }
             catch { UnityEngine.Debug.Log("MadnessManager Not Found"); }
@@ -127,16 +135,16 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetFloat("IdleSpeed", idleAnimationSpeed);       
         
-        if(!madness.canDie && lighterIsOn)
+        if(!madness.die && lighterIsOn)
         {
             lighter.lighterIsOn = true;
             gameController.firstTime = false;
-            madness.canDie = true;
+            madness.die = true;
             inputManager.Keyboard.Enable();
         }
         
         ReadMovementValue();
-        FlipSprite();
+        if(!isHidden) FlipSprite();
         
       
         if (noLighterScript)
@@ -287,7 +295,20 @@ public class PlayerMovement : MonoBehaviour
         {
             isNearCandle = true;
         }
+        if (collision.CompareTag("Interactable"))
+        {
+            hiddeable_object = collision.GetComponent<OutlineEffect>();
+            hiddeable_object.ShowOutline();
+        }
         
+        if (collision.CompareTag("Hiddeable"))
+        {
+            isNearHiddeable = true;
+            hiddeable_object_pos = collision.GetComponent<Transform>().position;
+            hiddeable_object = collision.GetComponent<OutlineEffect>();
+            hiddeable_object.ShowOutline();
+        }
+
         if (collision.gameObject.CompareTag("Stairs"))
         {
             transform.position = collision.gameObject.GetComponent<ChangeRoomTrigger>().GetDestination().position;
@@ -320,6 +341,18 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("Candle"))
         {
             isNearCandle = false;
+        }
+
+        if (collision.CompareTag("Interactable"))
+        {
+            hiddeable_object.HideOutline();
+        }
+
+
+        if (collision.CompareTag("Hiddeable"))
+        {
+            isNearHiddeable = false;
+            hiddeable_object.HideOutline();
         }
     }
 
@@ -373,9 +406,43 @@ public class PlayerMovement : MonoBehaviour
         location.playerCurrentRoom = CurrentRoom.RitualRoom;
     }
   
+    private IEnumerator Hide()
+    {
+        sprite.enabled = false;
+        inputManager.Keyboard.Movement.Disable();
+        lighter.Desuscribe_input();
+        lighter.lighterIsOn = false;
+        lighter.SetFire(false);
+        last_pos_before_hide = transform.position;
+        transform.position = hiddeable_object_pos;
+        hiddeable_object.HideOutline();
+
+        if (hiddeable_object.correct_spot) well_hidden = true;
+   
+        yield return new WaitForSeconds(0.4f);
+        isHidden = true;
+    }
+
+    private void UnHide()
+    {
+        isHidden = false;
+        sprite.enabled = true;
+        transform.position = last_pos_before_hide;
+        lighter.lighterIsOn = true;
+        lighter.SetFire(true);
+        lighter.Suscribe_input();
+        well_hidden = false;
+        inputManager.Keyboard.Movement.Enable();
+        inputManager.Keyboard.Lighter.Enable();
+        hiddeable_object.ShowOutline();
+    }
+
     private void ActionPress(InputAction.CallbackContext callbackContext)
     {
         OnActionPress?.Invoke(this, EventArgs.Empty);
+    
+        if (isNearHiddeable && !isHidden) StartCoroutine(Hide());
+        if (isHidden) UnHide();
     }
 
 }

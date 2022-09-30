@@ -6,16 +6,17 @@ using System.Collections;
 public class MonsterAnimations : MonoBehaviour
 {
     public Animator anim;
-    private AIPath path;
+    public AIPath path;
     private SpriteRenderer sprite;
     private MonsterAI monsterAI;
     private PlayerMovement player;
 
-    [SerializeField] private bool isMoving;
+    [SerializeField] public bool isMoving;
 
     [SerializeField] private FMODUnity.StudioEventEmitter alertGrowl;
     [SerializeField] FMODUnity.EventReference crackSound;
-    
+
+    public bool deactivated;
     public FMODUnity.StudioEventEmitter eventEmitter;
   
     private void Awake()
@@ -41,10 +42,14 @@ public class MonsterAnimations : MonoBehaviour
             sprite.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
 
-        if ((Vector2)path.desiredVelocity != Vector2.zero)
-            isMoving = true;
-        else
-            isMoving = false;
+        if(!deactivated)
+        {
+            if ((Vector2)path.desiredVelocity != Vector2.zero)
+                isMoving = true;
+            else
+                isMoving = false;
+        }
+       
 
       
         anim.SetBool("Walk", isMoving);

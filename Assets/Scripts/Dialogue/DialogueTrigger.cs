@@ -15,14 +15,14 @@ public class DialogueTrigger : MonoBehaviour
     private void Awake()
     {
         playerInRange = false;
-        visualCue.SetActive(false);
+        if (visualCue != null) visualCue.SetActive(false);
     }
 
     private void Update()
     {
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying && InputManager.GetInstance().canInteract)
         {
-            visualCue.SetActive(true);
+            if(visualCue != null) visualCue.SetActive(true);
             if (InputManager.GetInstance().GetSubmitPressed())
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
@@ -30,7 +30,7 @@ public class DialogueTrigger : MonoBehaviour
         }
         else
         {
-            visualCue.SetActive(false);
+            if (visualCue != null) visualCue.SetActive(false);
         }
     }
 

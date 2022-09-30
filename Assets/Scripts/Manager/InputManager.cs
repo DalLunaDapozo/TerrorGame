@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// This script acts as a single point for all other scripts to get
-// the current input from. It uses Unity's new Input System and
-// functions should be mapped to their corresponding controls
-// using a PlayerInput component with Unity Events.
 
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
     private bool interactPressed = false;
     private bool submitPressed = false;
+
+    private bool testButtonPressed = false;
+
+    public event EventHandler test_button_pressed;
 
     private static InputManager instance;
     private PlayerInput input;
@@ -48,6 +47,19 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void TestButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            testButtonPressed = true;
+            test_button_pressed?.Invoke(this, EventArgs.Empty);
+        }
+        else if (context.canceled)
+        {
+            testButtonPressed = false;
+        }
+    }
+
     public void SubmitPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -68,10 +80,6 @@ public class InputManager : MonoBehaviour
     {
         canInteract = true;
     }
-
-    // for any of the below 'Get' methods, if we're getting it then we're also using it,
-    // which means we should set it to false so that it can't be used again until actually
-    // pressed again.
 
 
     public bool GetInteractPressed()

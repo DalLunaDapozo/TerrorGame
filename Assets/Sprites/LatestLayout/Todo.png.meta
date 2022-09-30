@@ -352,10 +352,10 @@ TextureImporter:
       name: Todo_2
       rect:
         serializedVersion: 2
-        x: 829
-        y: 348
-        width: 24
-        height: 38
+        x: 827
+        y: 347
+        width: 28
+        height: 41
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1709,6 +1709,27 @@ TextureImporter:
       bones: []
       spriteID: 755a8c7d8a4fd2f00800000000000000
       internalID: 1093799290532832599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Todo_18
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 347
+        width: 28
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb37c5ea9c64aeea0800000000000000
+      internalID: -5842779734532131908
       vertices: []
       indices: 
       edges: []

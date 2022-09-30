@@ -39,14 +39,14 @@ public class GameController : MonoBehaviour
         catch { Debug.Log("RitualCircle missing"); }
 
         try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
-        catch { Debug.Log("hola"); }
+        catch { Debug.Log("Monster not found"); }
 
         try { madness = GameObject.Find("MadnessManager").GetComponent<MadnessManager>(); }
         catch { Debug.Log("MadnessManager missing"); }
 
         if (!isBrightDay)
             try { monsterIA = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
-            catch { Debug.Log("hola"); }
+            catch { Debug.Log("Monster not found"); }
         
 
         if (monsterIA == null)
@@ -71,6 +71,7 @@ public class GameController : MonoBehaviour
 
         ritual.OnHeartEnding += FinishGame;
         madness.HeartAttackEvent += GameOver;
+        InputManager.GetInstance().test_button_pressed += FinishGame;
     }
 
     private void OnDisable()
@@ -110,7 +111,7 @@ public class GameController : MonoBehaviour
     private IEnumerator WinSequence()
     {   
       
-        yield return new WaitForSeconds(timeBeforeRestart);
+        yield return new WaitForSeconds(.2f);
 
 
         SceneController.LoadScene("Menu", 1f, 1f);

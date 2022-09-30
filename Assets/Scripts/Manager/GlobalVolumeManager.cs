@@ -50,13 +50,13 @@ public class GlobalVolumeManager : MonoBehaviour
         colorAdjustments.colorFilter.Override(color);
        
 
-        if (madness.madnessOn == true && madness.canDie && color.r <= 1.7f)
-            color.r += redScreenRate;
-        else 
-        {
-            if (color.r > 1f)
-                color.r -= redScreenRate;
-        }
+        //if (madness.madnessOn == true && madness.canDie && color.r <= 1.7f)
+        //    color.r += redScreenRate;
+        //else 
+        //{
+        //    if (color.r > 1f)
+        //        color.r -= redScreenRate;
+        //}
 
         
     }

@@ -16,6 +16,8 @@ TagManager:
   - Stairs
   - Abyss
   - Dog
+  - Hiddeable
+  - Interactable
   layers:
   - Default
   - TransparentFX

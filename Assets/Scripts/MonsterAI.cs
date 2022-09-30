@@ -7,7 +7,7 @@ using Pathfinding;
 //ENUMS
 #region ENUMS
 public enum CurrentRoom { MainRoom, BedRoom, BathRoom, Storage, Kitchen, SecondFloorMain, RitualRoom, OwnBedroom, Corridor, Library, Closet, Backyard, MirrorWorld1, MirrorWorld2}
-public enum Status { alert, patrol, gotcha }
+public enum Status { alert, patrol, gotcha, deactivated}
 #endregion
 
 public class MonsterAI : MonoBehaviour 
@@ -22,6 +22,7 @@ public class MonsterAI : MonoBehaviour
     private GameController gameController;
     private Lighter lighter;
     private MonsterAnimations monsterAnimations;
+    private SpriteRenderer sprite;
 
     #endregion
 
@@ -55,6 +56,8 @@ public class MonsterAI : MonoBehaviour
     [Header("Status")]
     [SerializeField] public Status status = Status.patrol;
     [SerializeField] public CurrentRoom currentRoom = CurrentRoom.MainRoom;
+
+    public bool enable_monster = true;
 
     #endregion
 
@@ -113,12 +116,17 @@ public class MonsterAI : MonoBehaviour
 
     #region SOUND
 
+    [SerializeField] GameObject breathing_sound;
+ 
     [SerializeField] EventReference alertGrowl;
     public FMOD.Studio.EventInstance alertGrowlInstance;
     //private bool hasGrowl = false;
 
     #endregion
-    
+
+    [SerializeField] private SpriteRenderer shadow;
+    [SerializeField] private GameObject _collider;
+
     #endregion
 
     #region UNITY_METHODS
@@ -130,6 +138,7 @@ public class MonsterAI : MonoBehaviour
         seeker = GetComponent<Seeker>();
         aiPath = GetComponent<AIPath>();
         monsterAnimations = GetComponent<MonsterAnimations>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
 
         //TO FIND !!! ( (0) )
 
@@ -181,7 +190,7 @@ public class MonsterAI : MonoBehaviour
     private void Update()
     {
         TimerBeforeGoingToAnotherRoom();
-        StatusDependingOnPlayerDistance();
+        if(status != Status.deactivated) StatusDependingOnPlayerDistance();
         BehaviourDependingOnStatus();
         DecreaseAlertFieldOverTime();
       
@@ -402,6 +411,16 @@ public class MonsterAI : MonoBehaviour
     }
     #endregion
 
+    public void Disable_Monster()
+    {
+        status = Status.deactivated;
+    }
+
+    public void Enable_Monster()
+    {
+        status = Status.patrol;
+    }
+
     #region BEHAVIOUR METHODS
 
     private void BehaviourDependingOnStatus()
@@ -414,9 +433,15 @@ public class MonsterAI : MonoBehaviour
                     Main_AlertBehaviour();
                
                 break;
+            
 
             case Status.patrol:
 
+                sprite.enabled = true;
+                breathing_sound.gameObject.SetActive(true);
+                monsterAnimations.deactivated = false;
+                shadow.enabled = true;
+                _collider.SetActive(true);
                 if (!isKilling)
                 {
                     hasGrowled = false;
@@ -435,6 +460,21 @@ public class MonsterAI : MonoBehaviour
                 if (!playerCatched)
                 StartCoroutine("KillingAnimation");
                 
+                break;
+
+            case Status.deactivated:
+
+                aiPath.canMove = false;
+                aiPath.canSearch = false;
+                aiPath.isStopped = true;
+                sprite.enabled = false;
+                hasGrowled = true;
+                breathing_sound.gameObject.SetActive(false);
+                monsterAnimations.deactivated = true;
+                shadow.enabled = false;
+                _collider.SetActive(false);
+                
+
                 break;
         }
 

@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -8,16 +8,29 @@ public class HideAndSeekTest : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numberPopUp;
     [SerializeField] private GameObject cue;
 
-    [SerializeField] private GameObject monster;
+    [SerializeField] private GameObject hide_and_seek_monster;
 
     [SerializeField] private PlayerMovement player;
+
+    public event EventHandler player_is_well_hidden;
+    public event EventHandler player_is_not_well_hidden;
+
+    private MonsterAI monster;
 
     private bool hasListened = false;
     private bool hasCounted = false;
 
+    private bool you_didnt_hide;
+
     private bool startedToSeek = false;
 
     public int count;
+
+    private void Awake()
+    {
+        try { monster = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
+        catch { Debug.Log("Monster Not Found"); }
+    }
 
     private void Start()
     {
@@ -36,19 +49,22 @@ public class HideAndSeekTest : MonoBehaviour
             StartCoroutine(CountSequence());
             Debug.Log("EMPIEZA EL JUEGO");
             hasListened = true;
+            monster.Disable_Monster();
         }
 
-        if (hasCounted && player.GetComponent<PlayerLocation>().playerCurrentRoom != CurrentRoom.Closet)
+        if (hasCounted)
         {
-            Debug.Log("MORIDO");
+            if (player.isHidden)
+            {
+                if (!player.well_hidden) player_is_not_well_hidden?.Invoke(this, EventArgs.Empty);
+                else player_is_well_hidden?.Invoke(this, EventArgs.Empty);
+            }
+            else you_didnt_hide = true;
+            
             hasCounted = false;
-        }
-        else if(hasCounted && player.GetComponent<PlayerLocation>().playerCurrentRoom == CurrentRoom.Closet)
-        {
-            Debug.Log("VIVIDO");
-            hasCounted = false;
-        }
-           
+        
+            
+        } 
     }
 
     private IEnumerator CountSequence()
@@ -65,7 +81,7 @@ public class HideAndSeekTest : MonoBehaviour
 
         numberPopUp.gameObject.SetActive(false);
         InputManager.GetInstance().canInteract = true;
-        monster.SetActive(false);
+        hide_and_seek_monster.SetActive(false);
         hasCounted = true;
     }
 }

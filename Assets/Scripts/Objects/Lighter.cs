@@ -12,6 +12,7 @@ public class Lighter : MonoBehaviour
     private PlayerMovement player;
     private MonsterAI monster;
     private GameController gameController;
+    private Animator anim;
     private FMOD.Studio.EventInstance lighterloopInstance;
     
     [SerializeField] EventReference lightersound;
@@ -34,7 +35,7 @@ public class Lighter : MonoBehaviour
         light2D = GetComponent<Light2D>();
         fire = GameObject.Find("Fire");
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-
+        anim = GetComponent<Animator>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         try { monster = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
@@ -53,10 +54,11 @@ public class Lighter : MonoBehaviour
         else
         {
             input.Keyboard.Enable();
-            input.Keyboard.Lighter.performed += LighterAction;
+            Suscribe_input();
         }
 
-        monster.StopPlayerMovement += TurnOff;
+        if(monster != null) monster.StopPlayerMovement += TurnOff;
+        
         gameController.PlayerSpawned += TurnOn;
     }  
     private void OnDisable()
@@ -64,7 +66,7 @@ public class Lighter : MonoBehaviour
         input.Gamepad.Disable();
         input.Keyboard.Disable();
 
-        monster.OnPlayerCatched -= TurnOff;
+        if (monster != null) monster.OnPlayerCatched -= TurnOff;
         gameController.PlayerSpawned -= TurnOn;
     }
     private void Start()
@@ -78,6 +80,8 @@ public class Lighter : MonoBehaviour
     private void Update()
     {
         FireLoopSound();
+
+        anim.SetBool("On", lighterIsOn);
 
         if(gamepad)
         {
@@ -128,6 +132,8 @@ public class Lighter : MonoBehaviour
             OnLighterSound?.Invoke(this, System.EventArgs.Empty);
             player.lastStepSound.transform.position = transform.position;
 
+            anim.Play("spark_anim");
+
             float percentChance = 0.5f;
             if (Random.value <= percentChance)
             {
@@ -142,9 +148,20 @@ public class Lighter : MonoBehaviour
 
     }
 
-    public void SetFire(bool a)
+    public void Desuscribe_input()
+    {
+        input.Keyboard.Lighter.performed -= LighterAction;
+    }
+    public void Suscribe_input()
+    {
+        input.Keyboard.Lighter.performed += LighterAction;
+    }
+    public void SetFire(bool a) 
     {
         fire.SetActive(a);
+
+        if (a) SetLightIntensity(lightIntensityHigh);
+        if (!a) SetLightIntensity(lightIntensityLow);
     }
 
     private void TurnOff(object sender, System.EventArgs e)

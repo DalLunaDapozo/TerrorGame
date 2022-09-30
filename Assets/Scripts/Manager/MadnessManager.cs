@@ -34,7 +34,8 @@ public class MadnessManager : MonoBehaviour
 
     public bool madnessOn;
 
-    public bool canDie;
+    public bool die;
+    public bool can_die;
 
     private void Awake()
     {
@@ -62,23 +63,28 @@ public class MadnessManager : MonoBehaviour
             cam.Follow = player.transform;
 
             timeElapsedWithLightsOff += Time.deltaTime;
-           
-            if (!PlayerShouldDie())
-            {
-                if(childCamera.orthographicSize > minDistance)
+
+            if (childCamera.orthographicSize > minDistance)
                 childCamera.orthographicSize -= lerpRate;
-
-                if(canDie)
-                    if(shakeIntensity < shakeMax)
-                        shakeIntensity += shakeRate;    
-            }
-            else
+            
+            if (can_die) 
             {
-                if (canDie)
-                    StartCoroutine(HeartAttack());
+              
+                if (!PlayerShouldDie())
+                {
+                    if (die)
+                        if (shakeIntensity < shakeMax)
+                            shakeIntensity += shakeRate;
+                }
+                else
+                {
+                    if (die)
+                        StartCoroutine(HeartAttack());
 
-                timeElapsedWithLightsOff = 0;
-            }
+                    timeElapsedWithLightsOff = 0;
+                }
+            }   
+           
 
         }
         else
@@ -110,7 +116,7 @@ public class MadnessManager : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         shakeIntensity = 0;
-        canDie = false;
+        die = false;
         
         HeartAttackEvent?.Invoke(this, System.EventArgs.Empty);
 

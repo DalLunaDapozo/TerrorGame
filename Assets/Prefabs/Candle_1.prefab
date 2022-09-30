@@ -141,8 +141,8 @@ GameObject:
   - component: {fileID: 2474021541403437454}
   - component: {fileID: 2474021541403437455}
   - component: {fileID: 2474021541403437440}
-  - component: {fileID: 2474021541403437443}
   - component: {fileID: 2474021541403437442}
+  - component: {fileID: 6865907828791205330}
   m_Layer: 0
   m_Name: Candle_1
   m_TagString: Candle
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3192
+  m_SortingOrder: -3495
   m_Sprite: {fileID: 5708288942875440895, guid: 4d710c5db44879a4db2fd43cbeb7226d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -231,7 +231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.6020622, y: 0.75}
+  m_Offset: {x: 0.65270233, y: 0.20814896}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -242,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7080002, y: 1.5}
+  m_Size: {x: 1.6672668, y: 1.5722427}
   m_EdgeRadius: 0
 --- !u!114 &2474021541403437440
 MonoBehaviour:
@@ -259,18 +259,6 @@ MonoBehaviour:
   canLightCandle: 0
   lightIsOn: 0
   fire: {fileID: 8459399609972733236}
---- !u!114 &2474021541403437443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2474021541403437452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a67c9e6d0b5594b8e8d9ab10dfa95f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2474021541403437442
 Animator:
   serializedVersion: 3
@@ -290,6 +278,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6865907828791205330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474021541403437452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a67c9e6d0b5594b8e8d9ab10dfa95f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8459399609972733236
 GameObject:
   m_ObjectHideFlags: 0

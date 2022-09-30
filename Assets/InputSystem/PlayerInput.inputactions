@@ -1,5 +1,5 @@
 {
-    "name": "InputManager",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Keyboard",
@@ -25,6 +25,14 @@
                     "name": "Action",
                     "type": "Button",
                     "id": "7c1a8542-c841-4c4a-85f6-529d0bdc1128",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TestButton",
+                    "type": "Button",
+                    "id": "073e63e0-ed3f-4491-9d00-669081cf7272",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -160,6 +168,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f133b7c5-fc94-4f00-adfc-cd18d341c080",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TestButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

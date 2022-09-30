@@ -41,6 +41,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TestButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""073e63e0-ed3f-4491-9d00-669081cf7272"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -173,6 +181,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f133b7c5-fc94-4f00-adfc-cd18d341c080"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""TestButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -318,6 +337,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Keyboard_Movement = m_Keyboard.FindAction("Movement", throwIfNotFound: true);
         m_Keyboard_Lighter = m_Keyboard.FindAction("Lighter", throwIfNotFound: true);
         m_Keyboard_Action = m_Keyboard.FindAction("Action", throwIfNotFound: true);
+        m_Keyboard_TestButton = m_Keyboard.FindAction("TestButton", throwIfNotFound: true);
         // Gamepad
         m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
         m_Gamepad_Movement = m_Gamepad.FindAction("Movement", throwIfNotFound: true);
@@ -375,6 +395,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Keyboard_Movement;
     private readonly InputAction m_Keyboard_Lighter;
     private readonly InputAction m_Keyboard_Action;
+    private readonly InputAction m_Keyboard_TestButton;
     public struct KeyboardActions
     {
         private @PlayerInput m_Wrapper;
@@ -382,6 +403,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Keyboard_Movement;
         public InputAction @Lighter => m_Wrapper.m_Keyboard_Lighter;
         public InputAction @Action => m_Wrapper.m_Keyboard_Action;
+        public InputAction @TestButton => m_Wrapper.m_Keyboard_TestButton;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +422,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Action.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnAction;
+                @TestButton.started -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnTestButton;
+                @TestButton.performed -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnTestButton;
+                @TestButton.canceled -= m_Wrapper.m_KeyboardActionsCallbackInterface.OnTestButton;
             }
             m_Wrapper.m_KeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -413,6 +438,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @TestButton.started += instance.OnTestButton;
+                @TestButton.performed += instance.OnTestButton;
+                @TestButton.canceled += instance.OnTestButton;
             }
         }
     }
@@ -489,6 +517,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLighter(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnTestButton(InputAction.CallbackContext context);
     }
     public interface IGamepadActions
     {

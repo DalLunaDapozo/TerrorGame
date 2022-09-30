@@ -18,7 +18,7 @@ public class PointToGo : MonoBehaviour
     private void Awake()
     {
         try { monster = GameObject.Find("Monster").GetComponent<MonsterAI>(); }
-        catch { Debug.Log("hola"); }
+        catch { Debug.Log("Monster Not Found"); }
     }
 
     private void Update()
